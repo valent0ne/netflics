@@ -13,7 +13,6 @@
 		    serviceName="vault:VaultService"
 		    endpointName="vault:VaultPort" 
 		    implementor="#VaultPTImpl">
-		    
 	</jaxws:endpoint>
 	
 </beans>

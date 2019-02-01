@@ -27,7 +27,7 @@
 
             <xsd:complexType name="addMovieRequest">
                 <xsd:sequence>
-                    <xsd:element name="title" type="xsd:string"/>
+                    <xsd:element name="imdb_id" type="xsd:string"/>
                     <xsd:element name="movie" type="xsd:byte"/>
                 </xsd:sequence>
             </xsd:complexType>

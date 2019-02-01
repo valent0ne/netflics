@@ -10,13 +10,12 @@
            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd
            http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd
            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
-          
 
     <util:properties id="cfg" location="classpath:cfg.properties"/>
 
-
     <!-- Scans for application @Component and @Service to deploy -->
-    <context:component-scan base-package="it.univaq.disim.netflics.vault.service" />
+    <context:component-scan base-package="it.univaq.disim.netflics.vault.*" />
 
+    <jee:jndi-lookup id="dataSource" jndi-name="jdbc/netflics"/>
 
 </beans>
