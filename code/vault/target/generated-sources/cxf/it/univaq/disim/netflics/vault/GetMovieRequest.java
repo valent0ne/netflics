@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="movie_id" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
+ *         &lt;element name="imdb_id" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -28,27 +28,35 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getMovieRequest", propOrder = {
-    "movieId"
+    "imdbId"
 })
 public class GetMovieRequest {
 
-    @XmlElement(name = "movie_id")
-    protected int movieId;
+    @XmlElement(name = "imdb_id", required = true)
+    protected String imdbId;
 
     /**
-     * Gets the value of the movieId property.
+     * Gets the value of the imdbId property.
      * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
-    public int getMovieId() {
-        return movieId;
+    public String getImdbId() {
+        return imdbId;
     }
 
     /**
-     * Sets the value of the movieId property.
+     * Sets the value of the imdbId property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
-    public void setMovieId(int value) {
-        this.movieId = value;
+    public void setImdbId(String value) {
+        this.imdbId = value;
     }
 
 }

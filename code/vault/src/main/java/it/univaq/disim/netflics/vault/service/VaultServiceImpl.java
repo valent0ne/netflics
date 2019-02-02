@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
 
 import javax.activation.DataHandler;
+import javax.activation.FileDataSource;
 
 @Service
 public class VaultServiceImpl implements VaultService {
@@ -35,7 +36,10 @@ public class VaultServiceImpl implements VaultService {
 
 	@Override
 	public GetMovieResponse getMovie(GetMovieRequest parameters) throws BusinessException {
-		return new GetMovieResponse();
+		FileDataSource dataSource = new FileDataSource(videopath + parameters.getImdbId());
+		GetMovieResponse response = new GetMovieResponse();
+		response.setMovie(new DataHandler(dataSource));
+		return response;
 	}
 
 	@Override

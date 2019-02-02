@@ -27,6 +27,7 @@ public class VaultPTImpl implements VaultPT {
 	 */
 	public GetMovieResponse getMovie(GetMovieRequest parameters) {
 
+		//TODO auth
 		try {
 			GetMovieResponse response = service.getMovie(parameters);
 			return response;
@@ -44,6 +45,8 @@ public class VaultPTImpl implements VaultPT {
 	 * @return movieResponse flag signaling the outcome
 	 */
 	public AddMovieResponse addMovie(AddMovieRequest parameters) {
+		//TODO auth
+
 
 		try {
 			AddMovieResponse response = service.addMovie(parameters);
