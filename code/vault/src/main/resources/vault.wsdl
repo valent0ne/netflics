@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="VaultService"
+             targetNamespace="http://it.univaq.disim.netflics/vault"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:wsp="http://www.w3.org/ns/ws-policy"
+             xmlns:tns="http://it.univaq.disim.netflics/vault"
+             xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy"
+             xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+
+    <types>
+        <xsd:schema targetNamespace="http://it.univaq.disim.netflics/vault">
+
+            <xsd:element name="getMovieRequest" type="tns:getMovieRequest"/>
+            <xsd:element name="addMovieRequest" type="tns:addMovieRequest"/>
+            <xsd:element name="getMovieResponse" type="tns:getMovieResponse"/>
+            <xsd:element name="addMovieResponse" type="tns:addMovieResponse"/>
+
+
+            <xsd:complexType name="getMovieRequest">
+                <xsd:sequence>
+                    <xsd:element name="imdb_id" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="addMovieRequest">
+                <xsd:sequence>
+                    <xsd:element name="imdb_id" type="xsd:string"/>
+                    <xsd:element name="movie" type="xsd:byte"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="getMovieResponse">
+                <xsd:sequence>
+                    <xsd:element name="movie" type="xsd:byte"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="addMovieResponse">
+                <xsd:sequence>
+                    <xsd:element name="result" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+        </xsd:schema>
+    </types>
+
+    <message name="getMovieRequest">
+        <part name="getMovieRequest" element="tns:getMovieRequest">
+        </part>
+    </message>
+
+    <message name="addMovieRequest">
+        <part name="addMovieRequest" element="tns:addMovieRequest">
+        </part>
+    </message>
+
+    <message name="getMovieResponse">
+        <part name="getMovieResponse" element="tns:getMovieResponse">
+        </part>
+    </message>
+
+    <message name="addMovieResponse">
+        <part name="addMovieResponse" element="tns:addMovieResponse">
+        </part>
+    </message>
+
+    <portType name="VaultPT">
+        <operation name="getMovie">
+            <input message="tns:getMovieRequest" wsam:Action="http://it.univaq.disim.netflics/vault/getMovieRequest">
+            </input>
+            <output message="tns:getMovieResponse" wsam:Action="http://it.univaq.disim.netflics/vault/getMovieResponse">
+            </output>
+        </operation>
+
+        <operation name="addMovie">
+            <input message="tns:addMovieRequest" wsam:Action="http://it.univaq.disim.netflics/vault/addMovieRequest">
+            </input>
+            <output message="tns:addMovieResponse" wsam:Action="http://it.univaq.disim.netflics/vault/addMovieResponse">
+            </output>
+        </operation>
+    </portType>
+
+    <binding name="VaultBinding" type="tns:VaultPT">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="getMovie">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+
+        <operation name="addMovie">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="VaultService">
+        <port name="VaultPort" binding="tns:VaultBinding">
+            <soap:address location="http://localhost:8080/netflics/services/vault"/>
+        </port>
+    </service>
+
+</definitions>
