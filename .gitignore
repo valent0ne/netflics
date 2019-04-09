@@ -2,7 +2,5 @@
 out/
 .idea/
 \.DS_Store
-code/vault/target/classes/
-code/vault/target/cxf-codegen-plugin-markers/
-code/vault/target/vault/
+*/target/**
 *.war
