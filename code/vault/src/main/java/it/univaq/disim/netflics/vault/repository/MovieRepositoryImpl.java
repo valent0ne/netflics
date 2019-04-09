@@ -21,7 +21,7 @@ public class MovieRepositoryImpl implements MovieRepository {
     @Autowired
     private DataSource dataSource;
 
-    public <M extends Movie> M save(M movie) {
+    public Movie save(Movie movie) {
 
         LOGGER.info("movie data: {} {} {} {}", movie.getTitle(),
                 movie.getDirectors(),

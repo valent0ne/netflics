@@ -1,6 +1,5 @@
-# IntelliJ
+target/	
 out/
 .idea/
 \.DS_Store
-*/target/**
 *.war

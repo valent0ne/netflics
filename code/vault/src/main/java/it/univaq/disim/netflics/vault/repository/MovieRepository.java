@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MovieRepository {
 
-    <M extends Movie> M save(M movie);
+    Movie save(MOvie movie);
 
 }
