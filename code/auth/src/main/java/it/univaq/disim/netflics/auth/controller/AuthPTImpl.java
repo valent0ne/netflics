@@ -1,6 +1,7 @@
 package it.univaq.disim.netflics.auth.controller;
 
 import it.univaq.disim.netflics.auth.*;
+import it.univaq.disim.netflics.auth.service.AuthService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ public class AuthPTImpl implements AuthPT {
 	private static Logger LOGGER = LoggerFactory.getLogger(it.univaq.disim.netflics.auth.controller.AuthPTImpl.class);
 	
 	@Autowired
-	private it.univaq.disim.netflics.auth.service.AuthService service;
+	private AuthService service;
 
 	/**
 	 * Checks the credential and if the user is registered in the system

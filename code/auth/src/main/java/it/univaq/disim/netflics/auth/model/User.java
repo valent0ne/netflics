@@ -6,6 +6,20 @@ public class User implements java.io.Serializable {
     private String password;
     private String role;
 
+    public User() {
+        this.id = null;
+        this.email = null;
+        this.password = null;
+        this.role = null;
+    }
+
+    public User(Long id, String email, String password, String role) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
+
     public Long getId() { return id; }
 
     public void setId(Long id) { this.id = id; }

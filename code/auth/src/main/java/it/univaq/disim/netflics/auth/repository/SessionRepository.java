@@ -4,8 +4,6 @@ import it.univaq.disim.netflics.auth.model.Session;
 import it.univaq.disim.netflics.auth.model.User;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
 public interface SessionRepository {
 

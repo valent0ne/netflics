@@ -6,16 +6,17 @@ import it.univaq.disim.netflics.auth.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+
 
 @SuppressWarnings("Duplicates")
+@Repository
 public class SessionRepositoryImpl implements SessionRepository {
 
     private static Logger LOGGER = LoggerFactory.getLogger(SessionRepositoryImpl.class);
@@ -32,8 +33,8 @@ public class SessionRepositoryImpl implements SessionRepository {
 
         Session s = new Session();
 
-        String sql = "SELECT *" +
-                "FROM session"+
+        String sql = "SELECT * " +
+                "FROM session "+
                 "WHERE token = '"+token+"'";
 
         LOGGER.info("query: {}", sql);
@@ -43,7 +44,6 @@ public class SessionRepositoryImpl implements SessionRepository {
             st = con.createStatement();
             rs = st.executeQuery(sql);
 
-
             if(rs.next()){
 
                 s.setId(rs.getLong("id"));
@@ -51,7 +51,6 @@ public class SessionRepositoryImpl implements SessionRepository {
                 s.setUserId(rs.getLong("user_id"));
 
             }else{
-
                 LOGGER.info("Token not valid");
             }
 

@@ -32,8 +32,8 @@ public class UserRepositoryImpl implements UserRepository {
         ResultSet rs = null;
         User u = new User();
 
-        String sql = "SELECT *" +
-                     "FROM user"+
+        String sql = "SELECT * " +
+                     "FROM user "+
                      "WHERE email = '"+user.getEmail()+"' "+
                      "AND password = '"+user.getPassword()+"'";
 
@@ -84,8 +84,8 @@ public class UserRepositoryImpl implements UserRepository {
         ResultSet rs = null;
         User u = new User();
 
-        String sql = "SELECT *" +
-                "FROM user"+
+        String sql = "SELECT * " +
+                "FROM user "+
                 "WHERE id = "+id;
 
         LOGGER.info("query: {}", sql);

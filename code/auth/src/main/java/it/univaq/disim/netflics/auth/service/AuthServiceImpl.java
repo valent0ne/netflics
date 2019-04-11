@@ -1,9 +1,5 @@
 package it.univaq.disim.netflics.auth.service;
 
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
 import it.univaq.disim.netflics.auth.*;
 import it.univaq.disim.netflics.auth.model.Session;
 import it.univaq.disim.netflics.auth.model.User;
@@ -17,85 +13,88 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthServiceImpl implements AuthService {
 
-	@Autowired
-	private UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-	@Autowired
-	private SessionRepository sessionRepository;
+    @Autowired
+    private SessionRepository sessionRepository;
 
-	private static Logger LOGGER = LoggerFactory.getLogger(AuthServiceImpl.class);
+    private static Logger LOGGER = LoggerFactory.getLogger(AuthServiceImpl.class);
 
-	@Override
-	public LogInResponse logIn(LogInRequest parameters) throws BusinessException {
+    @Override
+    public LogInResponse logIn(LogInRequest parameters) throws BusinessException {
 
-		LogInResponse response = new LogInResponse();
-		response.setResult(false);
-		response.setRole(null);
-		response.setToken(null);
+        LogInResponse response = new LogInResponse();
+        response.setResult(false);
+        response.setRole(null);
+        response.setToken(null);
 
-		String email = parameters.getEmail();
-		String password = parameters.getPassword();
+        String email = parameters.getEmail();
+        String password = parameters.getPassword();
 
-		User user = null;
-		user.setEmail(email);
-		user.setPassword(password);
+        LOGGER.info("received email: {}, password: {}", email, password);
 
-		User u = userRepository.findOne(user);
-		if (u != null){
+        User user = new User();
 
-			// clean old sessions
-			sessionRepository.deleteAll(u);
-			// generate new token
-			String token = sessionRepository.generateToken();
+        user.setEmail(email);
+        user.setPassword(password);
 
-			// create new session
-			Session s = new Session();
-			s.setUserId(u.getId());
-			s.setToken(token);
+        User u = userRepository.findOne(user);
+        if (u != null) {
 
-			// insert new session into db
-			sessionRepository.save(s);
+            // clean old sessions
+            sessionRepository.deleteAll(u);
+            // generate new token
+            String token = sessionRepository.generateToken();
 
-			// build response
-			response.setResult(true);
-			response.setToken(token);
-			response.setRole(u.getRole());
-		}
-		return response;
-	}
+            // create new session
+            Session s = new Session();
+            s.setUserId(u.getId());
+            s.setToken(token);
 
-	@Override
-	public LogOutResponse logOut(LogOutRequest parameters) throws BusinessException {
+            // insert new session into db
+            sessionRepository.save(s);
 
-		LogOutResponse response = new LogOutResponse();
-		String token = parameters.getToken();
-		sessionRepository.delete(token);
-		response.setResult(true);
+            // build response
+            response.setResult(true);
+            response.setToken(token);
+            response.setRole(u.getRole());
+        }
+        return response;
+    }
 
-		return response;
-	}
+    @Override
+    public LogOutResponse logOut(LogOutRequest parameters) throws BusinessException {
 
-	@Override
-	public CheckTokenResponse checkToken(CheckTokenRequest parameters) throws BusinessException{
+        LogOutResponse response = new LogOutResponse();
+        String token = parameters.getToken();
+        sessionRepository.delete(token);
+        response.setResult(true);
 
-		CheckTokenResponse response = new CheckTokenResponse();
-		response.setResult(false);
-		response.setRole(null);
+        return response;
+    }
 
-		Session s = sessionRepository.findByToken(parameters.getToken());
+    @Override
+    public CheckTokenResponse checkToken(CheckTokenRequest parameters) throws BusinessException {
 
-		if(s != null && !s.getToken().isEmpty()){
+        CheckTokenResponse response = new CheckTokenResponse();
+        response.setResult(false);
+        response.setRole(null);
 
-			User validatedUser = userRepository.findOneById(s.getUserId());
+        Session s = sessionRepository.findByToken(parameters.getToken());
 
-			if(validatedUser != null){
-				response.setResult(true);
-				response.setRole(validatedUser.getRole());
-			}
-		}
+        if (s != null && !s.getToken().isEmpty()) {
 
-		return response;
+            User validatedUser = userRepository.findOneById(s.getUserId());
 
-	}
+            if (validatedUser != null) {
+                response.setResult(true);
+                response.setRole(validatedUser.getRole());
+            }
+        }
+
+        return response;
+
+    }
 
 }

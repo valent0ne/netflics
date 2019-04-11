@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="00c8b472-1695-425c-8f85-d39244b3b0c7" activeEnvironment="Default" name="auth" resourceRoot="" soapui-version="5.4.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="4a5a6782-f392-4351-9f47-a1a64858880c" wsaVersion="NONE" name="AuthBinding" type="wsdl" bindingName="{http://it.univaq.disim.netflics/auth}AuthBinding" soapVersion="1_1" anonymous="optional" definition="file:/E:/Projects/netflics/code/auth/src/main/resources/auth.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\E:\Projects\netflics\code\auth\src\main\resources\auth.wsdl"><con:part><con:url>file:\E:\Projects\netflics\code\auth\src\main\resources\auth.wsdl</con:url><con:content><![CDATA[<definitions name="AuthService" targetNamespace="http://it.univaq.disim.netflics/auth" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:tns="http://it.univaq.disim.netflics/auth" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+  <types>
+    <xsd:schema targetNamespace="http://it.univaq.disim.netflics/auth">
+      <xsd:element name="logInRequest" type="tns:logInRequest"/>
+      <xsd:element name="logOutRequest" type="tns:logOutRequest"/>
+      <xsd:element name="checkTokenRequest" type="tns:checkTokenRequest"/>
+      <xsd:element name="logInResponse" type="tns:logInResponse"/>
+      <xsd:element name="logOutResponse" type="tns:logOutResponse"/>
+      <xsd:element name="checkTokenResponse" type="tns:checkTokenResponse"/>
+      <xsd:complexType name="logInRequest">
+        <xsd:sequence>
+          <xsd:element name="email" type="xsd:string"/>
+          <xsd:element name="password" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="logOutRequest">
+        <xsd:sequence>
+          <xsd:element name="token" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="checkTokenRequest">
+        <xsd:sequence>
+          <xsd:element name="token" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="logInResponse">
+        <xsd:sequence>
+          <xsd:element name="result" type="xsd:boolean"/>
+          <xsd:element name="role" type="xsd:string"/>
+          <xsd:element name="token" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="logOutResponse">
+        <xsd:sequence>
+          <xsd:element name="result" type="xsd:boolean"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="checkTokenResponse">
+        <xsd:sequence>
+          <xsd:element name="result" type="xsd:boolean"/>
+          <xsd:element name="role" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </types>
+  <message name="logInRequest">
+    <part name="logInRequest" element="tns:logInRequest"></part>
+  </message>
+  <message name="logOutRequest">
+    <part name="logOutRequest" element="tns:logOutRequest"></part>
+  </message>
+  <message name="checkTokenRequest">
+    <part name="checkTokenRequest" element="tns:checkTokenRequest"></part>
+  </message>
+  <message name="logInResponse">
+    <part name="logInResponse" element="tns:logInResponse"></part>
+  </message>
+  <message name="logOutResponse">
+    <part name="logOutResponse" element="tns:logOutResponse"></part>
+  </message>
+  <message name="checkTokenResponse">
+    <part name="checkTokenResponse" element="tns:checkTokenResponse"></part>
+  </message>
+  <portType name="AuthPT">
+    <operation name="logIn">
+      <input message="tns:logInRequest" wsam:Action="http://it.univaq.disim.netflics/auth/logInRequest"></input>
+      <output message="tns:logInResponse" wsam:Action="http://it.univaq.disim.netflics/auth/logInResponse"></output>
+    </operation>
+    <operation name="logOut">
+      <input message="tns:logOutRequest" wsam:Action="http://it.univaq.disim.netflics/auth/logOutRequest"></input>
+      <output message="tns:logOutResponse" wsam:Action="http://it.univaq.disim.netflics/auth/logOutResponse"></output>
+    </operation>
+    <operation name="checkToken">
+      <input message="tns:checkTokenRequest" wsam:Action="http://it.univaq.disim.netflics/auth/checkTokenRequest"></input>
+      <output message="tns:checkTokenResponse" wsam:Action="http://it.univaq.disim.netflics/auth/checkTokenResponse"></output>
+    </operation>
+  </portType>
+  <binding name="AuthBinding" type="tns:AuthPT">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="logIn">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="logOut">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="checkToken">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="AuthService">
+    <port name="AuthPort" binding="tns:AuthBinding">
+      <soap:address location="http://localhost:8080/netflics/services/auth"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/netflics/services/auth</con:endpoint></con:endpoints><con:operation id="ea19461a-922f-4ed1-858c-f6cbf7f8472d" isOneWay="false" action="" name="checkToken" bindingOperationName="checkToken" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ff7e4159-3efc-4395-9b44-fa519c7db8e2" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/netflics/services/auth</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:auth="http://it.univaq.disim.netflics/auth">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <auth:checkTokenRequest>\r
+         <token>2by60306-5c44-11e9-83e1-6045cb810995</token>\r
+      </auth:checkTokenRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://it.univaq.disim.netflics/auth/checkTokenRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="541932a6-1e6a-4636-a268-493a557a72c2" isOneWay="false" action="" name="logIn" bindingOperationName="logIn" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="2e257455-4528-486e-9bb8-be5a1142d257" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/netflics/services/auth</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:auth="http://it.univaq.disim.netflics/auth">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <auth:logInRequest>\r
+         <email>s@s.com</email>\r
+         <password>d012f68144ed0f121d3cc330a17eec528c2e7d59</password>\r
+      </auth:logInRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://it.univaq.disim.netflics/auth/logInRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="91e7b4ac-5963-4ba1-a8f7-311a4837c353" isOneWay="false" action="" name="logOut" bindingOperationName="logOut" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ea8b1971-b583-4d94-b162-c94afbab7d53" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/netflics/services/auth</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:auth="http://it.univaq.disim.netflics/auth">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <auth:logOutRequest>\r
+         <token>12bdc245-5c44-11e9-83e1-6045cb810995</token>\r
+      </auth:logOutRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://it.univaq.disim.netflics/auth/logOutRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
