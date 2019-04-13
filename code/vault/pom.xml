@@ -96,6 +96,15 @@
 										<extraarg>it.univaq.disim.netflics.vault</extraarg>
 									</extraargs>
 								</wsdlOption>
+                                <wsdlOption>
+                                    <wsdl>src/main/resources/clients/auth.wsdl</wsdl>
+                                    <faultSerialVersionUID>1</faultSerialVersionUID>
+                                    <extraargs>
+                                        <extraarg>-verbose</extraarg>
+                                        <extraarg>-p </extraarg>
+                                        <extraarg>it.univaq.disim.netflics.clients.auth</extraarg>
+                                    </extraargs>
+                                </wsdlOption>
 							</wsdlOptions>
 						</configuration>
 						<goals>

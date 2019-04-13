@@ -22,6 +22,13 @@
             <xsd:complexType name="getMovieRequest">
                 <xsd:sequence>
                     <xsd:element name="imdb_id" type="xsd:string"/>
+                    <xsd:element name="token" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="getMovieResponse">
+                <xsd:sequence>
+                    <xsd:element name="movie" type="xsd:byte"/>
                 </xsd:sequence>
             </xsd:complexType>
 
@@ -29,12 +36,7 @@
                 <xsd:sequence>
                     <xsd:element name="imdb_id" type="xsd:string"/>
                     <xsd:element name="movie" type="xsd:byte"/>
-                </xsd:sequence>
-            </xsd:complexType>
-
-            <xsd:complexType name="getMovieResponse">
-                <xsd:sequence>
-                    <xsd:element name="movie" type="xsd:byte"/>
+                    <xsd:element name="token" type="xsd:string"/>
                 </xsd:sequence>
             </xsd:complexType>
 
@@ -108,7 +110,7 @@
 
     <service name="VaultService">
         <port name="VaultPort" binding="tns:VaultBinding">
-            <soap:address location="http://localhost:8080/netflics/services/vault"/>
+            <soap:address location="http://localhost:8080/vault/services/vault"/>
         </port>
     </service>
 

@@ -153,7 +153,7 @@
 
     <service name="AuthService">
         <port name="AuthPort" binding="tns:AuthBinding">
-            <soap:address location="http://localhost:8080/netflics/services/auth"/>
+            <soap:address location="http://localhost:8080/auth/services/auth"/>
         </port>
     </service>
 

@@ -20,6 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence&gt;
  *         &lt;element name="imdb_id" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="movie" type="{http://www.w3.org/2001/XMLSchema}byte"/&gt;
+ *         &lt;element name="token" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -31,13 +32,16 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "addMovieRequest", propOrder = {
     "imdbId",
-    "movie"
+    "movie",
+    "token"
 })
 public class AddMovieRequest {
 
     @XmlElement(name = "imdb_id", required = true)
     protected String imdbId;
     protected DataHandler movie;
+    @XmlElement(required = true)
+    protected String token;
 
     /**
      * Gets the value of the imdbId property.
@@ -77,6 +81,30 @@ public class AddMovieRequest {
      */
     public void setMovie(DataHandler value) {
         this.movie = value;
+    }
+
+    /**
+     * Gets the value of the token property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getToken() {
+        return token;
+    }
+
+    /**
+     * Sets the value of the token property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setToken(String value) {
+        this.token = value;
     }
 
 }

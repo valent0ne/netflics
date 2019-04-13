@@ -3,9 +3,11 @@ package it.univaq.disim.netflics.vault.service;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Arrays;
 
 import com.google.gson.JsonObject;
+import it.univaq.disim.netflics.clients.auth.AuthPT;
+import it.univaq.disim.netflics.clients.auth.CheckTokenRequest;
+import it.univaq.disim.netflics.clients.auth.CheckTokenResponse;
 import it.univaq.disim.netflics.vault.*;
 import it.univaq.disim.netflics.vault.model.Movie;
 import it.univaq.disim.netflics.vault.repository.MovieRepository;
@@ -14,11 +16,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import it.univaq.disim.netflics.clients.auth.AuthService;
 
 import com.google.gson.Gson;
 
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
+import javax.naming.AuthenticationException;
 
 @Service
 public class VaultServiceImpl implements VaultService {
@@ -36,6 +40,16 @@ public class VaultServiceImpl implements VaultService {
 
 	@Override
 	public GetMovieResponse getMovie(GetMovieRequest parameters) throws BusinessException {
+        // check credentials
+	    try{
+            if(!auth(parameters.getToken())){
+                throw new AuthenticationException("Unauthorized");
+            }
+        }catch (Exception  e) {
+            LOGGER.error("error", e);
+            throw new BusinessException(e);
+        }
+
 		FileDataSource dataSource = new FileDataSource(videopath + parameters.getImdbId());
 		GetMovieResponse response = new GetMovieResponse();
 		response.setMovie(new DataHandler(dataSource));
@@ -44,6 +58,16 @@ public class VaultServiceImpl implements VaultService {
 
 	@Override
 	public AddMovieResponse addMovie(AddMovieRequest parameters) throws BusinessException {
+
+        // check credentials
+        try{
+            if(!auth(parameters.getToken())){
+                throw new AuthenticationException("Unauthorized");
+            }
+        }catch (Exception  e) {
+            LOGGER.error("error", e);
+            throw new BusinessException(e);
+        }
 
 		String title = null;
 		String directors = null;
@@ -59,6 +83,7 @@ public class VaultServiceImpl implements VaultService {
 
 		// omdb request (for movie metadata)
 		try {
+
 			LOGGER.info("REST request to OMDB.");
 
 			// build the url
@@ -148,5 +173,20 @@ public class VaultServiceImpl implements VaultService {
 			throw new BusinessException(e);
 		}
 	}
+
+    /**
+     * calls the auth service to check the user's credentials (token)
+     * @param token user's token
+     * @return true if the token is valid and the user is an ADMIN
+     */
+    private boolean auth(String token){
+        AuthService authService = new AuthService();
+        AuthPT authPT = authService.getAuthPort();
+        CheckTokenRequest checkTokenRequest = new CheckTokenRequest();
+        checkTokenRequest.setToken(token);
+        CheckTokenResponse checkTokenResponse = authPT.checkToken(checkTokenRequest);
+
+        return (checkTokenResponse.isResult() && checkTokenResponse.getRole().equals("ADMIN"));
+    }
 
 }
