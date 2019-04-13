@@ -1,4 +1,4 @@
-## NETFLICS - ceNtralized sErvice orienTed selF adaptive appLICation for movie Streaming
+## NETFLICS - ceNtralized, sErvice orienTed, selF adaptive appLICation for movie Streaming
 
 NETFLICS is a cross-course video streaming application project based on web services, with particular focus on self-adaptivity.
 
