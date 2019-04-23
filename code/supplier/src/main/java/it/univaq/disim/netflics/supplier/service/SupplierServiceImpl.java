@@ -10,7 +10,6 @@ import it.univaq.disim.netflics.supplier.model.SupplierMovie;
 import it.univaq.disim.netflics.supplier.repository.AvailabilityRepository;
 import it.univaq.disim.netflics.supplier.repository.MovieRepository;
 import it.univaq.disim.netflics.supplier.repository.SupplierMovieRepository;
-import org.apache.cxf.Bus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,17 +21,16 @@ import javax.activation.DataHandler;
 import java.io.*;
 import java.lang.management.ManagementFactory;
 import java.sql.Timestamp;
-import java.util.Date;
 
 
 @Service
 public class SupplierServiceImpl implements SupplierService {
 
 
-	private static Logger LOGGER = LoggerFactory.getLogger(SupplierServiceImpl.class);
+    private static Logger LOGGER = LoggerFactory.getLogger(SupplierServiceImpl.class);
 
-	@Value("#{cfg.videopath}")
-	private String videopath;
+    @Value("#{cfg.videopath}")
+    private String videopath;
 
     @Value("#{cfg.supplier_id}")
     private Long supplierId;
@@ -51,50 +49,57 @@ public class SupplierServiceImpl implements SupplierService {
 
     /**
      * retrieves the movie from the filesystem and returns it
+     *
      * @param imdbId the movie identifier
      * @return the movie file
      */
-	public File getMovie(String imdbId){
+    public File getMovie(String imdbId) {
 
-	    String pathToFile = videopath+imdbId;
-        File file = null;
-	    try{
-            file = new File(pathToFile);
-            if(!file.exists()){
-                throw new FileNotFoundException();
-            }
-        }catch (FileNotFoundException e){
-	        LOGGER.error("the movie is not available on this supplier");
+        String pathToFile = videopath + imdbId;
+        File file = new File(pathToFile);
+        if (!file.exists()) {
+            LOGGER.error("the movie is not available on this supplier");
 
-	        // remove entry from db to signal that this supplier doesn't have the requested movie
+            // remove entry from db to signal that this supplier doesn't have the requested movie
             SupplierMovie sm = new SupplierMovie();
             sm.setSupplierId(supplierId);
             sm.setMovieId(movieRepository.findOneByImdbId(imdbId).getId());
             supplierMovieRepository.delete(sm);
+
+            return null;
         }
         return file;
     }
 
     /**
      * calculates the system's % of occupied cpu and memory
+     *
      * @return the aforementioned values
      */
-    public Availability getAvailability(){
-        Availability availability = new Availability();
+    public Availability getAvailability() {
 
         OperatingSystemMXBean osBean = ManagementFactory.getPlatformMXBean(OperatingSystemMXBean.class);
-        Date date = new Date();
-        Timestamp ts = new Timestamp(date.getTime());
-        Double occupiedCpuPercentage = osBean.getSystemCpuLoad();
-        Double occupiedMemPercentage = new Long((osBean.getFreePhysicalMemorySize()/osBean.getTotalPhysicalMemorySize())*100).doubleValue();
+        Availability availability = new Availability();
 
-        availability.setSupplier_id(supplierId);
-        availability.setAvailable(true);
-        availability.setCpuSaturation(occupiedCpuPercentage);
-        availability.setMemSaturation(occupiedMemPercentage);
-        availability.setTimestamp(ts);
+        Timestamp ts = new Timestamp(System.currentTimeMillis());
 
-        availabilityRepository.save(availability);
+        double occupiedCpuPercentage = osBean.getSystemCpuLoad();
+        double occupiedMemPercentage = ((double) osBean.getFreePhysicalMemorySize() / osBean.getTotalPhysicalMemorySize()) * 100;
+
+        // it could happen that the reads are incorrect from time to time
+        // it usually takes a bit of time to get cpu readings
+        if (occupiedCpuPercentage != 0 && occupiedCpuPercentage != 0) {
+            availability.setSupplier_id(supplierId);
+            availability.setAvailable(true);
+            availability.setCpuSaturation(occupiedCpuPercentage);
+            availability.setMemSaturation(occupiedMemPercentage);
+            availability.setTimestamp(ts);
+
+            availabilityRepository.save(availability);
+        } else {
+
+            availability = null;
+        }
 
         return availability;
     }
@@ -102,9 +107,10 @@ public class SupplierServiceImpl implements SupplierService {
 
     /**
      * retrieves a missing movie from the Vault service
+     *
      * @param imdbId them ovie identifier
      */
-    public void fetchMovie(String imdbId){
+    public void fetchMovie(String imdbId) {
         VaultService vaultService = new VaultService();
         VaultPT vaultPT = vaultService.getVaultPort();
         GetMovieRequest getMovieRequest = new GetMovieRequest();
@@ -112,17 +118,19 @@ public class SupplierServiceImpl implements SupplierService {
         getMovieRequest.setImdbId(imdbId);
         GetMovieResponse getMovieResponse = vaultPT.getMovie(getMovieRequest);
         DataHandler dh = getMovieResponse.getMovie();
+        String result = getMovieResponse.getResult();
 
-        // if the vault service returned something meaningful
-        if(dh != null){
+        // if the vault service returned an error
+        if (result.equals("ok")) {
             // save movie to disk
-            try{
-                File file = new File(videopath+imdbId);
+            try {
+                File file = new File(videopath + imdbId);
                 FileOutputStream fileOutputStream = new FileOutputStream(file);
                 dh.writeTo(fileOutputStream);
                 fileOutputStream.flush();
+                fileOutputStream.close();
                 LOGGER.info("movie retrieved");
-            }catch (IOException e){
+            } catch (IOException e) {
                 LOGGER.error("can't save video file to disk");
                 throw new BusinessException(e);
             }
@@ -134,13 +142,11 @@ public class SupplierServiceImpl implements SupplierService {
             supplierMovieRepository.save(sm);
             LOGGER.info("supplier-movie db data updated");
 
-        }else{
-            LOGGER.error("couldn't fetch movie from vault service");
+        } else {
+            throw new BusinessException("couldn't fetch movie from vault service");
         }
 
     }
-
-
 
 
 }

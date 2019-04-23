@@ -17,15 +17,16 @@ import javax.ws.rs.core.Response.ResponseBuilder;
 import java.io.File;
 
 @Controller("supplierrestcontroller")
-public class SupplierController{
+public class SupplierController {
 
-	private static Logger LOGGER = LoggerFactory.getLogger(it.univaq.disim.netflics.supplier.controller.SupplierController.class);
-	
-	@Autowired
-	private SupplierService service;
+    private static Logger LOGGER = LoggerFactory.getLogger(it.univaq.disim.netflics.supplier.controller.SupplierController.class);
+
+    @Autowired
+    private SupplierService service;
 
     /**
      * returns the requested movie
+     *
      * @param imdbId the movie identifier
      * @return the movie as a bytestream
      */
@@ -33,10 +34,16 @@ public class SupplierController{
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
     @Path("/movie/{id}")
     public Response getMovie(@PathParam("id") String imdbId) {
-            File file = service.getMovie(imdbId);
-            ResponseBuilder response = Response.ok(file);
-            response.header("Content-Disposition", "attachment;filename=" + file);
-            return response.build();
+        ResponseBuilder response;
+        File file = service.getMovie(imdbId);
+        if (file != null) {
+            response = Response.ok(file);
+            response.header("Content-Disposition", "attachment;filename=" + imdbId);
+        }else{
+            response = Response.status(Response.Status.SEE_OTHER).entity("Movie "+imdbId+" cannot be found on this supplier.");
+        }
+        return response.build();
+
     }
 
 
@@ -46,18 +53,45 @@ public class SupplierController{
     @GET
     @Produces("application/json")
     @Path("/availability")
-    public Availability getAvailability() {
-        return service.getAvailability();
+    public Response getAvailability() {
+        try{
+            Availability a = service.getAvailability();
+            // system's info reads could be wrong,
+            // see it.univaq.disim.netflics.supplier.service.SupplierServiceImpl.getAvailability()
+            // for more infos
+            while (a == null) {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                a = service.getAvailability();
+            }
+            return Response.ok(a).build();
+        }catch (Exception e){
+            e.printStackTrace();
+            ResponseBuilder response;
+            response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Something went wrong: "+e.getMessage());
+            return response.build();
+        }
+
     }
 
 
     /**
      * commands this supplier to fetch the movie identified by the imdbId from the vault service
+     *
      * @param imdbId the movie identifier
      */
     @POST
     @Path("/movie/{id}")
-    public void fetchMovie(@PathParam("id") String imdbId) {
-        service.fetchMovie(imdbId);
+    @Produces("application/json")
+    public Response fetchMovie(@PathParam("id") String imdbId) {
+        try{
+            service.fetchMovie(imdbId);
+            return Response.ok().build();
+        }catch (Exception e){
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
     }
 }

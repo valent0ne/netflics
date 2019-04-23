@@ -1,8 +1,12 @@
 package it.univaq.disim.netflics.supplier.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.sql.Timestamp;
 
 public class Availability implements java.io.Serializable {
+
+    @JsonIgnore
     private Long id;
     private Long supplier_id;
     private Timestamp timestamp;

@@ -97,10 +97,10 @@ public class AuthServiceImpl implements AuthService {
                 response.setResult(true);
                 response.setRole(validatedUser.getRole());
             }
-        // the token does not belong to an user, it may belong to a supplier
+            // the token does not belong to an user, it may belong to a supplier
         } else {
             // check that
-            if (supplierRepository.findByToken(parameters.getToken())){
+            if (supplierRepository.findByToken(parameters.getToken())) {
                 response.setResult(true);
                 response.setRole("ADMIN");
             }

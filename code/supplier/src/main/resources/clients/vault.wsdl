@@ -29,6 +29,7 @@
             <xsd:complexType name="getMovieResponse">
                 <xsd:sequence>
                     <xsd:element name="movie" type="xsd:byte"/>
+                    <xsd:element name="result" type="xsd:string"/>
                 </xsd:sequence>
             </xsd:complexType>
 

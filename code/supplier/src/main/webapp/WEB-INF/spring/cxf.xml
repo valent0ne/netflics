@@ -11,6 +11,11 @@
         <jaxrs:serviceBeans>
             <ref bean="supplierrestcontroller" />
         </jaxrs:serviceBeans>
+        <jaxrs:providers>
+            <ref bean="jsonProvider"/>
+        </jaxrs:providers>
     </jaxrs:server>
+
+    <bean id="jsonProvider" class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider"/>
 
 </beans>

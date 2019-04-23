@@ -24,27 +24,34 @@ public class AuthPTImpl implements AuthPT {
 	 * user and the session's token assigned.
 	 */
 	public LogInResponse logIn(LogInRequest parameters) {
-		try {
-			LogInResponse response = service.logIn(parameters);
+        LogInResponse response = new LogInResponse();
+	    try {
+			response = service.logIn(parameters);
 			return response;
 		} 
 		catch (Exception ex) {
-			throw new RuntimeException(ex.getMessage());
+			ex.printStackTrace();
+			response.setResult(false);
+			response.setRole(null);
+			return response;
 		}
 	}
 
 	/**
 	 * Disconnect the user from the system
 	 * @param parameters contains the token associated to the connected user
-	 * @return logOutResponse  flag signaling the outcome
+	 * @return logOutResponse flag signaling the outcome
 	 */
 	public LogOutResponse logOut(LogOutRequest parameters) {
-		try {
-			LogOutResponse response = service.logOut(parameters);
+        LogOutResponse response = new LogOutResponse();
+	    try {
+			response = service.logOut(parameters);
 			return response;
 		}
 		catch (Exception ex) {
-			throw new RuntimeException(ex.getMessage());
+			ex.printStackTrace();
+			response.setResult(false);
+			return response;
 		}
 	}
 
@@ -55,12 +62,16 @@ public class AuthPTImpl implements AuthPT {
 	 * @return checkTokenResponse flag signaling the outcome and the role of the token owner
 	 */
 	public CheckTokenResponse checkToken(CheckTokenRequest parameters){
-		try{
-			CheckTokenResponse response = service.checkToken(parameters);
+        CheckTokenResponse response = new CheckTokenResponse();
+	    try{
+			response = service.checkToken(parameters);
 			return response;
 		}
 		catch (Exception ex) {
-			throw new RuntimeException(ex.getMessage());
+			ex.printStackTrace();
+			response.setResult(false);
+			response.setRole(null);
+			return response;
 		}
 	}
 }

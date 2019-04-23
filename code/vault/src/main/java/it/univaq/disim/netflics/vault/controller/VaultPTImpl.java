@@ -26,12 +26,16 @@ public class VaultPTImpl implements VaultPT {
 	 * @return the movie itself
 	 */
 	public GetMovieResponse getMovie(GetMovieRequest parameters) {
-		try {
-			GetMovieResponse response = service.getMovie(parameters);
+        GetMovieResponse response = new GetMovieResponse();
+	    try {
+			response = service.getMovie(parameters);
 			return response;
 		} 
 		catch (Exception ex) {
-			throw new RuntimeException(ex.getMessage());
+			ex.printStackTrace();
+            response.setResult("ko");
+            response.setMovie(null);
+			return response;
 		}
 	}
 
@@ -43,12 +47,15 @@ public class VaultPTImpl implements VaultPT {
 	 * @return movieResponse flag signaling the outcome
 	 */
 	public AddMovieResponse addMovie(AddMovieRequest parameters) {
-		try {
-			AddMovieResponse response = service.addMovie(parameters);
+        AddMovieResponse response = new AddMovieResponse();
+	    try {
+			response = service.addMovie(parameters);
 			return response;
 		}
 		catch (Exception ex) {
-			throw new RuntimeException(ex.getMessage());
+			ex.printStackTrace();
+			response.setResult("ko");
+			return response;
 		}
 	}
 }

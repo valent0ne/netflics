@@ -22,170 +22,172 @@ import com.google.gson.Gson;
 
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
-import javax.naming.AuthenticationException;
 
 @Service
 public class VaultServiceImpl implements VaultService {
 
-	@Autowired
-	private MovieRepository movieRepository;
+    @Autowired
+    private MovieRepository movieRepository;
 
-	private static Logger LOGGER = LoggerFactory.getLogger(VaultServiceImpl.class);
+    private static Logger LOGGER = LoggerFactory.getLogger(VaultServiceImpl.class);
 
-	@Value("#{cfg.omdburl}")
-	private String omdburl;
+    @Value("#{cfg.omdburl}")
+    private String omdburl;
 
-	@Value("#{cfg.videopath}")
-	private String videopath;
+    @Value("#{cfg.videopath}")
+    private String videopath;
 
-	@Override
-	public GetMovieResponse getMovie(GetMovieRequest parameters) throws BusinessException {
+    @Override
+    public GetMovieResponse getMovie(GetMovieRequest parameters) throws BusinessException {
+
         // check credentials
-	    try{
-            if(!auth(parameters.getToken())){
-                throw new AuthenticationException("Unauthorized");
-            }
-        }catch (Exception  e) {
-            LOGGER.error("error", e);
-            throw new BusinessException(e);
+        if (!auth(parameters.getToken())) {
+            GetMovieResponse getMovieResponse = new GetMovieResponse();
+            getMovieResponse.setMovie(null);
+            getMovieResponse.setResult("unauthorized");
+            return getMovieResponse;
         }
 
         GetMovieResponse response = new GetMovieResponse();
-	    response.setMovie(null);
+
 
         FileDataSource dataSource = new FileDataSource(videopath + parameters.getImdbId());
 
-	    if(dataSource.getFile().exists() && dataSource.getFile().length() > 0 && dataSource.getFile().canRead()){
+        if (!(dataSource.getFile().exists() && dataSource.getFile().length() > 0 && dataSource.getFile().canRead())) {
+            response.setMovie(null);
+            response.setResult("ko/movie "+parameters.getImdbId()+" not found");
+
+        }else{
             response.setMovie(new DataHandler(dataSource));
+            response.setResult("ok");
         }
 
-		return response;
-	}
+        return response;
+    }
 
-	@Override
-	public AddMovieResponse addMovie(AddMovieRequest parameters) throws BusinessException {
+    @Override
+    public AddMovieResponse addMovie(AddMovieRequest parameters) throws BusinessException {
+
+        AddMovieResponse addMovieResponse = new AddMovieResponse();
 
         // check credentials
-        try{
-            if(!auth(parameters.getToken())){
-                throw new AuthenticationException("Unauthorized");
-            }
-        }catch (Exception  e) {
-            LOGGER.error("error", e);
-            throw new BusinessException(e);
+        if (!auth(parameters.getToken())) {
+            addMovieResponse.setResult("unauthorized");
+            return addMovieResponse;
         }
 
-		String title = null;
-		String directors = null;
-		String genres = null;
-		Double rating = null;
+        String title = null;
+        String directors = null;
+        String genres = null;
+        Double rating = null;
 
-		// save file data in /resources
-		DataHandler movieData = parameters.getMovie();
-		String imdbId = parameters.getImdbId();
+        // save file data in /resources
+        DataHandler movieData = parameters.getMovie();
+        String imdbId = parameters.getImdbId();
 
-		saveVideo(movieData, new File(videopath+imdbId));
-		LOGGER.info("movie saved.");
+        saveVideo(movieData, new File(videopath + imdbId));
+        LOGGER.info("movie saved.");
 
-		// omdb request (for movie metadata)
-		try {
+        // omdb request (for movie metadata)
+        try {
 
-			LOGGER.info("REST request to OMDB.");
+            LOGGER.info("REST request to OMDB.");
 
-			// build the url
+            // build the url
 
-			String url = omdburl+imdbId;
-			// connect to url
-			HttpURLConnection c = null;
+            String url = omdburl + imdbId;
+            // connect to url
+            HttpURLConnection c = null;
 
-			URL u = new URL(url);
-			c = (HttpURLConnection) u.openConnection();
-			c.setRequestMethod("GET");
-			c.setRequestProperty("Content-length", "0");
-			c.setUseCaches(false);
-			c.setAllowUserInteraction(false);
-			c.connect();
-			int status = c.getResponseCode();
+            URL u = new URL(url);
+            c = (HttpURLConnection) u.openConnection();
+            c.setRequestMethod("GET");
+            c.setRequestProperty("Content-length", "0");
+            c.setUseCaches(false);
+            c.setAllowUserInteraction(false);
+            c.connect();
+            int status = c.getResponseCode();
 
-			switch (status) {
-				case 200:
-				case 201:
-					BufferedReader br = new BufferedReader(new InputStreamReader(c.getInputStream(), "UTF-8"));
-					StringBuilder sb = new StringBuilder();
-					String line;
-					while ((line = br.readLine()) != null) {
-						sb.append(line + "\n");
-					}
-					br.close();
+            switch (status) {
+                case 200:
+                case 201:
+                    BufferedReader br = new BufferedReader(new InputStreamReader(c.getInputStream(), "UTF-8"));
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        sb.append(line + "\n");
+                    }
+                    br.close();
 
-					if (c != null) {
-						c.disconnect();
-					}
+                    if (c != null) {
+                        c.disconnect();
+                    }
 
-					JsonObject jobj = new Gson().fromJson(sb.toString(), JsonObject.class);
-					title = jobj.get("Title").getAsString();
-					directors = jobj.get("Director").getAsString();
-					genres = jobj.get("Genre").getAsString();
-					rating = jobj.get("imdbRating").getAsDouble();
+                    JsonObject jobj = new Gson().fromJson(sb.toString(), JsonObject.class);
+                    title = jobj.get("Title").getAsString();
+                    directors = jobj.get("Director").getAsString();
+                    genres = jobj.get("Genre").getAsString();
+                    rating = jobj.get("imdbRating").getAsDouble();
 
-					LOGGER.info("movie data retrieved: {} {} {} {}", title, directors, genres, rating);
+                    LOGGER.info("movie data retrieved: {} {} {} {}", title, directors, genres, rating);
 
-					break;
+                    break;
 
-				default:
-					if (c != null) {
-						c.disconnect();
-					}
-					throw new Exception("Http Error: " + status);
-			}
-		} catch (Exception  e) {
-			LOGGER.error("error", e);
-			throw new BusinessException(e);
-		}
+                default:
+                    if (c != null) {
+                        c.disconnect();
+                    }
+                    throw new Exception("Http Error: " + status);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            addMovieResponse.setResult("ko/omdb rest call failed");
+            return addMovieResponse;
+        }
 
-		// movie object instantiation
-		Movie m = new Movie();
-		m.setTitle(title);
-		m.setDirectors(directors);
-		m.setGenres(genres);
-		m.setRating(rating);
-		m.setImdbId(imdbId);
+        // movie object instantiation
+        Movie m = new Movie();
+        m.setTitle(title);
+        m.setDirectors(directors);
+        m.setGenres(genres);
+        m.setRating(rating);
+        m.setImdbId(imdbId);
 
-		// insertion to the db
-		movieRepository.save(m);
+        // insertion to the db
+        movieRepository.save(m);
 
-		// return response
-		AddMovieResponse addMovieResponse = new AddMovieResponse();
-		addMovieResponse.setResult("success");
+        // return response
+        addMovieResponse.setResult("ok");
 
-		LOGGER.info("movie added successfully");
+        LOGGER.info("movie added successfully");
 
-		return addMovieResponse;
-	}
+        return addMovieResponse;
+    }
 
-	/**
-	 * utility function that is used to save
-	 * @param dataHandler container that contains the data
-	 * @param filePath where to save the file
-	 */
-	private static void saveVideo(final DataHandler dataHandler, final File filePath) {
-		filePath.getParentFile().mkdirs();
-		try{
-			FileOutputStream fileOutputStream = new FileOutputStream(filePath);
-			dataHandler.writeTo(fileOutputStream);
-			fileOutputStream.flush();
-		}catch (IOException e){
-			e.printStackTrace();
-			throw new BusinessException(e);
-		}
-	}
+    /**
+     * utility function that is used to save
+     *
+     * @param dataHandler container that contains the data
+     * @param filePath    where to save the file
+     */
+    private static void saveVideo(final DataHandler dataHandler, final File filePath) {
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(filePath);
+            dataHandler.writeTo(fileOutputStream);
+            fileOutputStream.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new BusinessException(e);
+        }
+    }
 
     /**
      * calls the auth service to check the user's credentials (token)
+     *
      * @param token user's token
      * @return true if the token is valid and the user is an ADMIN
      */
-    private boolean auth(String token){
+    private boolean auth(String token) {
         AuthService authService = new AuthService();
         AuthPT authPT = authService.getAuthPort();
         CheckTokenRequest checkTokenRequest = new CheckTokenRequest();

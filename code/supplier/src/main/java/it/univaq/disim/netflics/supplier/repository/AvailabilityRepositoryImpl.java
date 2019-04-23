@@ -5,12 +5,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import it.univaq.disim.netflics.vault.BusinessException;
+import it.univaq.disim.netflics.supplier.BusinessException;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 
 @Repository
@@ -21,37 +21,30 @@ public class AvailabilityRepositoryImpl implements AvailabilityRepository {
     @Autowired
     private DataSource dataSource;
 
-    public Availability save(Availability availability){
+    public Availability save(Availability availability) {
 
-        Connection con = null;
-        Statement st = null;
-        Integer rs = null;
+        int rs;
 
-        String sql = String.format("INSERT INTO availability (supplier_id, timestamp, cpu_saturation, mem_saturation, available) VALUES (%d, '%s', '%s', '%s', '%s') ", availability.getSupplier_id(), availability.getTimestamp(), availability.getCpuSaturation(), availability.getMemSaturation(), availability.getAvailable());
+        String sql = "INSERT INTO availability (supplier_id, timestamp, cpu_saturation, mem_saturation, available) VALUES (?, ?, ?, ?, ?) ";
 
         LOGGER.info("query: {}", sql);
 
-        try {
-            con = dataSource.getConnection();
-            st = con.createStatement();
-            rs = st.executeUpdate(sql);
+        try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
+
+            st.setLong(1, availability.getSupplier_id());
+            st.setTimestamp(2, availability.getTimestamp());
+            st.setDouble(3, availability.getCpuSaturation());
+            st.setDouble(4, availability.getMemSaturation());
+            st.setBoolean(5, availability.getAvailable());
+            rs = st.executeUpdate();
+
+            if(rs != 1){
+                throw new SQLException("query failed");
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
             throw new BusinessException(e);
-        } finally {
-            if (st != null) {
-                try {
-                    st.close();
-                } catch (SQLException e) {
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (SQLException e) {
-                }
-            }
         }
         return availability;
     }

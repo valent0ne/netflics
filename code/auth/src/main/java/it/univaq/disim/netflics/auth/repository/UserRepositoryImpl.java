@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 @Repository
 @SuppressWarnings("Duplicates")
@@ -24,53 +21,33 @@ public class UserRepositoryImpl implements UserRepository {
 
     public User findOne(User user) {
 
-        LOGGER.info("user data: {}",
-                user.getEmail());
+        LOGGER.info("user data: {}", user.getEmail());
 
-        Connection con = null;
-        Statement st = null;
-        ResultSet rs = null;
+        ResultSet rs;
         User u = new User();
 
-        String sql = "SELECT * " +
-                     "FROM user "+
-                     "WHERE email = '"+user.getEmail()+"' "+
-                     "AND password = '"+user.getPassword()+"'";
+        String sql = "SELECT * FROM user WHERE email = ? AND password = ?";
 
         LOGGER.info("query: {}", sql);
 
-        try {
-            con = dataSource.getConnection();
-            st = con.createStatement();
-            rs = st.executeQuery(sql);
+        try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, user.getEmail());
+            st.setString(2, user.getPassword());
 
-            if(rs.next()){
+            rs = st.executeQuery();
+
+            if (rs.next()) {
                 u.setId(rs.getLong("id"));
                 u.setEmail(user.getEmail());
                 u.setPassword(user.getPassword());
                 u.setRole(rs.getString("role"));
-            }else{
-
-                LOGGER.info("user {} is not registered",
-                        user.getEmail());
+            } else {
+                LOGGER.info("user {} is not registered", user.getEmail());
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
             throw new BusinessException(e);
-        } finally {
-            if (st != null) {
-                try {
-                    st.close();
-                } catch (SQLException e) {
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (SQLException e) {
-                }
-            }
         }
         return u;
     }
@@ -79,49 +56,29 @@ public class UserRepositoryImpl implements UserRepository {
 
         LOGGER.info("user data: {}", id);
 
-        Connection con = null;
-        Statement st = null;
-        ResultSet rs = null;
+        ResultSet rs;
         User u = new User();
 
-        String sql = "SELECT * " +
-                "FROM user "+
-                "WHERE id = "+id;
+        String sql = "SELECT * FROM user WHERE id = ?";
 
         LOGGER.info("query: {}", sql);
 
-        try {
-            con = dataSource.getConnection();
-            st = con.createStatement();
-            rs = st.executeQuery(sql);
+        try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
+            st.setLong(1, id);
+            rs = st.executeQuery();
 
-            if(rs.next()){
+            if (rs.next()) {
                 u.setId(rs.getLong("id"));
                 u.setEmail(rs.getString("email"));
                 u.setPassword(rs.getString("password"));
                 u.setRole(rs.getString("role"));
-            }else{
-
-                LOGGER.info("user {} is not registered",
-                        id);
+            } else {
+                LOGGER.info("user {} is not registered", id);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
             throw new BusinessException(e);
-        } finally {
-            if (st != null) {
-                try {
-                    st.close();
-                } catch (SQLException e) {
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (SQLException e) {
-                }
-            }
         }
         return u;
     }

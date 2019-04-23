@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 
 @SuppressWarnings("Duplicates")
@@ -27,158 +24,103 @@ public class SessionRepositoryImpl implements SessionRepository {
 
     public Session findByToken(String token) {
 
-        Connection con = null;
-        Statement st = null;
-        ResultSet rs = null;
+        ResultSet rs;
 
         Session s = new Session();
 
-        String sql = String.format("SELECT * FROM session WHERE token = '%s'", token);
+        String sql = "SELECT * FROM session WHERE token = ?";
 
         LOGGER.info("query: {}", sql);
 
-        try {
-            con = dataSource.getConnection();
-            st = con.createStatement();
-            rs = st.executeQuery(sql);
+        try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, token);
+            rs = st.executeQuery();
 
-            if(rs.next()){
+            if (rs.next()) {
 
                 s.setId(rs.getLong("id"));
                 s.setToken(rs.getString("token"));
                 s.setUserId(rs.getLong("user_id"));
 
-            }else{
+            } else {
                 LOGGER.info("Token not valid");
+                s = null;
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
             throw new BusinessException(e);
-        } finally {
-            if (st != null) {
-                try {
-                    st.close();
-                } catch (SQLException e) {
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (SQLException e) {
-                }
-            }
         }
         return s;
     }
 
     public Session save(Session s) {
 
-        Connection con = null;
-        Statement st = null;
-        Integer rs = null;
+        int rs;
 
-        String sql = String.format("INSERT INTO session (user_id, token) VALUES (%d, '%s')", s.getUserId(), s.getToken());
+        String sql = "INSERT INTO session (user_id, token) VALUES (?, ?)";
 
         LOGGER.info("query: {}", sql);
 
-        try {
-            con = dataSource.getConnection();
-            st = con.createStatement();
-            rs = st.executeUpdate(sql);
+        try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
+            st.setLong(1, s.getUserId());
+            st.setString(2, s.getToken());
+            rs = st.executeUpdate();
+
+            if(rs != 1){
+                throw new SQLException("query failed");
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
             throw new BusinessException(e);
-        } finally {
-            if (st != null) {
-                try {
-                    st.close();
-                } catch (SQLException e) {
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (SQLException e) {
-                }
-            }
         }
         return s;
     }
 
     public void deleteAll (User u){
-        Connection con = null;
-        Statement st = null;
-        Integer rs = null;
 
-        String sql = String.format("DELETE FROM session WHERE user_id = %d", u.getId());
+        int rs;
+
+        String sql = "DELETE FROM session WHERE user_id = ?";
 
         LOGGER.info("query: {}", sql);
 
-        try {
-            con = dataSource.getConnection();
-            st = con.createStatement();
-            rs = st.executeUpdate(sql);
+        try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
+            st.setLong(1, u.getId());
+            rs = st.executeUpdate();
+            LOGGER.info("{} rows deleted", rs);
 
         } catch (SQLException e) {
             e.printStackTrace();
             throw new BusinessException(e);
-        } finally {
-            if (st != null) {
-                try {
-                    st.close();
-                } catch (SQLException e) {
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (SQLException e) {
-                }
-            }
         }
 
     }
 
     public void delete (String token){
-        Connection con = null;
-        Statement st = null;
-        Integer rs = null;
 
-        String sql = String.format("DELETE FROM session WHERE token = '%s'", token);
+        int rs;
+
+        String sql = "DELETE FROM session WHERE token = ?";
 
         LOGGER.info("query: {}", sql);
 
-        try {
-            con = dataSource.getConnection();
-            st = con.createStatement();
-            rs = st.executeUpdate(sql);
+        try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, token);
+            rs = st.executeUpdate();
+            LOGGER.info("{} rows deleted", rs);
 
         } catch (SQLException e) {
             e.printStackTrace();
             throw new BusinessException(e);
-        } finally {
-            if (st != null) {
-                try {
-                    st.close();
-                } catch (SQLException e) {
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (SQLException e) {
-                }
-            }
         }
+
     }
 
     public String generateToken(){
 
-        Connection con = null;
-        Statement st = null;
-        ResultSet rs = null;
+        ResultSet rs;
 
         String sql = "SELECT UUID()";
 
@@ -186,34 +128,18 @@ public class SessionRepositoryImpl implements SessionRepository {
 
         LOGGER.info("query: {}", sql);
 
-        try {
-            con = dataSource.getConnection();
-            st = con.createStatement();
-            rs = st.executeQuery(sql);
+        try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
+            rs = st.executeQuery();
 
-
-            if(rs.next()){
+            if (rs.next()) {
                 token = rs.getString("UUID()");
-            }else{
+            } else {
                 LOGGER.error("could not generate token");
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
             throw new BusinessException(e);
-        } finally {
-            if (st != null) {
-                try {
-                    st.close();
-                } catch (SQLException e) {
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (SQLException e) {
-                }
-            }
         }
         return token;
     }

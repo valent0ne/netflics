@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -23,41 +24,35 @@ public class MovieRepositoryImpl implements MovieRepository {
 
     public Movie save(Movie movie) {
 
-        LOGGER.info("movie data: {} {} {} {}", movie.getTitle(),
+        LOGGER.info("movie data: {} {} {} {} {}", movie.getTitle(),
                 movie.getDirectors(),
                 movie.getGenres(),
                 movie.getRating(),
                 movie.getImdbId());
 
-        Connection con = null;
-        Statement st = null;
         Integer rs = null;
 
-        String sql = String.format("INSERT INTO movie (title, directors, genres, rating, imdb_id) VALUES ('%s', '%s', '%s', %s, '%s')", movie.getTitle(), movie.getDirectors(), movie.getGenres(), movie.getRating(), movie.getImdbId());
+        String sql = "INSERT INTO movie (title, directors, genres, rating, imdb_id) VALUES (?, ?, ?, ?, ?)";
 
         LOGGER.info("query: {}", sql);
 
-        try {
-            con = dataSource.getConnection();
-            st = con.createStatement();
-            rs = st.executeUpdate(sql);
+        try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
+
+            st.setString(1, movie.getTitle());
+            st.setString(2, movie.getDirectors());
+            st.setString(3, movie.getGenres());
+            st.setDouble(4, movie.getRating());
+            st.setString(5, movie.getImdbId());
+
+            rs = st.executeUpdate();
+
+            if(rs != 1){
+                throw new SQLException("query failed");
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
             throw new BusinessException(e);
-        } finally {
-            if (st != null) {
-                try {
-                    st.close();
-                } catch (SQLException e) {
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (SQLException e) {
-                }
-            }
         }
         return movie;
     }
