@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="133ee012-ec46-49e4-ac48-d2da9b92568e" activeEnvironment="Default" name="vault" resourceRoot="" soapui-version="5.4.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="756fa238-b577-4b20-8b28-978759efa5e9" wsaVersion="NONE" name="VaultBinding" type="wsdl" bindingName="{http://it.univaq.disim.netflics/vault}VaultBinding" soapVersion="1_1" anonymous="optional" definition="file:/E:/Projects/netflics/code/vault/src/main/resources/vault.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\E:\Projects\netflics\code\vault\src\main\resources\vault.wsdl"><con:part><con:url>file:\E:\Projects\netflics\code\vault\src\main\resources\vault.wsdl</con:url><con:content><![CDATA[<definitions name="VaultService" targetNamespace="http://it.univaq.disim.netflics/vault" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:tns="http://it.univaq.disim.netflics/vault" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+  <types>
+    <xsd:schema targetNamespace="http://it.univaq.disim.netflics/vault">
+      <xsd:element name="getMovieRequest" type="tns:getMovieRequest"/>
+      <xsd:element name="addMovieRequest" type="tns:addMovieRequest"/>
+      <xsd:element name="getMovieResponse" type="tns:getMovieResponse"/>
+      <xsd:element name="addMovieResponse" type="tns:addMovieResponse"/>
+      <xsd:complexType name="getMovieRequest">
+        <xsd:sequence>
+          <xsd:element name="imdb_id" type="xsd:string"/>
+          <xsd:element name="token" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="getMovieResponse">
+        <xsd:sequence>
+          <xsd:element name="movie" type="xsd:byte"/>
+          <xsd:element name="result" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="addMovieRequest">
+        <xsd:sequence>
+          <xsd:element name="imdb_id" type="xsd:string"/>
+          <xsd:element name="movie" type="xsd:byte"/>
+          <xsd:element name="token" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="addMovieResponse">
+        <xsd:sequence>
+          <xsd:element name="result" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </types>
+  <message name="getMovieRequest">
+    <part name="getMovieRequest" element="tns:getMovieRequest"></part>
+  </message>
+  <message name="addMovieRequest">
+    <part name="addMovieRequest" element="tns:addMovieRequest"></part>
+  </message>
+  <message name="getMovieResponse">
+    <part name="getMovieResponse" element="tns:getMovieResponse"></part>
+  </message>
+  <message name="addMovieResponse">
+    <part name="addMovieResponse" element="tns:addMovieResponse"></part>
+  </message>
+  <portType name="VaultPT">
+    <operation name="getMovie">
+      <input message="tns:getMovieRequest" wsam:Action="http://it.univaq.disim.netflics/vault/getMovieRequest"></input>
+      <output message="tns:getMovieResponse" wsam:Action="http://it.univaq.disim.netflics/vault/getMovieResponse"></output>
+    </operation>
+    <operation name="addMovie">
+      <input message="tns:addMovieRequest" wsam:Action="http://it.univaq.disim.netflics/vault/addMovieRequest"></input>
+      <output message="tns:addMovieResponse" wsam:Action="http://it.univaq.disim.netflics/vault/addMovieResponse"></output>
+    </operation>
+  </portType>
+  <binding name="VaultBinding" type="tns:VaultPT">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="getMovie">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="addMovie">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="VaultService">
+    <port name="VaultPort" binding="tns:VaultBinding">
+      <soap:address location="http://localhost:8080/vault/services/vault"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/vault/services/vault</con:endpoint></con:endpoints><con:operation id="f8c96902-ec58-448e-a25e-3a74ae550045" isOneWay="false" action="" name="addMovie" bindingOperationName="addMovie" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="bd9a35c1-20df-420f-8e11-0062ede761a0" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/vault/services/vault</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:vaul="http://it.univaq.disim.netflics/vault">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <vaul:addMovieRequest>\r
+         <imdb_id>?</imdb_id>\r
+         <movie>?</movie>\r
+         <token>?</token>\r
+      </vaul:addMovieRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://it.univaq.disim.netflics/vault/addMovieRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="222c39b2-1ea1-4321-a40a-55cabc0e210d" isOneWay="false" action="" name="getMovie" bindingOperationName="getMovie" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="1fc16e65-e9c6-45a6-a2de-6b8756fb87e3" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/vault/services/vault</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:vaul="http://it.univaq.disim.netflics/vault">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <vaul:getMovieRequest>\r
+         <imdb_id>tt3778644</imdb_id>\r
+         <token>tt</token>\r
+      </vaul:getMovieRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://it.univaq.disim.netflics/vault/getMovieRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
