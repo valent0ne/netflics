@@ -33,12 +33,7 @@ public class MovieRepositoryImpl implements MovieRepository {
         Statement st = null;
         Integer rs = null;
 
-        String sql = "INSERT INTO movie (title, directors, genres, rating, imdb_id) " +
-                     "VALUES ('"+movie.getTitle()+"', " +
-                              "'"+movie.getDirectors()+"', " +
-                              "'"+movie.getGenres()+"', " +
-                              ""+movie.getRating()+", " +
-                              "'"+movie.getImdbId()+"')";
+        String sql = String.format("INSERT INTO movie (title, directors, genres, rating, imdb_id) VALUES ('%s', '%s', '%s', %s, '%s')", movie.getTitle(), movie.getDirectors(), movie.getGenres(), movie.getRating(), movie.getImdbId());
 
         LOGGER.info("query: {}", sql);
 

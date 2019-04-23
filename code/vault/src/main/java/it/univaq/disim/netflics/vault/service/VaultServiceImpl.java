@@ -50,9 +50,15 @@ public class VaultServiceImpl implements VaultService {
             throw new BusinessException(e);
         }
 
-		FileDataSource dataSource = new FileDataSource(videopath + parameters.getImdbId());
-		GetMovieResponse response = new GetMovieResponse();
-		response.setMovie(new DataHandler(dataSource));
+        GetMovieResponse response = new GetMovieResponse();
+	    response.setMovie(null);
+
+        FileDataSource dataSource = new FileDataSource(videopath + parameters.getImdbId());
+
+	    if(dataSource.getFile().exists() && dataSource.getFile().length() > 0 && dataSource.getFile().canRead()){
+            response.setMovie(new DataHandler(dataSource));
+        }
+
 		return response;
 	}
 

@@ -1,4 +1,4 @@
-package it.univaq.disim.netflics.vault;
+package it.univaq.disim.netflics.supplier;
 
 public class BusinessException extends RuntimeException {
 

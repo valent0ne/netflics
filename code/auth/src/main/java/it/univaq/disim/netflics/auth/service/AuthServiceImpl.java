@@ -4,6 +4,7 @@ import it.univaq.disim.netflics.auth.*;
 import it.univaq.disim.netflics.auth.model.Session;
 import it.univaq.disim.netflics.auth.model.User;
 import it.univaq.disim.netflics.auth.repository.SessionRepository;
+import it.univaq.disim.netflics.auth.repository.SupplierRepository;
 import it.univaq.disim.netflics.auth.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +19,9 @@ public class AuthServiceImpl implements AuthService {
 
     @Autowired
     private SessionRepository sessionRepository;
+
+    @Autowired
+    private SupplierRepository supplierRepository;
 
     private static Logger LOGGER = LoggerFactory.getLogger(AuthServiceImpl.class);
 
@@ -81,8 +85,10 @@ public class AuthServiceImpl implements AuthService {
         response.setResult(false);
         response.setRole(null);
 
+        // check if the token is valid and it belongs to an user
         Session s = sessionRepository.findByToken(parameters.getToken());
 
+        // if the token belongs to an user
         if (s != null && !s.getToken().isEmpty()) {
 
             User validatedUser = userRepository.findOneById(s.getUserId());
@@ -90,6 +96,13 @@ public class AuthServiceImpl implements AuthService {
             if (validatedUser != null) {
                 response.setResult(true);
                 response.setRole(validatedUser.getRole());
+            }
+        // the token does not belong to an user, it may belong to a supplier
+        } else {
+            // check that
+            if (supplierRepository.findByToken(parameters.getToken())){
+                response.setResult(true);
+                response.setRole("ADMIN");
             }
         }
 

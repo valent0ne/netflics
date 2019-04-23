@@ -4,10 +4,10 @@ import java.sql.Timestamp;
 
 public class Availability implements java.io.Serializable {
     private Long id;
-    private String supplier_id;
+    private Long supplier_id;
     private Timestamp timestamp;
-    private Integer cpuSaturation;
-    private Integer memSaturation;
+    private Double cpuSaturation;
+    private Double memSaturation;
     private Boolean available;
 
     public Availability() {
@@ -19,7 +19,7 @@ public class Availability implements java.io.Serializable {
         this.available = null;
     }
 
-    public Availability(Long id, String supplier_id, Timestamp timestamp, Integer cpuSaturation, Integer memSaturation, Boolean available) {
+    public Availability(Long id, Long supplier_id, Timestamp timestamp, Double cpuSaturation, Double memSaturation, Boolean available) {
         this.id = id;
         this.supplier_id = supplier_id;
         this.timestamp = timestamp;
@@ -36,11 +36,11 @@ public class Availability implements java.io.Serializable {
         this.id = id;
     }
 
-    public String getSupplier_id() {
+    public Long getSupplier_id() {
         return supplier_id;
     }
 
-    public void setSupplier_id(String supplier_id) {
+    public void setSupplier_id(Long supplier_id) {
         this.supplier_id = supplier_id;
     }
 
@@ -52,19 +52,19 @@ public class Availability implements java.io.Serializable {
         this.timestamp = timestamp;
     }
 
-    public Integer getCpuSaturation() {
+    public Double getCpuSaturation() {
         return cpuSaturation;
     }
 
-    public void setCpuSaturation(Integer cpuSaturation) {
+    public void setCpuSaturation(Double cpuSaturation) {
         this.cpuSaturation = cpuSaturation;
     }
 
-    public Integer getMemSaturation() {
+    public Double getMemSaturation() {
         return memSaturation;
     }
 
-    public void setMemSaturation(Integer memSaturation) {
+    public void setMemSaturation(Double memSaturation) {
         this.memSaturation = memSaturation;
     }
 

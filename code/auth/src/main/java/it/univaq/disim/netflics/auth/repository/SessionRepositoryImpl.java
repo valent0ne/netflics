@@ -33,9 +33,7 @@ public class SessionRepositoryImpl implements SessionRepository {
 
         Session s = new Session();
 
-        String sql = "SELECT * " +
-                "FROM session "+
-                "WHERE token = '"+token+"'";
+        String sql = String.format("SELECT * FROM session WHERE token = '%s'", token);
 
         LOGGER.info("query: {}", sql);
 
@@ -80,9 +78,7 @@ public class SessionRepositoryImpl implements SessionRepository {
         Statement st = null;
         Integer rs = null;
 
-        String sql = "INSERT INTO session (user_id, token) " +
-                     "VALUES ("+s.getUserId()+", " +
-                            "'"+s.getToken()+"')";
+        String sql = String.format("INSERT INTO session (user_id, token) VALUES (%d, '%s')", s.getUserId(), s.getToken());
 
         LOGGER.info("query: {}", sql);
 
@@ -116,7 +112,7 @@ public class SessionRepositoryImpl implements SessionRepository {
         Statement st = null;
         Integer rs = null;
 
-        String sql = "DELETE FROM session WHERE user_id = "+u.getId();
+        String sql = String.format("DELETE FROM session WHERE user_id = %d", u.getId());
 
         LOGGER.info("query: {}", sql);
 
@@ -150,7 +146,7 @@ public class SessionRepositoryImpl implements SessionRepository {
         Statement st = null;
         Integer rs = null;
 
-        String sql = "DELETE FROM session WHERE token = '"+token+"'";
+        String sql = String.format("DELETE FROM session WHERE token = '%s'", token);
 
         LOGGER.info("query: {}", sql);
 
