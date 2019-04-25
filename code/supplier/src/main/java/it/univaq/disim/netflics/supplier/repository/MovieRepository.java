@@ -6,5 +6,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MovieRepository {
 
-    Movie findOneByImdbId(String imdbId);
+    Movie save(Movie movie);
+
+    Movie update(Movie movie);
+
+    Movie findOneByImdbId(String ImdbId);
+
+    void deleteByImdbId(String imsbId);
+
 }

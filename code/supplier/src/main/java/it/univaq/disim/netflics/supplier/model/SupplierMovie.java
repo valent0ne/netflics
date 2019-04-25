@@ -4,6 +4,7 @@ public class SupplierMovie implements java.io.Serializable {
     private Long id;
     private Long supplierId;
     private Long movieId;
+    private String status;
 
     public SupplierMovie() {
         this.id = null;
@@ -41,4 +42,11 @@ public class SupplierMovie implements java.io.Serializable {
         this.movieId = movieId;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

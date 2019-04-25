@@ -55,9 +55,9 @@ public class VaultServiceImpl implements VaultService {
 
         if (!(dataSource.getFile().exists() && dataSource.getFile().length() > 0 && dataSource.getFile().canRead())) {
             response.setMovie(null);
-            response.setResult("ko/movie "+parameters.getImdbId()+" not found");
+            response.setResult("ko/movie " + parameters.getImdbId() + " not found");
 
-        }else{
+        } else {
             response.setMovie(new DataHandler(dataSource));
             response.setResult("ok");
         }
@@ -76,17 +76,45 @@ public class VaultServiceImpl implements VaultService {
             return addMovieResponse;
         }
 
-        String title = null;
-        String directors = null;
-        String genres = null;
-        Double rating = null;
+        String title;
+        String directors;
+        String genres;
+        Double rating;
 
-        // save file data in /resources
+        // get data from the request
         DataHandler movieData = parameters.getMovie();
         String imdbId = parameters.getImdbId();
 
-        saveVideo(movieData, new File(videopath + imdbId));
-        LOGGER.info("movie saved.");
+        Movie m = new Movie();
+        m.setImdbId(imdbId);
+        m.setStatus("UPLOADING");
+
+        // the query will return null if ther isn't another entry with the same imdbId into the table "movie"
+        // either when the movie is already been added, or the movie is being added in this moment by another user
+        Movie mdb = movieRepository.findOneByImdbId(imdbId);
+        if (mdb != null) {
+            if (mdb.getStatus().equals("UPLOADED")) {
+                addMovieResponse.setResult("ko/movie already in db");
+            } else if (mdb.getStatus().equals("UPLOADING")) {
+                addMovieResponse.setResult("ko/movie in being uploaded by another user");
+            } else {
+                addMovieResponse.setResult("ko/db is corrupted");
+            }
+            return addMovieResponse;
+        }
+
+        // save temporary entry in db
+        movieRepository.save(m);
+
+        try {
+            saveVideo(movieData, new File(videopath + imdbId));
+            LOGGER.info("movie saved.");
+        } catch (IOException e) {
+            movieRepository.deleteByImdbIb(imdbId);
+            addMovieResponse.setResult("ko/can't save file to disk");
+            return addMovieResponse;
+        }
+
 
         // omdb request (for movie metadata)
         try {
@@ -142,19 +170,18 @@ public class VaultServiceImpl implements VaultService {
         } catch (Exception e) {
             e.printStackTrace();
             addMovieResponse.setResult("ko/omdb rest call failed");
+            movieRepository.deleteByImdbIb(imdbId);
             return addMovieResponse;
         }
 
-        // movie object instantiation
-        Movie m = new Movie();
         m.setTitle(title);
         m.setDirectors(directors);
         m.setGenres(genres);
         m.setRating(rating);
-        m.setImdbId(imdbId);
+        m.setStatus("UPLOADED");
 
-        // insertion to the db
-        movieRepository.save(m);
+        // update details into db
+        movieRepository.update(m);
 
         // return response
         addMovieResponse.setResult("ok");
@@ -170,15 +197,11 @@ public class VaultServiceImpl implements VaultService {
      * @param dataHandler container that contains the data
      * @param filePath    where to save the file
      */
-    private static void saveVideo(final DataHandler dataHandler, final File filePath) {
-        try {
-            FileOutputStream fileOutputStream = new FileOutputStream(filePath);
-            dataHandler.writeTo(fileOutputStream);
-            fileOutputStream.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new BusinessException(e);
-        }
+    private static void saveVideo(final DataHandler dataHandler, final File filePath) throws IOException {
+        FileOutputStream fileOutputStream = new FileOutputStream(filePath);
+        dataHandler.writeTo(fileOutputStream);
+        fileOutputStream.flush();
+
     }
 
     /**

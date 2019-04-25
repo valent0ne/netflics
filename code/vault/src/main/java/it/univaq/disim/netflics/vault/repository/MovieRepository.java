@@ -8,4 +8,10 @@ public interface MovieRepository {
 
     Movie save(Movie movie);
 
+    Movie update(Movie movie);
+
+    Movie findOneByImdbId(String ImdbId);
+
+    void deleteByImdbId(String imsbId);
+
 }

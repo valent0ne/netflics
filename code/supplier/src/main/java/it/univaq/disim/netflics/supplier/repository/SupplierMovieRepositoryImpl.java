@@ -21,17 +21,45 @@ public class SupplierMovieRepositoryImpl implements SupplierMovieRepository {
 
     public SupplierMovie save(SupplierMovie sm) {
 
-        LOGGER.info("suppliermovie data: {} {} ", sm.getMovieId(), sm.getSupplierId());
+        LOGGER.info("suppliermovie data: {} {} {}", sm.getMovieId(), sm.getSupplierId(), sm.getStatus());
 
         int rs;
 
-        String sql = "INSERT INTO supplier_movie (supplier_id, movie_id) VALUES (?, ?)";
+        String sql = "INSERT INTO supplier_movie (supplier_id, movie_id, status) VALUES (?, ?, ?)";
 
         LOGGER.info("query: {}", sql);
 
         try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
             st.setLong(1, sm.getSupplierId());
             st.setLong(2, sm.getMovieId());
+            st.setString(3, sm.getStatus());
+            rs = st.executeUpdate();
+
+            if(rs != 1){
+                throw new SQLException("query failed");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new BusinessException(e);
+        }
+        return sm;
+    }
+
+    public SupplierMovie update(SupplierMovie sm) {
+
+        LOGGER.info("suppliermovie data: {} {} {}", sm.getMovieId(), sm.getSupplierId(), sm.getStatus());
+
+        int rs;
+
+        String sql = "UPDATE supplier_movie SET status = ? WHERE movie_id = ? AND supplier_id = ?";
+
+        LOGGER.info("query: {}", sql);
+
+        try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, sm.getStatus());
+            st.setLong(2, sm.getMovieId());
+            st.setLong(3, sm.getSupplierId());
             rs = st.executeUpdate();
 
             if(rs != 1){

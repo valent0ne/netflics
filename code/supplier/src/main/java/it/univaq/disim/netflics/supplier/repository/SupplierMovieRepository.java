@@ -10,4 +10,6 @@ public interface SupplierMovieRepository {
 
         void delete(SupplierMovie supplierMovie);
 
+        SupplierMovie update(SupplierMovie supplierMovie);
+
 }

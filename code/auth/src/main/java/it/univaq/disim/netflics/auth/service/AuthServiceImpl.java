@@ -46,8 +46,7 @@ public class AuthServiceImpl implements AuthService {
         User u = userRepository.findOne(user);
         if (u != null) {
 
-            // clean old sessions
-            sessionRepository.deleteAll(u);
+
             // generate new token
             String token = sessionRepository.generateToken();
 

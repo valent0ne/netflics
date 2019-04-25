@@ -5,8 +5,29 @@ public class Movie implements java.io.Serializable {
     private String title;
     private String directors;
     private String genres;
-    private double rating;
+    private Double rating;
     private String imdbId;
+    private String status;
+
+    public Movie() {
+        this.id = null;
+        this.title = null;
+        this.directors = null;
+        this.genres = null;
+        this.rating = null;
+        this.imdbId = null;
+        this.status = null;
+    }
+
+    public Movie(Long id, String title, String directors, String genres, Double rating, String imdbId, String status) {
+        this.id = id;
+        this.title = title;
+        this.directors = directors;
+        this.genres = genres;
+        this.rating = rating;
+        this.imdbId = imdbId;
+        this.status = status;
+    }
 
     public Long getId() {
         return id;
@@ -40,11 +61,11 @@ public class Movie implements java.io.Serializable {
         this.genres = genres;
     }
 
-    public double getRating() {
+    public Double getRating() {
         return rating;
     }
 
-    public void setRating(double rating) {
+    public void setRating(Double rating) {
         this.rating = rating;
     }
 
@@ -54,5 +75,13 @@ public class Movie implements java.io.Serializable {
 
     public void setImdbId(String imdbId) {
         this.imdbId = imdbId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

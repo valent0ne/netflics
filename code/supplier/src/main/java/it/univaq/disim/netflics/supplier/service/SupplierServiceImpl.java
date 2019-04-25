@@ -111,6 +111,22 @@ public class SupplierServiceImpl implements SupplierService {
      * @param imdbId them ovie identifier
      */
     public void fetchMovie(String imdbId) {
+
+        SupplierMovie sm = new SupplierMovie();
+        sm.setSupplierId(supplierId);
+        sm.setMovieId(movieRepository.findOneByImdbId(imdbId).getId());
+        sm.setStatus("FETCHING");
+
+        File file = new File(videopath + imdbId);
+
+        if(file.exists() && file.length() > 0){
+            LOGGER.warn("movie already available");
+            return;
+        }
+
+        // signal that the supplier is fetching the movie
+        supplierMovieRepository.save(sm);
+
         VaultService vaultService = new VaultService();
         VaultPT vaultPT = vaultService.getVaultPort();
         GetMovieRequest getMovieRequest = new GetMovieRequest();
@@ -124,7 +140,6 @@ public class SupplierServiceImpl implements SupplierService {
         if (result.equals("ok")) {
             // save movie to disk
             try {
-                File file = new File(videopath + imdbId);
                 FileOutputStream fileOutputStream = new FileOutputStream(file);
                 dh.writeTo(fileOutputStream);
                 fileOutputStream.flush();
@@ -132,17 +147,19 @@ public class SupplierServiceImpl implements SupplierService {
                 LOGGER.info("movie retrieved");
             } catch (IOException e) {
                 LOGGER.error("can't save video file to disk");
+                // cleanup db
+                supplierMovieRepository.delete(sm);
                 throw new BusinessException(e);
             }
 
             // add entry into db to signal that this supplier now has the requested movie
-            SupplierMovie sm = new SupplierMovie();
-            sm.setSupplierId(supplierId);
-            sm.setMovieId(movieRepository.findOneByImdbId(imdbId).getId());
-            supplierMovieRepository.save(sm);
+            sm.setStatus("FETCHED");
+            supplierMovieRepository.update(sm);
             LOGGER.info("supplier-movie db data updated");
 
         } else {
+            //clean up the db
+            supplierMovieRepository.delete(sm);
             throw new BusinessException("couldn't fetch movie from vault service");
         }
 
