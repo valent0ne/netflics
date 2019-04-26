@@ -4,7 +4,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import com.google.gson.JsonObject;
+import com.google.gson.*;
 import it.univaq.disim.netflics.clients.auth.AuthPT;
 import it.univaq.disim.netflics.clients.auth.CheckTokenRequest;
 import it.univaq.disim.netflics.clients.auth.CheckTokenResponse;
@@ -18,12 +18,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import it.univaq.disim.netflics.clients.auth.AuthService;
 
-import com.google.gson.Gson;
-
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 
 @Service
+@SuppressWarnings("Duplicates")
 public class VaultServiceImpl implements VaultService {
 
     @Autowired
@@ -33,6 +32,9 @@ public class VaultServiceImpl implements VaultService {
 
     @Value("#{cfg.omdburl}")
     private String omdburl;
+
+    @Value("#{cfg.themoviedburl}")
+    private String themoviedburl;
 
     @Value("#{cfg.videopath}")
     private String videopath;
@@ -76,16 +78,16 @@ public class VaultServiceImpl implements VaultService {
             return addMovieResponse;
         }
 
-        String title;
-        String directors;
-        String genres;
-        Double rating;
-
         // get data from the request
         DataHandler movieData = parameters.getMovie();
         String imdbId = parameters.getImdbId();
 
         Movie m = new Movie();
+        m.setPoster("");
+        m.setDirectors("");
+        m.setTitle("");
+        m.setGenres("");
+        m.setRating(0.0);
         m.setImdbId(imdbId);
         m.setStatus("UPLOADING");
 
@@ -110,7 +112,16 @@ public class VaultServiceImpl implements VaultService {
             saveVideo(movieData, new File(videopath + imdbId));
             LOGGER.info("movie saved.");
         } catch (IOException e) {
-            movieRepository.deleteByImdbIb(imdbId);
+            movieRepository.deleteByImdbId(imdbId);
+            addMovieResponse.setResult("ko/can't save file to disk");
+            return addMovieResponse;
+        }
+
+        try {
+            saveVideo(movieData, new File(videopath + imdbId));
+            LOGGER.info("movie saved.");
+        } catch (IOException e) {
+            movieRepository.deleteByImdbId(imdbId);
             addMovieResponse.setResult("ko/can't save file to disk");
             return addMovieResponse;
         }
@@ -118,66 +129,25 @@ public class VaultServiceImpl implements VaultService {
 
         // omdb request (for movie metadata)
         try {
-
-            LOGGER.info("REST request to OMDB.");
-
-            // build the url
-
-            String url = omdburl + imdbId;
-            // connect to url
-            HttpURLConnection c = null;
-
-            URL u = new URL(url);
-            c = (HttpURLConnection) u.openConnection();
-            c.setRequestMethod("GET");
-            c.setRequestProperty("Content-length", "0");
-            c.setUseCaches(false);
-            c.setAllowUserInteraction(false);
-            c.connect();
-            int status = c.getResponseCode();
-
-            switch (status) {
-                case 200:
-                case 201:
-                    BufferedReader br = new BufferedReader(new InputStreamReader(c.getInputStream(), "UTF-8"));
-                    StringBuilder sb = new StringBuilder();
-                    String line;
-                    while ((line = br.readLine()) != null) {
-                        sb.append(line + "\n");
-                    }
-                    br.close();
-
-                    if (c != null) {
-                        c.disconnect();
-                    }
-
-                    JsonObject jobj = new Gson().fromJson(sb.toString(), JsonObject.class);
-                    title = jobj.get("Title").getAsString();
-                    directors = jobj.get("Director").getAsString();
-                    genres = jobj.get("Genre").getAsString();
-                    rating = jobj.get("imdbRating").getAsDouble();
-
-                    LOGGER.info("movie data retrieved: {} {} {} {}", title, directors, genres, rating);
-
-                    break;
-
-                default:
-                    if (c != null) {
-                        c.disconnect();
-                    }
-                    throw new Exception("Http Error: " + status);
-            }
+            m = getOmdbData(m);
         } catch (Exception e) {
             e.printStackTrace();
             addMovieResponse.setResult("ko/omdb rest call failed");
-            movieRepository.deleteByImdbIb(imdbId);
+            movieRepository.deleteByImdbId(imdbId);
+            return addMovieResponse;
+        }
+        movieRepository.update(m);
+
+        // themoviedb request (for poster)
+        try {
+            m = getTheMovieDbData(m);
+        } catch (Exception e) {
+            e.printStackTrace();
+            addMovieResponse.setResult("ko/themoviedb rest call failed");
+            movieRepository.deleteByImdbId(imdbId);
             return addMovieResponse;
         }
 
-        m.setTitle(title);
-        m.setDirectors(directors);
-        m.setGenres(genres);
-        m.setRating(rating);
         m.setStatus("UPLOADED");
 
         // update details into db
@@ -201,6 +171,7 @@ public class VaultServiceImpl implements VaultService {
         FileOutputStream fileOutputStream = new FileOutputStream(filePath);
         dataHandler.writeTo(fileOutputStream);
         fileOutputStream.flush();
+        fileOutputStream.close();
 
     }
 
@@ -218,6 +189,132 @@ public class VaultServiceImpl implements VaultService {
         CheckTokenResponse checkTokenResponse = authPT.checkToken(checkTokenRequest);
 
         return (checkTokenResponse.isResult() && checkTokenResponse.getRole().equals("ADMIN"));
+    }
+
+    private Movie getOmdbData(Movie m) throws Exception {
+
+        LOGGER.info("REST request to OMDB.");
+
+        String title;
+        String directors;
+        String genres;
+        Double rating;
+
+        // build the url
+
+        String url = omdburl + m.getImdbId();
+        // connect to url
+        HttpURLConnection c;
+
+        URL u = new URL(url);
+        c = (HttpURLConnection) u.openConnection();
+        c.setRequestMethod("GET");
+        c.setRequestProperty("Content-length", "0");
+        c.setUseCaches(false);
+        c.setAllowUserInteraction(false);
+        c.connect();
+        int status = c.getResponseCode();
+
+        switch (status) {
+            case 200:
+            case 201:
+                BufferedReader br = new BufferedReader(new InputStreamReader(c.getInputStream(), "UTF-8"));
+                StringBuilder sb = new StringBuilder();
+                String line;
+                while ((line = br.readLine()) != null) {
+                    sb.append(line + "\n");
+                }
+                br.close();
+
+                if (c != null) {
+                    c.disconnect();
+                }
+
+                JsonObject jobj = new Gson().fromJson(sb.toString(), JsonObject.class);
+                title = jobj.get("Title").getAsString();
+                directors = jobj.get("Director").getAsString();
+                genres = jobj.get("Genre").getAsString();
+                rating = jobj.get("imdbRating").getAsDouble();
+
+                LOGGER.info("movie data retrieved: {} {} {} {}", title, directors, genres, rating);
+
+                break;
+
+            default:
+                if (c != null) {
+                    c.disconnect();
+                }
+                throw new Exception("Http Error: " + status);
+        }
+
+        m.setTitle(title);
+        m.setDirectors(directors);
+        m.setGenres(genres);
+        m.setRating(rating);
+
+        return m;
+    }
+
+    private Movie getTheMovieDbData(Movie m) throws Exception {
+
+        LOGGER.info("REST request to OMDB.");
+
+        String poster;
+
+        // build the url
+
+        String url = themoviedburl.replace("@", m.getImdbId());
+        // connect to url
+        HttpURLConnection c;
+
+        URL u = new URL(url);
+        c = (HttpURLConnection) u.openConnection();
+        c.setRequestMethod("GET");
+        c.setRequestProperty("Content-length", "0");
+        c.setUseCaches(false);
+        c.setAllowUserInteraction(false);
+        c.connect();
+        int status = c.getResponseCode();
+
+        switch (status) {
+            case 200:
+            case 201:
+                BufferedReader br = new BufferedReader(new InputStreamReader(c.getInputStream(), "UTF-8"));
+                StringBuilder sb = new StringBuilder();
+                String line;
+                while ((line = br.readLine()) != null) {
+                    sb.append(line + "\n");
+                }
+                br.close();
+
+                if (c != null) {
+                    c.disconnect();
+                }
+
+                JsonElement jelement = new JsonParser().parse(sb.toString());
+                JsonObject jobject = jelement.getAsJsonObject();
+                JsonArray jarray = jobject.getAsJsonArray("movie_results");
+                jobject = jarray.get(0).getAsJsonObject();
+                poster = jobject.get("poster_path").getAsString();
+
+                /*
+                JsonObject jobj = new Gson().fromJson(sb.toString(), JsonObject.class);
+                poster = jobj.get("poster_path").getAsString();
+                */
+                LOGGER.info("movie data retrieved: {}", poster);
+
+                break;
+
+            default:
+                if (c != null) {
+                    c.disconnect();
+                }
+                throw new Exception("Http Error: " + status);
+        }
+
+        m.setPoster(poster);
+
+        return m;
     }
 
 }
