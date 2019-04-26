@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="AuthService"
+             targetNamespace="http://it.univaq.disim.netflics/auth"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:wsp="http://www.w3.org/ns/ws-policy"
+             xmlns:tns="http://it.univaq.disim.netflics/auth"
+             xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy"
+             xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+
+    <types>
+        <xsd:schema targetNamespace="http://it.univaq.disim.netflics/auth">
+
+            <xsd:element name="logInRequest" type="tns:logInRequest"/>
+            <xsd:element name="logOutRequest" type="tns:logOutRequest"/>
+            <xsd:element name="checkTokenRequest" type="tns:checkTokenRequest"/>
+            <xsd:element name="logInResponse" type="tns:logInResponse"/>
+            <xsd:element name="logOutResponse" type="tns:logOutResponse"/>
+            <xsd:element name="checkTokenResponse" type="tns:checkTokenResponse"/>
+            
+
+
+            <xsd:complexType name="logInRequest">
+                <xsd:sequence>
+                    <xsd:element name="email" type="xsd:string"/>
+                    <xsd:element name="password" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="logOutRequest">
+                <xsd:sequence>
+                    <xsd:element name="token" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="checkTokenRequest">
+                <xsd:sequence>
+                    <xsd:element name="token" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="logInResponse">
+                <xsd:sequence>
+                    <xsd:element name="result" type="xsd:boolean"/>
+                    <xsd:element name="role" type="xsd:string"/>
+                    <xsd:element name="token" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="logOutResponse">
+                <xsd:sequence>
+                    <xsd:element name="result" type="xsd:boolean"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="checkTokenResponse">
+                <xsd:sequence>
+                    <xsd:element name="result" type="xsd:boolean"/>
+                    <xsd:element name="role" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+        </xsd:schema>
+    </types>
+
+    <message name="logInRequest">
+        <part name="logInRequest" element="tns:logInRequest">
+        </part>
+    </message>
+
+    <message name="logOutRequest">
+        <part name="logOutRequest" element="tns:logOutRequest">
+        </part>
+    </message>
+
+    <message name="checkTokenRequest">
+        <part name="checkTokenRequest" element="tns:checkTokenRequest">
+        </part>
+    </message>
+
+    <message name="logInResponse">
+        <part name="logInResponse" element="tns:logInResponse">
+        </part>
+    </message>
+
+    <message name="logOutResponse">
+        <part name="logOutResponse" element="tns:logOutResponse">
+        </part>
+    </message>
+
+    <message name="checkTokenResponse">
+        <part name="checkTokenResponse" element="tns:checkTokenResponse">
+        </part>
+    </message>
+
+    <portType name="AuthPT">
+        <operation name="logIn">
+            <input message="tns:logInRequest" wsam:Action="http://it.univaq.disim.netflics/auth/logInRequest">
+            </input>
+            <output message="tns:logInResponse" wsam:Action="http://it.univaq.disim.netflics/auth/logInResponse">
+            </output>
+        </operation>
+
+        <operation name="logOut">
+            <input message="tns:logOutRequest" wsam:Action="http://it.univaq.disim.netflics/auth/logOutRequest">
+            </input>
+            <output message="tns:logOutResponse" wsam:Action="http://it.univaq.disim.netflics/auth/logOutResponse">
+            </output>
+        </operation>
+
+        <operation name="checkToken">
+            <input message="tns:checkTokenRequest" wsam:Action="http://it.univaq.disim.netflics/auth/checkTokenRequest">
+            </input>
+            <output message="tns:checkTokenResponse" wsam:Action="http://it.univaq.disim.netflics/auth/checkTokenResponse">
+            </output>
+        </operation>
+    </portType>
+
+    <binding name="AuthBinding" type="tns:AuthPT">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="logIn">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+
+        <operation name="logOut">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+
+        <operation name="checkToken">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="AuthService">
+        <port name="AuthPort" binding="tns:AuthBinding">
+            <soap:address location="http://localhost:8080/auth/services/auth"/>
+        </port>
+    </service>
+
+</definitions>

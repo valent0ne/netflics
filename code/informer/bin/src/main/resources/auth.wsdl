@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="InformerService"
+             targetNamespace="http://it.univaq.disim.netflics/informer"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:wsp="http://www.w3.org/ns/ws-policy"
+             xmlns:tns="http://it.univaq.disim.netflics/informer"
+             xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy"
+             xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+
+    <types>
+        <xsd:schema targetNamespace="http://it.univaq.disim.netflics/informer">
+
+            <xsd:element name="mostViewedRequest" type="tns:mostViewedRequest"/>
+            <xsd:element name="mostViewedResponse" type="tns:mostViewedResponse"/>
+            <xsd:element name="bestMoviesRequest" type="tns:bestMoviesRequest"/>
+            <xsd:element name="bestMoviesResponse" type="tns:bestMoviesResponse"/>
+            <xsd:element name="lastViewedRequest" type="tns:lastViewedRequest"/>
+            <xsd:element name="lastViewedResponse" type="tns:lastViewedResponse"/>
+            <xsd:element name="moviesRequest" type="tns:moviesRequest"/>
+            <xsd:element name="moviesResponse" type="tns:moviesResponse"/>
+            <xsd:element name="movieRequest" type="tns:movieRequest"/>
+            <xsd:element name="movieResponse" type="tns:movieResponse"/>
+            
+            <xsd:complexType name="movie">
+                <xsd:sequence>
+                    <xsd:element name="title" type="xs:string"/>
+                    <xsd:element name="directors" type="xs:string"/>
+                    <xsd:element name="genres" type="tns:string"/>
+                    <xsd:element name="rating" type="xs:double"/>
+                    <xsd:element name="imdb_id" type="xs:string"/>
+                    <xsd:element name="poster" type="xs:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="mostViewedRequest">
+                <xsd:sequence>
+                     <xsd:element name="token" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="mostViewedResponse">
+                <xsd:sequence>
+                     <xsd:element name="moviesList" type="tns:movie" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+                     <xsd:element name="result" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="bestMoviesRequest">
+                <xsd:sequence>
+                     <xsd:element name="token" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="bestMoviesResponse">
+                <xsd:sequence>
+                     <xsd:element name="moviesList" type="tns:movie" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+                     <xsd:element name="result" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="lastViewedRequest">
+                <xsd:sequence>
+                     <xsd:element name="token" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+             <xsd:complexType name="lastViewedResponse">
+                <xsd:sequence>
+                     <xsd:element name="moviesList" type="tns:movie" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+                     <xsd:element name="result" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="moviesRequest">
+                <xsd:sequence>
+                     <xsd:element name="token" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="moviesResponse">
+                <xsd:sequence>
+                     <xsd:element name="moviesList" type="tns:movie" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+                     <xsd:element name="result" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="movieRequest">
+                <xsd:sequence>
+                     <xsd:element name="token" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="movieResponse">
+                <xsd:sequence>
+                     <xsd:element name="movie" type="tns:movie"/>
+                     <xsd:element name="result" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>  
+        </xsd:schema>
+    </types>
+
+    <message name="mostViewedRequest">
+        <part name="mostViewedRequest" element="tns:mostViewedRequest">
+        </part>
+    </message>
+
+    <message name="mostViewedResponse">
+        <part name="mostViewedResponse" element="tns:mostViewedResponse">
+        </part>
+    </message>
+
+
+    <message name="bestMoviesRequest">
+        <part name="bestMoviesRequest" element="tns:bestMoviesRequest">
+        </part>
+    </message>
+
+    <message name="bestMoviesResponse">
+        <part name="bestMoviesResponse" element="tns:bestMoviesResponse">
+        </part>
+    </message>
+
+    <message name="lastViewedRequest">
+        <part name="lastViewedRequest" element="tns:lastViewedRequest">
+        </part>
+    </message>
+
+    <message name="lastViewedResponse">
+        <part name="lastViewedResponse" element="tns:lastViewedResponse">
+        </part>
+    </message>
+
+    <message name="moviesRequest">
+        <part name="moviesRequest" element="tns:moviesRequest">
+        </part>
+    </message>
+
+    <message name="moviesResponse">
+        <part name="moviesResponse" element="tns:moviesResponse">
+        </part>
+    </message>
+
+    <message name="movieRequest">
+        <part name="movieRequest" element="tns:movieRequest">
+        </part>
+    </message>
+
+    <message name="movieResponse">
+        <part name="movieResponse" element="tns:movieResponse">
+        </part>
+    </message>
+
+
+    <portType name="InformerPT">
+
+        <operation name="mostViewed">
+            <input message="tns:mostViewedRequest" wsam:Action="http://it.univaq.disim.netflics/informer/mostViewedRequest">
+            </input>
+            <output message="tns:mostViewedResponse" wsam:Action="http://it.univaq.disim.netflics/informer/mostViewedResponse">
+            </output>
+        </operation>
+
+        <operation name="bestMovies">
+            <input message="tns:bestMoviesRequest" wsam:Action="http://it.univaq.disim.netflics/informer/bestMoviesRequest">
+            </input>
+            <output message="tns:bestMoviesResponse" wsam:Action="http://it.univaq.disim.netflics/informer/bestMoviesResponse">
+            </output>
+        </operation>
+
+        <operation name="lastViewed">
+            <input message="tns:lastViewedRequest" wsam:Action="http://it.univaq.disim.netflics/informer/lastViewedRequest">
+            </input>
+            <output message="tns:lastViewedResponse" wsam:Action="http://it.univaq.disim.netflics/informer/lastViewedResponse">
+            </output>
+        </operation>
+
+        <operation name="movies">
+            <input message="tns:moviesRequest" wsam:Action="http://it.univaq.disim.netflics/informer/moviesRequest">
+            </input>
+            <output message="tns:moviesResponse" wsam:Action="http://it.univaq.disim.netflics/informer/moviesResponse">
+            </output>
+        </operation>
+
+        <operation name="movie">
+            <input message="tns:movieRequest" wsam:Action="http://it.univaq.disim.netflics/informer/movieRequest">
+            </input>
+            <output message="tns:movieResponse" wsam:Action="http://it.univaq.disim.netflics/informer/movieResponse">
+            </output>
+        </operation>
+
+    </portType>
+
+    <binding name="InformerBinding" type="tns:InformerPT">
+
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="mostViewed">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+
+        <operation name="bestMovies">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+
+        <operation name="lastViewed">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+
+         <operation name="movies">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+
+        <operation name="movie">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+
+    </binding>
+
+    <service name="InformerService">
+        <port name="InformerPort" binding="tns:InformerBinding">
+            <soap:address location="http://localhost:8080/informer/services/informer"/>
+        </port>
+    </service>
+
+</definitions>
