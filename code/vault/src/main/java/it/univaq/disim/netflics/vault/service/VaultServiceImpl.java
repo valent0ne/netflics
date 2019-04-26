@@ -67,6 +67,13 @@ public class VaultServiceImpl implements VaultService {
         return response;
     }
 
+    /**
+     * given the movie in byte format it saves it to disk and fetches the movie metadata from other rest services
+     * then saves the retrieved information into the db
+     * @param parameters payload coming from the soap call
+     * @return an AddMovieResponse
+     * @throws BusinessException
+     */
     @Override
     public AddMovieResponse addMovie(AddMovieRequest parameters) throws BusinessException {
 
@@ -82,6 +89,7 @@ public class VaultServiceImpl implements VaultService {
         DataHandler movieData = parameters.getMovie();
         String imdbId = parameters.getImdbId();
 
+        // create a temporary movie object
         Movie m = new Movie();
         m.setPoster("");
         m.setDirectors("");
@@ -108,25 +116,6 @@ public class VaultServiceImpl implements VaultService {
         // save temporary entry in db
         movieRepository.save(m);
 
-        try {
-            saveVideo(movieData, new File(videopath + imdbId));
-            LOGGER.info("movie saved.");
-        } catch (IOException e) {
-            movieRepository.deleteByImdbId(imdbId);
-            addMovieResponse.setResult("ko/can't save file to disk");
-            return addMovieResponse;
-        }
-
-        try {
-            saveVideo(movieData, new File(videopath + imdbId));
-            LOGGER.info("movie saved.");
-        } catch (IOException e) {
-            movieRepository.deleteByImdbId(imdbId);
-            addMovieResponse.setResult("ko/can't save file to disk");
-            return addMovieResponse;
-        }
-
-
         // omdb request (for movie metadata)
         try {
             m = getOmdbData(m);
@@ -134,6 +123,7 @@ public class VaultServiceImpl implements VaultService {
             e.printStackTrace();
             addMovieResponse.setResult("ko/omdb rest call failed");
             movieRepository.deleteByImdbId(imdbId);
+            deleteVideo(new File(videopath + imdbId));
             return addMovieResponse;
         }
         movieRepository.update(m);
@@ -145,6 +135,18 @@ public class VaultServiceImpl implements VaultService {
             e.printStackTrace();
             addMovieResponse.setResult("ko/themoviedb rest call failed");
             movieRepository.deleteByImdbId(imdbId);
+            deleteVideo(new File(videopath + imdbId));
+            return addMovieResponse;
+        }
+
+        // save movie to disk
+        try {
+            saveVideo(movieData, new File(videopath + imdbId));
+            LOGGER.info("movie saved.");
+        } catch (IOException e) {
+            movieRepository.deleteByImdbId(imdbId);
+            deleteVideo(new File(videopath + imdbId));
+            addMovieResponse.setResult("ko/can't save file to disk");
             return addMovieResponse;
         }
 
@@ -162,17 +164,31 @@ public class VaultServiceImpl implements VaultService {
     }
 
     /**
-     * utility function that is used to save
+     * utility function that is used to save the movie file
      *
      * @param dataHandler container that contains the data
      * @param filePath    where to save the file
      */
     private static void saveVideo(final DataHandler dataHandler, final File filePath) throws IOException {
+        // clean before saving the file
+        deleteVideo(filePath);
+        // save the file to disk
         FileOutputStream fileOutputStream = new FileOutputStream(filePath);
         dataHandler.writeTo(fileOutputStream);
         fileOutputStream.flush();
         fileOutputStream.close();
+    }
 
+    /**
+     * utility function that is used to delete the video in case of errors
+     * @param file file object to delete
+     */
+    private static void deleteVideo(final File file) {
+        if(file.delete()){
+            LOGGER.info("movie "+file.getName()+" successfully deleted.");
+        }else{
+            LOGGER.error("something went wrong while deleting the movie "+file.getName());
+        }
     }
 
     /**
@@ -191,6 +207,12 @@ public class VaultServiceImpl implements VaultService {
         return (checkTokenResponse.isResult() && checkTokenResponse.getRole().equals("ADMIN"));
     }
 
+    /**
+     * performs a rest call to the omdb service to retrieve the movie metadata given the imdb id
+     * @param m the movie object filled with the new data
+     * @return the movie object
+     * @throws Exception if the call goes wrong
+     */
     private Movie getOmdbData(Movie m) throws Exception {
 
         LOGGER.info("REST request to OMDB.");
@@ -255,6 +277,12 @@ public class VaultServiceImpl implements VaultService {
         return m;
     }
 
+    /**
+     * performs a rest call to the themoviedb service to retrieve the movie poster name given the imdb id
+     * @param m the movie object filled with the new data
+     * @return the movie object
+     * @throws Exception if the call goes wrong
+     */
     private Movie getTheMovieDbData(Movie m) throws Exception {
 
         LOGGER.info("REST request to OMDB.");
@@ -291,6 +319,7 @@ public class VaultServiceImpl implements VaultService {
                     c.disconnect();
                 }
 
+                // retrieve the poster name
                 JsonElement jelement = new JsonParser().parse(sb.toString());
                 JsonObject jobject = jelement.getAsJsonObject();
                 JsonArray jarray = jobject.getAsJsonArray("movie_results");

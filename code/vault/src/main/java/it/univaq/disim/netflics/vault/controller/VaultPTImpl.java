@@ -33,7 +33,7 @@ public class VaultPTImpl implements VaultPT {
 		} 
 		catch (Exception ex) {
 			ex.printStackTrace();
-            response.setResult("ko");
+            response.setResult("ko/"+ex.getMessage());
             response.setMovie(null);
 			return response;
 		}
@@ -54,7 +54,7 @@ public class VaultPTImpl implements VaultPT {
 		}
 		catch (Exception ex) {
 			ex.printStackTrace();
-			response.setResult("ko");
+			response.setResult("ko/"+ex.getMessage());
 			return response;
 		}
 	}

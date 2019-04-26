@@ -79,7 +79,7 @@ public class SupplierServiceImpl implements SupplierService {
     public Availability getAvailability() {
 
         OperatingSystemMXBean osBean = ManagementFactory.getPlatformMXBean(OperatingSystemMXBean.class);
-        Availability availability = new Availability();
+        Availability availability = null;
 
         Timestamp ts = new Timestamp(System.currentTimeMillis());
 
@@ -89,6 +89,7 @@ public class SupplierServiceImpl implements SupplierService {
         // it could happen that the reads are incorrect from time to time
         // it usually takes a bit of time to get cpu readings
         if (occupiedCpuPercentage != 0 && occupiedCpuPercentage != 0) {
+            availability = new Availability();
             availability.setSupplier_id(supplierId);
             availability.setAvailable(true);
             availability.setCpuSaturation(occupiedCpuPercentage);
@@ -96,9 +97,6 @@ public class SupplierServiceImpl implements SupplierService {
             availability.setTimestamp(ts);
 
             availabilityRepository.save(availability);
-        } else {
-
-            availability = null;
         }
 
         return availability;
