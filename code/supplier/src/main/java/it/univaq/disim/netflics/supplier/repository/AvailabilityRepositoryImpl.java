@@ -18,6 +18,7 @@ public class AvailabilityRepositoryImpl implements AvailabilityRepository {
 
     private static Logger LOGGER = LoggerFactory.getLogger(AvailabilityRepositoryImpl.class);
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private DataSource dataSource;
 

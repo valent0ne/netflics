@@ -17,6 +17,7 @@ public class MovieRepositoryImpl implements MovieRepository {
 
     private static Logger LOGGER = LoggerFactory.getLogger(MovieRepositoryImpl.class);
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private DataSource dataSource;
 

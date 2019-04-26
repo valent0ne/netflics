@@ -16,6 +16,7 @@ public class SupplierMovieRepositoryImpl implements SupplierMovieRepository {
 
     private static Logger LOGGER = LoggerFactory.getLogger(SupplierMovieRepositoryImpl.class);
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private DataSource dataSource;
 
