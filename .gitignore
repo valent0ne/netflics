@@ -5,3 +5,4 @@ out/
 *.war
 code/*/target
 *.iml
+code/informer/bin/target

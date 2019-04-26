@@ -30,7 +30,7 @@ public class MovieRepositoryImpl implements MovieRepository {
 
         int rs;
 
-        String sql = "INSERT INTO movie (title, directors, genres, rating, imdb_id) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO movie (title, directors, genres, rating, imdb_id, poster, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         LOGGER.info("query: {}", sql);
 
@@ -41,6 +41,8 @@ public class MovieRepositoryImpl implements MovieRepository {
             st.setString(3, movie.getGenres());
             st.setDouble(4, movie.getRating());
             st.setString(5, movie.getImdbId());
+            st.setString(6, movie.getPoster());
+            st.setString(7, movie.getStatus());
 
             rs = st.executeUpdate();
 
@@ -57,15 +59,9 @@ public class MovieRepositoryImpl implements MovieRepository {
 
     public Movie update(Movie movie) {
 
-        LOGGER.info("movie data: {} {} {} {} {}", movie.getTitle(),
-                movie.getDirectors(),
-                movie.getGenres(),
-                movie.getRating(),
-                movie.getImdbId());
-
         int rs;
 
-        String sql = "UPDATE movie SET title = ?, directors = ?, genres = ?, rating = ? WHERE imdb_id = ?";
+        String sql = "UPDATE movie SET title = ?, directors = ?, genres = ?, rating = ?, poster = ?, status = ? WHERE imdb_id = ?";
 
         LOGGER.info("query: {}", sql);
 
@@ -75,7 +71,10 @@ public class MovieRepositoryImpl implements MovieRepository {
             st.setString(2, movie.getDirectors());
             st.setString(3, movie.getGenres());
             st.setDouble(4, movie.getRating());
-            st.setString(5, movie.getImdbId());
+            st.setString(5, movie.getPoster());
+            st.setString(6, movie.getStatus());
+            st.setString(7, movie.getImdbId());
+
 
             rs = st.executeUpdate();
 
@@ -105,12 +104,13 @@ public class MovieRepositoryImpl implements MovieRepository {
             st.setString(1, imdbId);
             rs = st.executeQuery();
 
-
             if(rs.next()){
+                m = new Movie();
                 m.setTitle(rs.getString("title"));
                 m.setGenres(rs.getString("genres"));
                 m.setDirectors(rs.getString("directors"));
                 m.setRating(rs.getDouble("rating"));
+                m.setPoster(rs.getString("poster"));
                 m.setStatus(rs.getString("status"));
                 m.setImdbId(imdbId);
             }

@@ -8,6 +8,7 @@ public class Movie implements java.io.Serializable {
     private Double rating;
     private String imdbId;
     private String status;
+    private String poster;
 
     public Movie() {
         this.id = null;
@@ -17,9 +18,10 @@ public class Movie implements java.io.Serializable {
         this.rating = null;
         this.imdbId = null;
         this.status = null;
+        this.poster = null;
     }
 
-    public Movie(Long id, String title, String directors, String genres, Double rating, String imdbId, String status) {
+    public Movie(Long id, String title, String directors, String genres, Double rating, String imdbId, String status, String poster) {
         this.id = id;
         this.title = title;
         this.directors = directors;
@@ -27,6 +29,7 @@ public class Movie implements java.io.Serializable {
         this.rating = rating;
         this.imdbId = imdbId;
         this.status = status;
+        this.poster = poster;
     }
 
     public Long getId() {
@@ -83,5 +86,13 @@ public class Movie implements java.io.Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getPoster() {
+        return poster;
+    }
+
+    public void setPoster(String poster) {
+        this.poster = poster;
     }
 }
