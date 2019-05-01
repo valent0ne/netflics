@@ -17,6 +17,7 @@ public class SessionRepositoryImpl implements SessionRepository {
 
     private static Logger LOGGER = LoggerFactory.getLogger(SessionRepositoryImpl.class);
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private DataSource dataSource;
 

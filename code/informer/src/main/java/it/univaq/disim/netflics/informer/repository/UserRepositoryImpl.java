@@ -16,6 +16,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     private static Logger LOGGER = LoggerFactory.getLogger(UserRepositoryImpl.class);
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private DataSource dataSource;
 

@@ -75,41 +75,24 @@ public class SupplierMovieRepositoryImpl implements SupplierMovieRepository {
     }
 
     public void delete (SupplierMovie sm){
-        Connection con = null;
-        PreparedStatement st = null;
-        Integer rs = null;
+        int rs;
 
         String sql = "DELETE FROM supplier_movie WHERE movie_id = ? AND supplier_id = ?";
         LOGGER.info("query: {}", sql);
 
-        try {
-            con = dataSource.getConnection();
-            st = con.prepareStatement(sql);
+        try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
             st.setLong(1, sm.getMovieId());
             st.setLong(2, sm.getSupplierId());
 
             rs = st.executeUpdate();
 
-            if(rs != 1){
+            if (rs != 1) {
                 LOGGER.error("query failed");
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
             throw new BusinessException(e);
-        } finally {
-            if (st != null) {
-                try {
-                    st.close();
-                } catch (SQLException e) {
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (SQLException e) {
-                }
-            }
         }
     }
 

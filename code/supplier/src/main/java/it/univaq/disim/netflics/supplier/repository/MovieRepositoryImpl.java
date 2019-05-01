@@ -31,7 +31,7 @@ public class MovieRepositoryImpl implements MovieRepository {
 
         int rs;
 
-        String sql = "INSERT INTO movie (title, directors, genres, rating, imdb_id, poster, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO movie (title, directors, genres, rating, imdb_id, poster, status, views) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         LOGGER.info("query: {}", sql);
 
@@ -44,6 +44,7 @@ public class MovieRepositoryImpl implements MovieRepository {
             st.setString(5, movie.getImdbId());
             st.setString(6, movie.getPoster());
             st.setString(7, movie.getStatus());
+            st.setInt(8, movie.getViews());
 
             rs = st.executeUpdate();
 
@@ -68,7 +69,7 @@ public class MovieRepositoryImpl implements MovieRepository {
 
         int rs;
 
-        String sql = "UPDATE movie SET title = ?, directors = ?, genres = ?, rating = ?, poster = ?, status = ? WHERE imdb_id = ?";
+        String sql = "UPDATE movie SET title = ?, directors = ?, genres = ?, rating = ?, poster = ?, status = ?, views = ? WHERE imdb_id = ?";
 
         LOGGER.info("query: {}", sql);
 
@@ -80,7 +81,8 @@ public class MovieRepositoryImpl implements MovieRepository {
             st.setDouble(4, movie.getRating());
             st.setString(5, movie.getPoster());
             st.setString(6, movie.getStatus());
-            st.setString(7, movie.getImdbId());
+            st.setInt(7, movie.getViews());
+            st.setString(8, movie.getImdbId());
 
             rs = st.executeUpdate();
 
@@ -110,14 +112,16 @@ public class MovieRepositoryImpl implements MovieRepository {
             st.setString(1, imdbId);
             rs = st.executeQuery();
 
-
             if(rs.next()){
                 m = new Movie();
+                m.setId(rs.getLong("id"));
                 m.setTitle(rs.getString("title"));
                 m.setGenres(rs.getString("genres"));
                 m.setDirectors(rs.getString("directors"));
                 m.setRating(rs.getDouble("rating"));
                 m.setStatus(rs.getString("status"));
+                m.setPoster(rs.getString("poster"));
+                m.setViews(rs.getInt("views"));
                 m.setImdbId(imdbId);
             }
 
