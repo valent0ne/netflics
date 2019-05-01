@@ -1,9 +1,12 @@
 package it.univaq.disim.netflics.informer.service;
 
-import it.univaq.disim.netflics.clients.auth.*;
+import it.univaq.disim.netflics.clients.auth.AuthPT;
+import it.univaq.disim.netflics.clients.auth.AuthService;
+import it.univaq.disim.netflics.clients.auth.CheckTokenRequest;
+import it.univaq.disim.netflics.clients.auth.CheckTokenResponse;
 import it.univaq.disim.netflics.informer.*;
-import it.univaq.disim.netflics.informer.model.Session;
 import it.univaq.disim.netflics.informer.model.Movie;
+import it.univaq.disim.netflics.informer.model.Session;
 import it.univaq.disim.netflics.informer.model.User;
 import it.univaq.disim.netflics.informer.repository.MovieRepository;
 import it.univaq.disim.netflics.informer.repository.SessionRepository;
@@ -12,6 +15,7 @@ import it.univaq.disim.netflics.wsdl.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -29,6 +33,9 @@ public class InformerServiceImpl implements InformerService {
     @Autowired
     private MovieRepository movieRepository;
 
+    @Value("#{cfg.movieslistlimit}")
+    private int limit;
+
 
     private static Logger LOGGER = LoggerFactory.getLogger(InformerServiceImpl.class);
 
@@ -37,7 +44,11 @@ public class InformerServiceImpl implements InformerService {
 
         MostViewedResponse response = new MostViewedResponse();
 
-        //todo implement
+        List<Movie> movies = movieRepository.mostViewed(limit);
+        List<it.univaq.disim.netflics.wsdl.Movie> moviesList = convertMovie(movies);
+
+        response.setResult("ok");
+        response.getMoviesList().addAll(moviesList);
 
         return response;
     }
@@ -47,7 +58,11 @@ public class InformerServiceImpl implements InformerService {
 
         BestMoviesResponse response = new BestMoviesResponse();
 
-        //todo implement
+        List<Movie> movies = movieRepository.bestOnes(limit);
+        List<it.univaq.disim.netflics.wsdl.Movie> moviesList = convertMovie(movies);
+
+        response.setResult("ok");
+        response.getMoviesList().addAll(moviesList);
 
         return response;
     }
@@ -55,17 +70,21 @@ public class InformerServiceImpl implements InformerService {
     @Override
     public LastViewedResponse lastViewed(LastViewedRequest parameters) throws BusinessException {
 
-        //todo fix this
-
-
         // check credentials
         if (!auth(parameters.getToken())) {
-            GetMovieResponse getMovieResponse = new GetMovieResponse();
-            getMovieResponse.setMovie(null);
-            getMovieResponse.setResult("unauthorized");
-            return getMovieResponse;
+            LastViewedResponse lastViewedResponse = new LastViewedResponse();
+            lastViewedResponse.setResult("unauthorized");
+            return lastViewedResponse;
         }
         LastViewedResponse response = new LastViewedResponse();
+
+        Session s = sessionRepository.findByToken(parameters.getToken());
+        User u = userRepository.findOneById(s.getUserId());
+        List<Movie> movies = movieRepository.lastViewed(u, limit);
+        List<it.univaq.disim.netflics.wsdl.Movie> moviesList = convertMovie(movies);
+
+        response.setResult("ok");
+        response.getMoviesList().addAll(moviesList);
 
         return response;
     }
@@ -74,11 +93,9 @@ public class InformerServiceImpl implements InformerService {
     public MoviesResponse movies(MoviesRequest parameters) throws BusinessException {
 
         MoviesResponse response = new MoviesResponse();
-        List<it.univaq.disim.netflics.wsdl.Movie> moviesList = new ArrayList<>();
-        List<Movie> movies= movieRepository.findAll();
-        for(Movie m: movies){
-            moviesList.add(convertMovie(m));
-        }
+        List<Movie> movies = movieRepository.findAll();
+        List<it.univaq.disim.netflics.wsdl.Movie> moviesList = convertMovie(movies);
+
         response.getMoviesList().addAll(moviesList);
         response.setResult("ok");
         return response;
@@ -96,7 +113,11 @@ public class InformerServiceImpl implements InformerService {
         return response;
     }
 
-
+    /**
+     * converts a Movie (model) object to a Movie (wsdl response) object
+     * @param m input movie to convert
+     * @return the wsdl movie object
+     */
     private it.univaq.disim.netflics.wsdl.Movie convertMovie(Movie m){
         it.univaq.disim.netflics.wsdl.Movie movie = new it.univaq.disim.netflics.wsdl.Movie();
         movie.setTitle(m.getTitle());
@@ -106,5 +127,36 @@ public class InformerServiceImpl implements InformerService {
         movie.setPoster(m.getPoster());
         movie.setRating(m.getRating());
         return movie;
+    }
+
+    /**
+     * converts a list of Movie (model) objects to a list of Movie (wsdl response) objects
+     * @param movies input movie list to convert
+     * @return the wsdl movie list object
+     */
+    private List<it.univaq.disim.netflics.wsdl.Movie> convertMovie(List<Movie> movies){
+        List<it.univaq.disim.netflics.wsdl.Movie> converted = new ArrayList<>();
+        for(Movie m : movies){
+            it.univaq.disim.netflics.wsdl.Movie cm = convertMovie(m);
+            converted.add(cm);
+        }
+
+        return converted;
+    }
+
+    /**
+     * calls the auth service to check the user's credentials (token)
+     *
+     * @param token user's token
+     * @return true if the token is valid
+     */
+    private boolean auth(String token) {
+        AuthService authService = new AuthService();
+        AuthPT authPT = authService.getAuthPort();
+        CheckTokenRequest checkTokenRequest = new CheckTokenRequest();
+        checkTokenRequest.setToken(token);
+        CheckTokenResponse checkTokenResponse = authPT.checkToken(checkTokenRequest);
+
+        return (checkTokenResponse.isResult());
     }
 }

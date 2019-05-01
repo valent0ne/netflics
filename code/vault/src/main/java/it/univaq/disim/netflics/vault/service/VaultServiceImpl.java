@@ -98,6 +98,7 @@ public class VaultServiceImpl implements VaultService {
         m.setRating(0.0);
         m.setImdbId(imdbId);
         m.setStatus("UPLOADING");
+        m.setViews(0);
 
         // the query will return null if ther isn't another entry with the same imdbId into the table "movie"
         // either when the movie is already been added, or the movie is being added in this moment by another user
@@ -138,12 +139,14 @@ public class VaultServiceImpl implements VaultService {
             deleteVideo(new File(videopath + imdbId));
             return addMovieResponse;
         }
+        movieRepository.update(m);
 
         // save movie to disk
         try {
             saveVideo(movieData, new File(videopath + imdbId));
             LOGGER.info("movie saved.");
         } catch (IOException e) {
+            e.printStackTrace();
             movieRepository.deleteByImdbId(imdbId);
             deleteVideo(new File(videopath + imdbId));
             addMovieResponse.setResult("ko/can't save file to disk");
@@ -171,6 +174,7 @@ public class VaultServiceImpl implements VaultService {
      */
     private static void saveVideo(final DataHandler dataHandler, final File filePath) throws IOException {
         // clean before saving the file
+        LOGGER.info("cleaning...");
         deleteVideo(filePath);
         // save the file to disk
         FileOutputStream fileOutputStream = new FileOutputStream(filePath);
@@ -187,7 +191,7 @@ public class VaultServiceImpl implements VaultService {
         if(file.delete()){
             LOGGER.info("movie "+file.getName()+" successfully deleted.");
         }else{
-            LOGGER.error("something went wrong while deleting the movie "+file.getName());
+            LOGGER.warn("something went wrong while deleting the movie "+file.getName());
         }
     }
 
@@ -285,7 +289,7 @@ public class VaultServiceImpl implements VaultService {
      */
     private Movie getTheMovieDbData(Movie m) throws Exception {
 
-        LOGGER.info("REST request to OMDB.");
+        LOGGER.info("REST request to TheMovieDatabase.");
 
         String poster;
 

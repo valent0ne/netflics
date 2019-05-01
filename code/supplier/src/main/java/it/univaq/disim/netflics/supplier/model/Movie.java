@@ -9,6 +9,7 @@ public class Movie implements java.io.Serializable {
     private String imdbId;
     private String status;
     private String poster;
+    private Integer views;
 
     public Movie() {
         this.id = null;
@@ -19,9 +20,10 @@ public class Movie implements java.io.Serializable {
         this.imdbId = null;
         this.status = null;
         this.poster = null;
+        this.views = null;
     }
 
-    public Movie(Long id, String title, String directors, String genres, Double rating, String imdbId, String status, String poster) {
+    public Movie(Long id, String title, String directors, String genres, Double rating, String imdbId, String status, String poster, Integer views) {
         this.id = id;
         this.title = title;
         this.directors = directors;
@@ -30,6 +32,7 @@ public class Movie implements java.io.Serializable {
         this.imdbId = imdbId;
         this.status = status;
         this.poster = poster;
+        this.views = views;
     }
 
     public Long getId() {
@@ -94,5 +97,13 @@ public class Movie implements java.io.Serializable {
 
     public void setPoster(String poster) {
         this.poster = poster;
+    }
+
+    public Integer getViews() {
+        return views;
+    }
+
+    public void setViews(Integer views) {
+        this.views = views;
     }
 }

@@ -64,10 +64,13 @@ public class SupplierServiceImpl implements SupplierService {
             SupplierMovie sm = new SupplierMovie();
             sm.setSupplierId(supplierId);
             sm.setMovieId(movieRepository.findOneByImdbId(imdbId).getId());
-            supplierMovieRepository.delete(sm);
-
+            // if there is a wrong entry into the db, clean it
+            if(sm.getMovieId() != null){
+                supplierMovieRepository.delete(sm);
+            }
             return null;
         }
+        LOGGER.info("movie "+imdbId+" has been found");
         return file;
     }
 
@@ -158,7 +161,7 @@ public class SupplierServiceImpl implements SupplierService {
         } else {
             //clean up the db
             supplierMovieRepository.delete(sm);
-            throw new BusinessException("couldn't fetch movie from vault service");
+            LOGGER.error("couldn't fetch movie from vault service");
         }
 
     }
