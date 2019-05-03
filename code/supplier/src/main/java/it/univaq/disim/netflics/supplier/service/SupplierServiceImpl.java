@@ -10,6 +10,7 @@ import it.univaq.disim.netflics.supplier.model.SupplierMovie;
 import it.univaq.disim.netflics.supplier.repository.AvailabilityRepository;
 import it.univaq.disim.netflics.supplier.repository.MovieRepository;
 import it.univaq.disim.netflics.supplier.repository.SupplierMovieRepository;
+import org.apache.cxf.Bus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,7 +112,7 @@ public class SupplierServiceImpl implements SupplierService {
      *
      * @param imdbId them ovie identifier
      */
-    public void fetchMovie(String imdbId) {
+    public void fetchMovie(String imdbId) throws BusinessException {
 
         SupplierMovie sm = new SupplierMovie();
         sm.setSupplierId(supplierId);
@@ -121,8 +122,7 @@ public class SupplierServiceImpl implements SupplierService {
         File file = new File(videopath + imdbId);
 
         if(file.exists() && file.length() > 0){
-            LOGGER.warn("movie already available");
-            return;
+            throw new BusinessException("401/movie already available");
         }
 
         // signal that the supplier is fetching the movie
@@ -147,10 +147,9 @@ public class SupplierServiceImpl implements SupplierService {
                 fileOutputStream.close();
                 LOGGER.info("movie retrieved");
             } catch (IOException e) {
-                LOGGER.error("can't save video file to disk");
                 // cleanup db
                 supplierMovieRepository.delete(sm);
-                throw new BusinessException(e);
+                throw new BusinessException("500/can't save video file to disk");
             }
 
             // add entry into db to signal that this supplier now has the requested movie
@@ -161,7 +160,7 @@ public class SupplierServiceImpl implements SupplierService {
         } else {
             //clean up the db
             supplierMovieRepository.delete(sm);
-            LOGGER.error("couldn't fetch movie from vault service");
+            throw new BusinessException("503/couldn't fetch movie from vault service");
         }
 
     }

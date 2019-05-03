@@ -1,5 +1,6 @@
 package it.univaq.disim.netflics.supplier.controller;
 
+import it.univaq.disim.netflics.supplier.BusinessException;
 import it.univaq.disim.netflics.supplier.model.Availability;
 import it.univaq.disim.netflics.supplier.service.SupplierService;
 import org.slf4j.Logger;
@@ -68,11 +69,8 @@ public class SupplierController {
                 a = service.getAvailability();
             }
             return Response.ok(a).build();
-        }catch (Exception e){
-            e.printStackTrace();
-            ResponseBuilder response;
-            response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Something went wrong: "+e.getMessage());
-            return response.build();
+        }catch (BusinessException e){
+            return e.restResponseHandler();
         }
 
     }
@@ -90,8 +88,8 @@ public class SupplierController {
         try{
             service.fetchMovie(imdbId);
             return Response.ok().build();
-        }catch (Exception e){
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+        }catch (BusinessException e){
+            return e.restResponseHandler();
         }
     }
 }

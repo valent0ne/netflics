@@ -1,4 +1,4 @@
-package it.univaq.disim.netflics.supplier;
+package it.univaq.disim.netflics.dispatcher;
 
 import javax.ws.rs.core.Response;
 
@@ -24,7 +24,7 @@ public class BusinessException extends RuntimeException {
 		super(cause);
 	}
 
-    public Response restResponseHandler(){
+	public Response restResponseHandler(){
 
         Response.Status s = Response.Status.INTERNAL_SERVER_ERROR;
 
