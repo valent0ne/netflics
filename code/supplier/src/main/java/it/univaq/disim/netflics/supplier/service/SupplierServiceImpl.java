@@ -136,9 +136,11 @@ public class SupplierServiceImpl implements SupplierService {
         GetMovieResponse getMovieResponse = vaultPT.getMovie(getMovieRequest);
         DataHandler dh = getMovieResponse.getMovie();
         String result = getMovieResponse.getResult();
+        String status = result.substring(0,3);
+        String message = result.substring(4);
 
         // if the vault service returned an error
-        if (result.equals("ok")) {
+        if (status.equals("200")) {
             // save movie to disk
             try {
                 FileOutputStream fileOutputStream = new FileOutputStream(file);
@@ -160,7 +162,7 @@ public class SupplierServiceImpl implements SupplierService {
         } else {
             //clean up the db
             supplierMovieRepository.delete(sm);
-            throw new BusinessException("503/couldn't fetch movie from vault service");
+            throw new BusinessException(result);
         }
 
     }
