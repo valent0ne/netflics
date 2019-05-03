@@ -1,5 +1,6 @@
 package it.univaq.disim.netflics.informer;
 
+
 public class BusinessException extends RuntimeException {
 
 	public BusinessException() {
@@ -21,7 +22,7 @@ public class BusinessException extends RuntimeException {
 	public BusinessException(Throwable cause) {
 		super(cause);
 	}
-	
-	
+
+
 
 }

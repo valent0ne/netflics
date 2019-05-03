@@ -46,7 +46,7 @@ public class VaultServiceImpl implements VaultService {
         if (!auth(parameters.getToken())) {
             GetMovieResponse getMovieResponse = new GetMovieResponse();
             getMovieResponse.setMovie(null);
-            getMovieResponse.setResult("unauthorized");
+            getMovieResponse.setResult("301");
             return getMovieResponse;
         }
 
@@ -57,11 +57,11 @@ public class VaultServiceImpl implements VaultService {
 
         if (!(dataSource.getFile().exists() && dataSource.getFile().length() > 0 && dataSource.getFile().canRead())) {
             response.setMovie(null);
-            response.setResult("ko/movie " + parameters.getImdbId() + " not found");
+            response.setResult("500/movie " + parameters.getImdbId() + " not found");
 
         } else {
             response.setMovie(new DataHandler(dataSource));
-            response.setResult("ok");
+            response.setResult("200");
         }
 
         return response;
@@ -81,7 +81,7 @@ public class VaultServiceImpl implements VaultService {
 
         // check credentials
         if (!auth(parameters.getToken())) {
-            addMovieResponse.setResult("unauthorized");
+            addMovieResponse.setResult("301");
             return addMovieResponse;
         }
 
@@ -105,11 +105,11 @@ public class VaultServiceImpl implements VaultService {
         Movie mdb = movieRepository.findOneByImdbId(imdbId);
         if (mdb != null) {
             if (mdb.getStatus().equals("UPLOADED")) {
-                addMovieResponse.setResult("ko/movie already in db");
+                addMovieResponse.setResult("500/movie already in db");
             } else if (mdb.getStatus().equals("UPLOADING")) {
-                addMovieResponse.setResult("ko/movie in being uploaded by another user");
+                addMovieResponse.setResult("500/movie in being uploaded by another user");
             } else {
-                addMovieResponse.setResult("ko/db is corrupted");
+                addMovieResponse.setResult("500/db is corrupted");
             }
             return addMovieResponse;
         }
@@ -122,7 +122,7 @@ public class VaultServiceImpl implements VaultService {
             m = getOmdbData(m);
         } catch (Exception e) {
             e.printStackTrace();
-            addMovieResponse.setResult("ko/omdb rest call failed");
+            addMovieResponse.setResult("500/omdb rest call failed");
             movieRepository.deleteByImdbId(imdbId);
             deleteVideo(new File(videopath + imdbId));
             return addMovieResponse;
@@ -134,7 +134,7 @@ public class VaultServiceImpl implements VaultService {
             m = getTheMovieDbData(m);
         } catch (Exception e) {
             e.printStackTrace();
-            addMovieResponse.setResult("ko/themoviedb rest call failed");
+            addMovieResponse.setResult("500/themoviedb rest call failed");
             movieRepository.deleteByImdbId(imdbId);
             deleteVideo(new File(videopath + imdbId));
             return addMovieResponse;
@@ -149,7 +149,7 @@ public class VaultServiceImpl implements VaultService {
             e.printStackTrace();
             movieRepository.deleteByImdbId(imdbId);
             deleteVideo(new File(videopath + imdbId));
-            addMovieResponse.setResult("ko/can't save file to disk");
+            addMovieResponse.setResult("500/can't save file to disk");
             return addMovieResponse;
         }
 
@@ -159,7 +159,7 @@ public class VaultServiceImpl implements VaultService {
         movieRepository.update(m);
 
         // return response
-        addMovieResponse.setResult("ok");
+        addMovieResponse.setResult("200");
 
         LOGGER.info("movie added successfully");
 

@@ -1,15 +1,11 @@
 package it.univaq.disim.netflics.vault.controller;
 
+import it.univaq.disim.netflics.vault.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import it.univaq.disim.netflics.vault.VaultPT;
-import it.univaq.disim.netflics.vault.GetMovieRequest;
-import it.univaq.disim.netflics.vault.GetMovieResponse;
-import it.univaq.disim.netflics.vault.AddMovieResponse;
-import it.univaq.disim.netflics.vault.AddMovieRequest;
 import it.univaq.disim.netflics.vault.service.VaultService;
 
 @Component(value = "VaultPTImpl")
@@ -31,10 +27,8 @@ public class VaultPTImpl implements VaultPT {
 			response = service.getMovie(parameters);
 			return response;
 		} 
-		catch (Exception ex) {
-			ex.printStackTrace();
-            response.setResult("ko/"+ex.getMessage());
-            response.setMovie(null);
+		catch (BusinessException ex) {
+            response.setResult(ex.getMessage());
 			return response;
 		}
 	}
@@ -52,9 +46,8 @@ public class VaultPTImpl implements VaultPT {
 			response = service.addMovie(parameters);
 			return response;
 		}
-		catch (Exception ex) {
-			ex.printStackTrace();
-			response.setResult("ko/"+ex.getMessage());
+		catch (BusinessException ex) {
+			response.setResult(ex.getMessage());
 			return response;
 		}
 	}

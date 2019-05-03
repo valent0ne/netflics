@@ -47,7 +47,7 @@ public class InformerServiceImpl implements InformerService {
         List<Movie> movies = movieRepository.mostViewed(limit);
         List<it.univaq.disim.netflics.wsdl.Movie> moviesList = convertMovie(movies);
 
-        response.setResult("ok");
+        response.setResult("200");
         response.getMoviesList().addAll(moviesList);
 
         return response;
@@ -61,7 +61,7 @@ public class InformerServiceImpl implements InformerService {
         List<Movie> movies = movieRepository.bestOnes(limit);
         List<it.univaq.disim.netflics.wsdl.Movie> moviesList = convertMovie(movies);
 
-        response.setResult("ok");
+        response.setResult("200");
         response.getMoviesList().addAll(moviesList);
 
         return response;
@@ -73,7 +73,7 @@ public class InformerServiceImpl implements InformerService {
         // check credentials
         if (!auth(parameters.getToken())) {
             LastViewedResponse lastViewedResponse = new LastViewedResponse();
-            lastViewedResponse.setResult("unauthorized");
+            lastViewedResponse.setResult("301");
             return lastViewedResponse;
         }
         LastViewedResponse response = new LastViewedResponse();
@@ -83,7 +83,7 @@ public class InformerServiceImpl implements InformerService {
         List<Movie> movies = movieRepository.lastViewed(u, limit);
         List<it.univaq.disim.netflics.wsdl.Movie> moviesList = convertMovie(movies);
 
-        response.setResult("ok");
+        response.setResult("200");
         response.getMoviesList().addAll(moviesList);
 
         return response;
@@ -97,7 +97,7 @@ public class InformerServiceImpl implements InformerService {
         List<it.univaq.disim.netflics.wsdl.Movie> moviesList = convertMovie(movies);
 
         response.getMoviesList().addAll(moviesList);
-        response.setResult("ok");
+        response.setResult("200");
         return response;
     }
 
@@ -108,7 +108,7 @@ public class InformerServiceImpl implements InformerService {
         String imdbId = parameters.getImdbId();
         Movie m = movieRepository.findOneByImdbId(imdbId);
         response.setMovie(convertMovie(m));
-        response.setResult("ok");
+        response.setResult("200");
 
         return response;
     }

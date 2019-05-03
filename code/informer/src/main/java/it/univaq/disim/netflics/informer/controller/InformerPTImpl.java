@@ -1,5 +1,6 @@
 package it.univaq.disim.netflics.informer.controller;
 
+import it.univaq.disim.netflics.informer.BusinessException;
 import it.univaq.disim.netflics.informer.service.InformerService;
 import it.univaq.disim.netflics.wsdl.*;
 import org.slf4j.Logger;
@@ -26,9 +27,8 @@ public class InformerPTImpl implements InformerPT {
 			response = service.mostViewed(parameters);
 			return response;
 		} 
-		catch (Exception ex) {
-			ex.printStackTrace();
-			response.setResult("ko");
+		catch (BusinessException ex) {
+			response.setResult(ex.getMessage());
 			return response;
 		}
 	}
@@ -45,9 +45,8 @@ public class InformerPTImpl implements InformerPT {
 			response = service.bestMovies(parameters);
 			return response;
 		}
-		catch (Exception ex) {
-			ex.printStackTrace();
-			response.setResult("ko");
+		catch (BusinessException ex) {
+			response.setResult(ex.getMessage());
 			return response;
 		}
 	}
@@ -64,9 +63,8 @@ public class InformerPTImpl implements InformerPT {
 			response = service.lastViewed(parameters);
 			return response;
 		}
-		catch (Exception ex) {
-			ex.printStackTrace();
-			response.setResult("ko");
+		catch (BusinessException ex) {
+			response.setResult(ex.getMessage());
 			return response;
 		}
 	}
@@ -83,9 +81,8 @@ public class InformerPTImpl implements InformerPT {
 			response = service.movies(parameters);
 			return response;
 		}
-		catch (Exception ex) {
-			ex.printStackTrace();
-			response.setResult("ko");
+		catch (BusinessException ex) {
+			response.setResult(ex.getMessage());
 			return response;
 		}
 	}
@@ -101,9 +98,8 @@ public class InformerPTImpl implements InformerPT {
 			response = service.movie(parameters);
 			return response;
 		}
-		catch (Exception ex) {
-			ex.printStackTrace();
-			response.setResult("ko");
+		catch (BusinessException ex) {
+			response.setResult(ex.getMessage());
 			return response;
 		}
 	}
