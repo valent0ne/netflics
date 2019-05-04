@@ -42,6 +42,7 @@ public class BusinessException extends RuntimeException {
                 s = Response.Status.SERVICE_UNAVAILABLE;
                 break;
             default:
+                message = this.getMessage();
                 break;
         }
 
