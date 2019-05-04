@@ -30,6 +30,31 @@ h1 {
   padding: 0;
 }
 
+::placeholder {
+  color: #F3F3F3;
+}
+
+.netflix-input {
+  background-color: #686868;
+  color: #F3F3F3;
+  border: 1px solid #141414;
+  height: 25px;
+  font-size: 15px;
+  padding: 0px 5px 0px 5px;
+}
+
+/* CUSTOM TOASTR*/
+.toast {
+    /*opacity: 1!important;*/
+    border-radius: 0!important;
+}
+
+.toast-top-right {
+    top: -5px;
+    right: 40px;
+    margin-top: 68px;
+}
+
 /* HEADER */
 
 header {
@@ -95,31 +120,6 @@ header {
 
 .sub-nav a:hover {
   color: var(--dark);
-}
-
-::placeholder {
-  color: #F3F3F3;
-}
-
-.netflix-input {
-  background-color: #686868;
-  color: #F3F3F3;
-  border: 1px solid #141414;
-  height: 25px;
-  font-size: 15px;
-  padding: 0px 5px 0px 5px;
-}
-
-/* CUSTOM TOASTR*/
-.toast {
-    opacity: 1!important;
-    border-radius: 0!important;
-}
-
-.toast-top-right {
-    top: -5px;
-    right: 40px;
-    margin-top: 68px;
 }
 
 /* MAIN CONTIANER */
