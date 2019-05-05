@@ -30,7 +30,7 @@ public class SessionRepositoryImpl implements SessionRepository {
 
         String sql = "SELECT * FROM session WHERE token = ?";
 
-        LOGGER.info("query: {}", sql);
+        LOGGER.debug("query: {}", sql);
 
         try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, token);
@@ -60,7 +60,7 @@ public class SessionRepositoryImpl implements SessionRepository {
 
         String sql = "INSERT INTO session (user_id, token) VALUES (?, ?)";
 
-        LOGGER.info("query: {}", sql);
+        LOGGER.debug("query: {}", sql);
 
         try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
             st.setLong(1, s.getUserId());
@@ -84,7 +84,7 @@ public class SessionRepositoryImpl implements SessionRepository {
 
         String sql = "DELETE FROM session WHERE user_id = ?";
 
-        LOGGER.info("query: {}", sql);
+        LOGGER.debug("query: {}", sql);
 
         try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
             st.setLong(1, u.getId());
@@ -104,7 +104,7 @@ public class SessionRepositoryImpl implements SessionRepository {
 
         String sql = "DELETE FROM session WHERE token = ?";
 
-        LOGGER.info("query: {}", sql);
+        LOGGER.debug("query: {}", sql);
 
         try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, token);
@@ -126,7 +126,7 @@ public class SessionRepositoryImpl implements SessionRepository {
 
         String token = "";
 
-        LOGGER.info("query: {}", sql);
+        LOGGER.debug("query: {}", sql);
 
         try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
             rs = st.executeQuery();

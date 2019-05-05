@@ -21,14 +21,14 @@ public class UserRepositoryImpl implements UserRepository {
 
     public User findOne(User user) {
 
-        LOGGER.info("user data: {}", user.getEmail());
+        LOGGER.debug("user data: {}", user.getEmail());
 
         ResultSet rs;
         User u = new User();
 
         String sql = "SELECT * FROM user WHERE email = ? AND password = ?";
 
-        LOGGER.info("query: {}", sql);
+        LOGGER.debug("query: {}", sql);
 
         try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, user.getEmail());
@@ -54,14 +54,14 @@ public class UserRepositoryImpl implements UserRepository {
 
     public User findOneById(Long id) {
 
-        LOGGER.info("user data: {}", id);
+        LOGGER.debug("user data: {}", id);
 
         ResultSet rs;
         User u = new User();
 
         String sql = "SELECT * FROM user WHERE id = ?";
 
-        LOGGER.info("query: {}", sql);
+        LOGGER.debug("query: {}", sql);
 
         try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
             st.setLong(1, id);

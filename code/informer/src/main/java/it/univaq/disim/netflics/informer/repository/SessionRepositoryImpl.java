@@ -30,7 +30,7 @@ public class SessionRepositoryImpl implements SessionRepository {
 
         String sql = "SELECT * FROM session WHERE token = ?";
 
-        LOGGER.info("query: {}", sql);
+        LOGGER.debug("query: {}", sql);
 
         try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, token);

@@ -28,7 +28,7 @@ public class AvailabilityRepositoryImpl implements AvailabilityRepository {
 
         String sql = "INSERT INTO availability (supplier_id, timestamp, cpu_saturation, mem_saturation, available) VALUES (?, ?, ?, ?, ?) ";
 
-        LOGGER.info("query: {}", sql);
+        LOGGER.debug("query: {}", sql);
 
         try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
 
