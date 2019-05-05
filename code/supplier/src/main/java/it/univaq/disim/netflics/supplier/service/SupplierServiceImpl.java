@@ -1,6 +1,10 @@
 package it.univaq.disim.netflics.supplier.service;
 
 import com.sun.management.OperatingSystemMXBean;
+import it.univaq.disim.netflics.clients.auth.AuthPT;
+import it.univaq.disim.netflics.clients.auth.AuthService;
+import it.univaq.disim.netflics.clients.auth.CheckTokenRequest;
+import it.univaq.disim.netflics.clients.auth.CheckTokenResponse;
 import it.univaq.disim.netflics.clients.vault.GetMovieRequest;
 import it.univaq.disim.netflics.clients.vault.GetMovieResponse;
 import it.univaq.disim.netflics.clients.vault.VaultPT;
@@ -19,8 +23,11 @@ import org.springframework.stereotype.Service;
 import it.univaq.disim.netflics.supplier.BusinessException;
 
 import javax.activation.DataHandler;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.StreamingOutput;
 import java.io.*;
 import java.lang.management.ManagementFactory;
+import java.nio.file.Files;
 import java.sql.Timestamp;
 
 
@@ -54,10 +61,16 @@ public class SupplierServiceImpl implements SupplierService {
      * @param imdbId the movie identifier
      * @return the movie file
      */
-    public File getMovie(String imdbId) {
+    public StreamingOutput getMovie(String token, String imdbId) {
+
+        // check credentials
+        if (!auth(token)) {
+            throw new BusinessException("301/token not valid");
+        }
 
         String pathToFile = videopath + imdbId;
         File file = new File(pathToFile);
+
         if (!file.exists()) {
             LOGGER.error("the movie is not available on this supplier");
 
@@ -72,7 +85,16 @@ public class SupplierServiceImpl implements SupplierService {
             return null;
         }
         LOGGER.info("movie "+imdbId+" has been found");
-        return file;
+
+        StreamingOutput output = new StreamingOutput() {
+            @Override
+            public void write(OutputStream out) throws IOException, WebApplicationException {
+                Files.copy(file.toPath(), out);
+                out.flush();
+                out.close();
+            }
+        };
+        return output;
     }
 
     /**
@@ -80,7 +102,12 @@ public class SupplierServiceImpl implements SupplierService {
      *
      * @return the aforementioned values
      */
-    public Availability getAvailability() {
+    public Availability getAvailability(String token) {
+
+        // check credentials
+        if (!auth(token)) {
+            throw new BusinessException("301/token not valid");
+        }
 
         OperatingSystemMXBean osBean = ManagementFactory.getPlatformMXBean(OperatingSystemMXBean.class);
         Availability availability = null;
@@ -112,7 +139,12 @@ public class SupplierServiceImpl implements SupplierService {
      *
      * @param imdbId them ovie identifier
      */
-    public void fetchMovie(String imdbId) throws BusinessException {
+    public void fetchMovie(String token, String imdbId) throws BusinessException {
+
+        // check credentials
+        if (!auth(token)) {
+            throw new BusinessException("301/token not valid");
+        }
 
         SupplierMovie sm = new SupplierMovie();
         sm.setSupplierId(supplierId);
@@ -165,6 +197,22 @@ public class SupplierServiceImpl implements SupplierService {
             throw new BusinessException(result);
         }
 
+    }
+
+    /**
+     * calls the auth service to check the user's credentials (token)
+     *
+     * @param token user's token
+     * @return true if the token is valid
+     */
+    private boolean auth(String token) {
+        AuthService authService = new AuthService();
+        AuthPT authPT = authService.getAuthPort();
+        CheckTokenRequest checkTokenRequest = new CheckTokenRequest();
+        checkTokenRequest.setToken(token);
+        CheckTokenResponse checkTokenResponse = authPT.checkToken(checkTokenRequest);
+
+        return (checkTokenResponse.isResult());
     }
 
 

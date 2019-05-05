@@ -59,7 +59,7 @@ public class MovieRepositoryImpl implements MovieRepository {
 
         String sql = "SELECT * FROM movie WHERE imdb_id = ?";
 
-        LOGGER.info("query: {}", sql);
+        LOGGER.debug("query: {}", sql);
 
         Movie m = null;
 

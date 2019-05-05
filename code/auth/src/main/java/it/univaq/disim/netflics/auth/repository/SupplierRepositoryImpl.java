@@ -26,7 +26,7 @@ public class SupplierRepositoryImpl implements SupplierRepository {
 
         String sql = "SELECT * FROM supplier WHERE token = ?";
 
-        LOGGER.info("query: {}", sql);
+        LOGGER.debug("query: {}", sql);
 
         try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, token);

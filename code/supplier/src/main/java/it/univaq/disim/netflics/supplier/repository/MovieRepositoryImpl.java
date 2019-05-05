@@ -23,7 +23,7 @@ public class MovieRepositoryImpl implements MovieRepository {
 
     public Movie save(Movie movie) {
 
-        LOGGER.info("movie data: {} {} {} {} {}", movie.getTitle(),
+        LOGGER.debug("movie data: {} {} {} {} {}", movie.getTitle(),
                 movie.getDirectors(),
                 movie.getGenres(),
                 movie.getRating(),
@@ -33,7 +33,7 @@ public class MovieRepositoryImpl implements MovieRepository {
 
         String sql = "INSERT INTO movie (title, directors, genres, rating, imdb_id, poster, status, views) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-        LOGGER.info("query: {}", sql);
+        LOGGER.debug("query: {}", sql);
 
         try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
 
@@ -61,7 +61,7 @@ public class MovieRepositoryImpl implements MovieRepository {
 
     public Movie update(Movie movie) {
 
-        LOGGER.info("movie data: {} {} {} {} {}", movie.getTitle(),
+        LOGGER.debug("movie data: {} {} {} {} {}", movie.getTitle(),
                 movie.getDirectors(),
                 movie.getGenres(),
                 movie.getRating(),
@@ -71,7 +71,7 @@ public class MovieRepositoryImpl implements MovieRepository {
 
         String sql = "UPDATE movie SET title = ?, directors = ?, genres = ?, rating = ?, poster = ?, status = ?, views = ? WHERE imdb_id = ?";
 
-        LOGGER.info("query: {}", sql);
+        LOGGER.debug("query: {}", sql);
 
         try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
 
@@ -103,7 +103,7 @@ public class MovieRepositoryImpl implements MovieRepository {
 
         String sql = "SELECT * FROM movie WHERE imdb_id = ?";
 
-        LOGGER.info("query: {}", sql);
+        LOGGER.debug("query: {}", sql);
 
         Movie m = null;
 
@@ -138,7 +138,7 @@ public class MovieRepositoryImpl implements MovieRepository {
 
         String sql = "DELETE FROM movie WHERE imdb_id = ?";
 
-        LOGGER.info("query: {}", sql);
+        LOGGER.debug("query: {}", sql);
 
         try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
 

@@ -1,4 +1,4 @@
-package it.univaq.disim.netflics.supplier.model;
+package it.univaq.disim.netflics.dispatcher.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

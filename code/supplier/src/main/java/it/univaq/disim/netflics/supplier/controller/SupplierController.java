@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
+import javax.ws.rs.core.StreamingOutput;
 
 import java.io.File;
 
@@ -34,9 +35,9 @@ public class SupplierController {
     @GET
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
     @Path("/movie/{id}")
-    public Response getMovie(@PathParam("id") String imdbId) {
+    public Response getMovie(@HeaderParam("Token") String token, @PathParam("id") String imdbId) {
         ResponseBuilder response;
-        File file = service.getMovie(imdbId);
+        StreamingOutput file = service.getMovie(token, imdbId);
         if (file != null) {
             response = Response.ok(file);
             response.header("Content-Disposition", "attachment;filename=" + imdbId);
@@ -54,9 +55,9 @@ public class SupplierController {
     @GET
     @Produces("application/json")
     @Path("/availability")
-    public Response getAvailability() {
+    public Response getAvailability(@HeaderParam("Token") String token) {
         try{
-            Availability a = service.getAvailability();
+            Availability a = service.getAvailability(token);
             // system's info reads could be wrong,
             // see it.univaq.disim.netflics.supplier.service.SupplierServiceImpl.getAvailability()
             // for more infos
@@ -66,7 +67,7 @@ public class SupplierController {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                a = service.getAvailability();
+                a = service.getAvailability(token);
             }
             return Response.ok(a).build();
         }catch (BusinessException e){
@@ -84,12 +85,8 @@ public class SupplierController {
     @POST
     @Path("/movie/{id}")
     @Produces("application/json")
-    public Response fetchMovie(@PathParam("id") String imdbId) {
-        try{
-            service.fetchMovie(imdbId);
-            return Response.ok().build();
-        }catch (BusinessException e){
-            return e.restResponseHandler();
-        }
+    public Response fetchMovie(@HeaderParam("Token") String token, @PathParam("id") String imdbId) {
+        new Thread(() -> service.fetchMovie(token, imdbId)).start();
+        return Response.status(201).build();
     }
 }

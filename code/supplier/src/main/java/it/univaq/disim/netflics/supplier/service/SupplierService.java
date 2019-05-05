@@ -2,14 +2,16 @@ package it.univaq.disim.netflics.supplier.service;
 
 import it.univaq.disim.netflics.supplier.model.Availability;
 
+import javax.ws.rs.core.StreamingOutput;
 import java.io.File;
+import java.io.OutputStream;
 
 public interface SupplierService {
 
-    File getMovie(String imdbId);
+    StreamingOutput getMovie(String token, String imdbId);
 
-    Availability getAvailability();
+    Availability getAvailability(String token);
 
-    void fetchMovie(String imdbId);
+    void fetchMovie(String token, String imdbId);
 
 }

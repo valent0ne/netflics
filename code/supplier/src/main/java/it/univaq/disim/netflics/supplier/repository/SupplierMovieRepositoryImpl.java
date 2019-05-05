@@ -22,13 +22,13 @@ public class SupplierMovieRepositoryImpl implements SupplierMovieRepository {
 
     public SupplierMovie save(SupplierMovie sm) {
 
-        LOGGER.info("suppliermovie data: {} {} {}", sm.getMovieId(), sm.getSupplierId(), sm.getStatus());
+        LOGGER.debug("suppliermovie data: {} {} {}", sm.getMovieId(), sm.getSupplierId(), sm.getStatus());
 
         int rs;
 
         String sql = "INSERT INTO supplier_movie (supplier_id, movie_id, status) VALUES (?, ?, ?)";
 
-        LOGGER.info("query: {}", sql);
+        LOGGER.debug("query: {}", sql);
 
         try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
             st.setLong(1, sm.getSupplierId());
@@ -49,7 +49,7 @@ public class SupplierMovieRepositoryImpl implements SupplierMovieRepository {
 
     public SupplierMovie update(SupplierMovie sm) {
 
-        LOGGER.info("suppliermovie data: {} {} {}", sm.getMovieId(), sm.getSupplierId(), sm.getStatus());
+        LOGGER.debug("suppliermovie data: {} {} {}", sm.getMovieId(), sm.getSupplierId(), sm.getStatus());
 
         int rs;
 
@@ -78,7 +78,7 @@ public class SupplierMovieRepositoryImpl implements SupplierMovieRepository {
         int rs;
 
         String sql = "DELETE FROM supplier_movie WHERE movie_id = ? AND supplier_id = ?";
-        LOGGER.info("query: {}", sql);
+        LOGGER.debug("query: {}", sql);
 
         try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
             st.setLong(1, sm.getMovieId());
