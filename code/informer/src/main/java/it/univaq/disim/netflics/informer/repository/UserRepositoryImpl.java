@@ -20,7 +20,7 @@ public class UserRepositoryImpl implements UserRepository {
     @Autowired
     private DataSource dataSource;
 
-    public User findOneById(Long id) {
+    public User findOneById(Long id) throws BusinessException{
 
         LOGGER.debug("user data: {}", id);
 

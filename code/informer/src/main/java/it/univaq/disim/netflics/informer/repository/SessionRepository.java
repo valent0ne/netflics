@@ -1,5 +1,6 @@
 package it.univaq.disim.netflics.informer.repository;
 
+import it.univaq.disim.netflics.informer.BusinessException;
 import it.univaq.disim.netflics.informer.model.Session;
 import it.univaq.disim.netflics.informer.model.User;
 import org.springframework.stereotype.Repository;
@@ -7,5 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SessionRepository {
 
-    Session findByToken(String token);
+    Session findByToken(String token) throws BusinessException;
 }

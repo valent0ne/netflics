@@ -22,7 +22,7 @@ public class SessionRepositoryImpl implements SessionRepository {
     private DataSource dataSource;
 
 
-    public Session findByToken(String token) {
+    public Session findByToken(String token) throws BusinessException{
 
         ResultSet rs;
 

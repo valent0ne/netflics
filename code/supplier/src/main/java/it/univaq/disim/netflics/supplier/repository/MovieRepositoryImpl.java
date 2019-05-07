@@ -13,7 +13,7 @@ import java.sql.*;
 
 @Repository
 @SuppressWarnings("Duplicates")
-public class MovieRepositoryImpl implements MovieRepository {
+public class MovieRepositoryImpl implements MovieRepository{
 
     private static Logger LOGGER = LoggerFactory.getLogger(MovieRepositoryImpl.class);
 
@@ -21,7 +21,7 @@ public class MovieRepositoryImpl implements MovieRepository {
     @Autowired
     private DataSource dataSource;
 
-    public Movie save(Movie movie) {
+    public Movie save(Movie movie) throws BusinessException {
 
         LOGGER.debug("movie data: {} {} {} {} {}", movie.getTitle(),
                 movie.getDirectors(),
@@ -59,7 +59,7 @@ public class MovieRepositoryImpl implements MovieRepository {
         return movie;
     }
 
-    public Movie update(Movie movie) {
+    public Movie update(Movie movie) throws BusinessException{
 
         LOGGER.debug("movie data: {} {} {} {} {}", movie.getTitle(),
                 movie.getDirectors(),
@@ -97,7 +97,7 @@ public class MovieRepositoryImpl implements MovieRepository {
         return movie;
     }
 
-    public Movie findOneByImdbId(String imdbId ) {
+    public Movie findOneByImdbId(String imdbId ) throws BusinessException{
 
         ResultSet rs;
 
@@ -132,7 +132,7 @@ public class MovieRepositoryImpl implements MovieRepository {
         return m;
     }
 
-    public void deleteByImdbId(String imdbId) {
+    public void deleteByImdbId(String imdbId) throws BusinessException{
 
         int rs;
 

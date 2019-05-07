@@ -26,7 +26,7 @@ public class MovieRepositoryImpl implements MovieRepository {
 
 
     @Override
-    public List<Movie> findAll() {
+    public List<Movie> findAll() throws BusinessException{
         ResultSet rs;
         String sql = "SELECT * FROM movie";
 
@@ -53,7 +53,7 @@ public class MovieRepositoryImpl implements MovieRepository {
         return movies;
     }
 
-    public Movie findOneByImdbId(String imdbId ) {
+    public Movie findOneByImdbId(String imdbId ) throws BusinessException{
 
         ResultSet rs;
 
@@ -88,7 +88,7 @@ public class MovieRepositoryImpl implements MovieRepository {
     }
 
     @Override
-    public List<Movie> bestOnes(int limit) {
+    public List<Movie> bestOnes(int limit) throws BusinessException{
         ResultSet rs;
         String sql = "SELECT * FROM movie ORDER BY rating DESC LIMIT ?";
 
@@ -117,7 +117,7 @@ public class MovieRepositoryImpl implements MovieRepository {
     }
 
     @Override
-    public List<Movie> lastViewed(User u, int limit) {
+    public List<Movie> lastViewed(User u, int limit) throws BusinessException{
         ResultSet rs;
         String sql = "SELECT movie.title as title, " +
                             "movie.genres as genres, " +
@@ -156,7 +156,7 @@ public class MovieRepositoryImpl implements MovieRepository {
     }
 
     @Override
-    public List<Movie> mostViewed(int limit) {
+    public List<Movie> mostViewed(int limit) throws BusinessException{
         ResultSet rs;
         String sql = "SELECT * FROM movie ORDER BY views DESC LIMIT ?";
 

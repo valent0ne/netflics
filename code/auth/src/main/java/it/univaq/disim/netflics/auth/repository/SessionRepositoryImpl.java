@@ -22,7 +22,7 @@ public class SessionRepositoryImpl implements SessionRepository {
     private DataSource dataSource;
 
 
-    public Session findByToken(String token) {
+    public Session findByToken(String token) throws BusinessException{
 
         ResultSet rs;
 
@@ -54,7 +54,7 @@ public class SessionRepositoryImpl implements SessionRepository {
         return s;
     }
 
-    public Session save(Session s) {
+    public Session save(Session s) throws BusinessException{
 
         int rs;
 
@@ -78,7 +78,7 @@ public class SessionRepositoryImpl implements SessionRepository {
         return s;
     }
 
-    public void deleteAll (User u){
+    public void deleteAll (User u) throws BusinessException{
 
         int rs;
 
@@ -98,7 +98,7 @@ public class SessionRepositoryImpl implements SessionRepository {
 
     }
 
-    public void delete (String token){
+    public void delete (String token) throws BusinessException{
 
         int rs;
 
@@ -118,7 +118,7 @@ public class SessionRepositoryImpl implements SessionRepository {
 
     }
 
-    public String generateToken(){
+    public String generateToken() throws BusinessException{
 
         ResultSet rs;
 
