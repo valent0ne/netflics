@@ -178,51 +178,84 @@ public class DispatcherServiceImpl implements DispatcherService {
         }
 
         // retrieve full supplier list
-        List<Supplier> allSuppliers = supplierRepository.findAll();
-        if(allSuppliers == null || allSuppliers.size() == 0){
-            throw new BusinessException("500/error while retriving suppliers list");
+        List<Supplier> allSuppliers = new ArrayList<>();
+        try{
+            allSuppliers = supplierRepository.findAll();
+            if(allSuppliers == null || allSuppliers.size() == 0){
+                LOGGER.error("500/error while retrieving suppliers list");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            // try to continue anyway using the available supplierAvailability Map
         }
-        List<Supplier> allSuppliersHavingMovie = supplierRepository.findAllByMovie(imdbId);
-        if(allSuppliersHavingMovie == null || allSuppliersHavingMovie.size() == 0){
-            throw new BusinessException("500/error while retriving suppliers list");
-        }
-        // compute the list of all the suppliers that do not have the movie
-        List<Supplier> allSuppliersNotHavingMovie = new ArrayList<>(allSuppliers);
-        allSuppliersNotHavingMovie.removeAll(allSuppliersHavingMovie);
 
-        // send fetchMovie() to suppliers that do not have the movie
-        ExecutorService fetchMovieThreadPool = Executors.newFixedThreadPool(allSuppliersNotHavingMovie.size());
-        for(Supplier s: allSuppliersNotHavingMovie){
-            fetchMovieThreadPool.submit(() -> sendFetchMovie(s, token, imdbId));
+        List<Supplier> allSuppliersHavingMovie = new ArrayList<>();
+        try{
+            allSuppliersHavingMovie = supplierRepository.findAllByMovie(imdbId);
+            if(allSuppliersHavingMovie == null || allSuppliersHavingMovie.size() == 0){
+                LOGGER.error("500/error while retrieving suppliers list");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            // try to continue anyway using the available supplierAvailability Map
         }
-        fetchMovieThreadPool.shutdown();
-        // fetchMovieThreadPool.awaitTermination(5000, TimeUnit.MILLISECONDS);
+
+
+        // execute the following code only if i was able to retrieve the suppliers list
+        if(allSuppliers != null && allSuppliersHavingMovie != null){
+            // compute the list of all the suppliers that do not have the movie
+            List<Supplier> allSuppliersNotHavingMovie = new ArrayList<>(allSuppliers);
+            allSuppliersNotHavingMovie.removeAll(allSuppliersHavingMovie);
+
+            // send fetchMovie() to suppliers that do not have the movie
+            ExecutorService fetchMovieThreadPool = Executors.newFixedThreadPool(allSuppliersNotHavingMovie.size());
+            try{
+                for(Supplier s: allSuppliersNotHavingMovie){
+                    fetchMovieThreadPool.submit(() -> sendFetchMovie(s, token, imdbId));
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+                // try to continue anyway...the following calls to this method will retry to submit the fetchMovie()
+            }finally {
+                fetchMovieThreadPool.shutdown();
+                // fetchMovieThreadPool.awaitTermination(5000, TimeUnit.MILLISECONDS);
+            }
+        }
 
         // consider the remaining ones for the polling
         // if the availability from the remaining suppliers is older then 5 seconds or it is missing poll them
-        HashMap<Supplier,Availability> recentAvailability = availabilityRepository.findRecent(recentAvailabilityThreshold);
-        // clean the concurrent map
-        supplierAvailability.keySet().removeAll(recentAvailability.keySet());
-        // add the new entries
-        supplierAvailability.putAll(recentAvailability);
-
-        // create the list of the suppliers that are going to get polled
-        List<Supplier> suppliersToPoll = new ArrayList<>(allSuppliersHavingMovie);
-        suppliersToPoll.removeAll(recentAvailability.keySet());
-
-        // call getAvailability, use the fresh values for the others
-        // send fetchMovie() to suppliers that do not have the movie
+        HashMap<Supplier, Availability> recentAvailability = new HashMap<>();
         try{
-            ExecutorService getAvailabilityThreadPool = Executors.newFixedThreadPool(suppliersToPoll.size());
-            for(Supplier s: suppliersToPoll){
-                fetchMovieThreadPool.submit(() -> sendGetAvailability(s, token));
-            }
-            getAvailabilityThreadPool.shutdown();
-            getAvailabilityThreadPool.awaitTermination(2000, TimeUnit.MILLISECONDS);
-
+            recentAvailability = availabilityRepository.findRecent(recentAvailabilityThreshold);
+            // clean the concurrent map
+            supplierAvailability.keySet().removeAll(recentAvailability.keySet());
+            // add the new entries
+            supplierAvailability.putAll(recentAvailability);
         }catch (Exception e){
-            LOGGER.error("error while polling the suppliers, continuing anyway: {}", e.getMessage());
-            //throw new BusinessException("500/error while polling the suppliers");
+            e.printStackTrace();
+            // try to continue anyway using the available supplierAvailability Map
+        }
+
+        if(allSuppliersHavingMovie != null){
+            // create the list of the suppliers that are going to get polled
+            List<Supplier> suppliersToPoll = new ArrayList<>(allSuppliersHavingMovie);
+            suppliersToPoll.removeAll(recentAvailability.keySet());
+
+            // call getAvailability, use the fresh values for the others
+            // send fetchMovie() to suppliers that do not have the movie
+            try{
+                ExecutorService getAvailabilityThreadPool = Executors.newFixedThreadPool(suppliersToPoll.size());
+                for(Supplier s: suppliersToPoll){
+                    getAvailabilityThreadPool.submit(() -> sendGetAvailability(s, token));
+                }
+                getAvailabilityThreadPool.shutdown();
+                getAvailabilityThreadPool.awaitTermination(2000, TimeUnit.MILLISECONDS);
+
+            }catch (Exception e){
+                LOGGER.error("500/error while polling the suppliers, continuing anyway: {}", e.getMessage());
+                //throw new BusinessException("500/error while polling the suppliers");
+                // try to continue anyway...the suppliers will be polled again during the next method invocation
+            }
         }
 
         // choose the least loaded supplier
@@ -249,6 +282,7 @@ public class DispatcherServiceImpl implements DispatcherService {
      * @param imdbId the movie of interest
      */
     private void sendFetchMovie(Supplier s, String token, String imdbId){
+
         LOGGER.info("sending fetchMovie to supplier: {} - {}{}", s.getId(), s.getIp(), s.getPort());
         Client client = ClientBuilder.newClient();
         WebTarget target = client
@@ -276,6 +310,8 @@ public class DispatcherServiceImpl implements DispatcherService {
             a = target.request(MediaType.APPLICATION_JSON).get(Availability.class);
         }catch (Exception e){
             e.printStackTrace();
+            LOGGER.error("500/the supplier "+s.getId()+" seems unavailable");
+            availabilityRepository.setUnavailable(s);
             return;
         }
 

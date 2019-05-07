@@ -1,5 +1,6 @@
 package it.univaq.disim.netflics.dispatcher.repository;
 
+import it.univaq.disim.netflics.dispatcher.BusinessException;
 import it.univaq.disim.netflics.dispatcher.model.Supplier;
 import org.springframework.stereotype.Repository;
 
@@ -8,8 +9,8 @@ import java.util.List;
 @Repository
 public interface SupplierRepository {
 
-    List<Supplier> findAll();
+    List<Supplier> findAll() throws BusinessException;
 
-    List<Supplier> findAllByMovie(String imdbId);
+    List<Supplier> findAllByMovie(String imdbId) throws BusinessException;
 
 }

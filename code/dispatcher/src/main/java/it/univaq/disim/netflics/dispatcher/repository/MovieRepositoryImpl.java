@@ -22,7 +22,7 @@ public class MovieRepositoryImpl implements MovieRepository {
     @Autowired
     private DataSource dataSource;
 
-    public Movie updateViews(Movie movie){
+    public Movie updateViews(Movie movie) throws BusinessException{
 
         LOGGER.debug("movie data: {} {} {} {} {}", movie.getTitle(),
                 movie.getDirectors(),
