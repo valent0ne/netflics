@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,7 +25,7 @@ public class AvailabilityRepositoryImpl implements AvailabilityRepository{
     @Autowired
     private DataSource dataSource;
 
-    public HashMap<Supplier, Availability> findRecent(int thrashold){
+    public HashMap<Supplier, Availability> findRecent(int threshold) throws BusinessException{
 
         HashMap<Supplier, Availability> recentAvailability = new HashMap<>();
 
@@ -47,11 +44,10 @@ public class AvailabilityRepositoryImpl implements AvailabilityRepository{
                      "ON s.id = a1.supplier_id " +
                      "WHERE timestamp = (SELECT MAX(timestamp) " +
                                         "FROM availability as a2 " +
-                                        "WHERE a1.supplier_id = a2.supplier_id AND " +
-                                        "timestamp > NOW() - ?) " +
+                                        "WHERE a1.supplier_id = a2.supplier_id AND timestamp > NOW() - ?) AND available = 1 "+
                      "ORDER BY supplier_id, timestamp";
         try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
-            st.setInt(1, thrashold);
+            st.setInt(1, threshold);
             rs = st.executeQuery();
 
             while(rs.next()){
@@ -74,6 +70,31 @@ public class AvailabilityRepositoryImpl implements AvailabilityRepository{
             throw new BusinessException(e);
         }
         return recentAvailability;
+    }
+
+    public void setUnavailable(Supplier s) throws BusinessException{
+
+        int rs;
+
+        String sql = "INSERT INTO availability (supplier_id, timestamp, available) VALUES (?, ?, ?)";
+
+        LOGGER.debug("query: {}", sql);
+
+        try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
+            st.setLong(1, s.getId());
+            st.setTimestamp(2, new Timestamp(System.currentTimeMillis()));
+            st.setBoolean(3, false);
+
+            rs = st.executeUpdate();
+
+            if(rs != 1){
+                throw new SQLException("query failed");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new BusinessException(e);
+        }
     }
 
 }
