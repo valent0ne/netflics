@@ -26,7 +26,7 @@ public class SupplierRepositoryImpl implements SupplierRepository{
     private DataSource dataSource;
 
 
-    public List<Supplier> findAll() {
+    public List<Supplier> findAll() throws BusinessException {
 
         ResultSet rs;
         String sql = "SELECT * FROM supplier";
@@ -51,7 +51,7 @@ public class SupplierRepositoryImpl implements SupplierRepository{
         return suppliers;
     }
 
-    public List<Supplier> findAllByMovie(String imdbId) {
+    public List<Supplier> findAllByMovie(String imdbId) throws BusinessException {
 
         ResultSet rs;
 
