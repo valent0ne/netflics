@@ -23,19 +23,19 @@ var netflics = new Vue({
 	data: {
 		// rest request urls
 		posterUrl: "https://image.tmdb.org/t/p/w500",
-		logInUrl: baseUrl + "logIn",
-		logOutUrl: baseUrl + "logOut",
+		logInUrl: baseUrl + "login",
+		logOutUrl: baseUrl + "logout",
 		// TODO
-		bestOnesUrl: baseUrl + "",
-		mostViewedUrl: baseUrl + "",
-		lastViewedUrl: baseUrl + "",
+		bestOnesUrl: baseUrl + "movie/bestmovies",
+		mostViewedUrl: baseUrl + "movie/mostviewed",
+		lastViewedUrl: baseUrl + "movie/lastviewed",
 
 		// application variables
 		user: {
-			token: null,
 			email: null,
 			password: null,
 		},
+		token: null,
 		lastViewed: [],
 		bestOnes: [],
 		mostViewed: [],
@@ -46,11 +46,13 @@ var netflics = new Vue({
 		 * initializes the application
 		 */
 		init: function () {
+			//todo check for lists disappearing
 			this.getBestOnes()
 			this.getMostViewed()
 			// try to retrieve user's data from local storage
-			if (localStorage.user && localStorage.user.token) {
-				this.user.token = localStorage.user.token;
+			if (localStorage.token) {
+				this.token = localStorage.token;
+				console.log('token: ' + this.token)
 				this.getLastViewed();
 			}
 		},
@@ -59,17 +61,19 @@ var netflics = new Vue({
 		 * retrieves the list of the best movies
 		 */
 		getBestOnes: function () {
-			axios.get(this.bestOnesUrl, {}, {})
+			var self = this
+			axios.get(this.bestOnesUrl)
 				.then(response => {
 					data = response.data
-					if (data !== null && data !== '' /*TODO*/) {
-            /*TODO*/ console.log(data)
+					if (data !== null && data !== '') {
+						console.log(data)
+						self.bestOnes = data
 					} else {
 						throw "Informer service error"
 					}
 				})
 				.catch(e => {
-					toastr["error"](e, "Something went wrong :(");
+					toastr["error"](e, "Something went wrong ಠ_ಠ");
 				})
 		},
 
@@ -77,17 +81,20 @@ var netflics = new Vue({
 		 * retrieves the list of the most viewed movies
 		 */
 		getMostViewed: function () {
-			axios.get(this.mostViewedUrl, {}, {})
+			var self = this
+
+			axios.get(this.mostViewedUrl)
 				.then(response => {
 					data = response.data
-					if (data !== null && data !== '' /*TODO*/) {
-            /*TODO*/ console.log(data)
+					if (data !== null && data !== '') {
+						console.log(data)
+						self.mostViewed = data
 					} else {
 						throw "Informer service error"
 					}
 				})
 				.catch(e => {
-					toastr["error"](e, "Something went wrong :(");
+					toastr["error"](e, "Something went wrong ಠ_ಠ");
 				})
 		},
 
@@ -95,21 +102,23 @@ var netflics = new Vue({
 		 * retrieves the list of the last viewed movies
 		 */
 		getLastViewed: function () {
+			var self = this
 			if (!this.checkToken()) {
-				toastr["warning"]("You must be logged in to perform this operation [token not valid]", "Something went wrong :(")
+				toastr["warning"]("You must be logged in to perform this operation [token not valid]", "Something went wrong ಠ_ಠ")
 				return
 			}
-			axios.get(this.lastViewedUrl, {}, {})
+			axios.get(this.lastViewedUrl, { headers: { "Token": this.token } })
 				.then(response => {
 					data = response.data
-					if (data !== null && data !== '' /*TODO*/) {
-            /*TODO*/ console.log(data)
+					if (data !== null && data !== '') {
+						console.log(data)
+						self.lastViewed = data
 					} else {
 						throw "Informer service error"
 					}
 				})
 				.catch(e => {
-					toastr["error"](e, "Something went wrong :(");
+					toastr["error"](e, "Something went wrong ಠ_ಠ");
 				})
 		},
 
@@ -117,26 +126,28 @@ var netflics = new Vue({
 		 * resets user data
 		 */
 		resetUser: function () {
-			this.user.token = null
+			this.token = null
 			this.user.email = null
 			this.user.password = null
+			localStorage.removeItem('token')
 		},
 
 		/**
 		 * requests a token, given the user's data
 		 */
 		logIn: function () {
+			var self = this
 			if (!this.checkUser()) {
-				toastr["warning"]("Please insert a valid email and password", "Something went wrong :(")
+				toastr["warning"]("Please insert a valid email and password", "Something went wrong ಠ_ಠ")
 				return
 			}
-			axios.post(this.logInUrl, { body: this.user }, {})
+			axios.post(this.logInUrl, this.user, {})
 				.then(response => {
 					data = response.data
 					if (data !== null && data !== '') {
-            /*TODO*/ console.log(data)
-						this.user.token = data.token
-						localStorage.user.token = this.user.token
+						console.log(data)
+						self.token = data
+						localStorage.token = this.token
 						toastr["success"]("You have been successfully logged-in", "Success :)")
 						this.getLastViewed()
 					} else {
@@ -144,7 +155,7 @@ var netflics = new Vue({
 					}
 				})
 				.catch(e => {
-					toastr["error"](e, "Something went wrong :(");
+					toastr["error"](e, "Something went wrong ಠ_ಠ");
 				})
 		},
 
@@ -152,23 +163,24 @@ var netflics = new Vue({
 		 * resets the user's data
 		 */
 		logOut: function () {
+			var self = this
 			if (!this.checkToken()) {
-				toastr["warning"]("You must be logged in to perform this operation [token not valid]", "Something went wrong :(")
+				toastr["warning"]("You must be logged in to perform this operation [token not valid]", "Something went wrong ಠ_ಠ")
 				return
 			}
-			axios.post(this.logOutUrl, {}, { headers: { "Token": this.user.token } })
+			axios.post(this.logOutUrl, {}, { headers: { "Token": this.token } })
 				.then(response => {
 					data = response.data
 					if (data) {
-            /*TODO*/ console.log(data)
-						this.resetUser()
+						console.log(data)
+						self.resetUser()
 						toastr["success"]("You have been successfully logged-out", "Success :)")
 					} else {
 						throw "Auth serice error"
 					}
 				})
 				.catch(e => {
-					toastr["error"](e, "Something went wrong :(");
+					toastr["error"](e, "Something went wrong ಠ_ಠ");
 				})
 		},
 
@@ -176,7 +188,7 @@ var netflics = new Vue({
 		 * checks the validity of the token, returns true if the token is valid, false otherwise
 		 */
 		checkToken: function () {
-			return (this.user.token !== null && this.user.token !== '')
+			return (this.token !== null && this.token !== '')
 		},
 
 		/**
@@ -185,6 +197,10 @@ var netflics = new Vue({
 		checkUser: function () {
 			return (this.user.email !== null && this.user.email !== '' && this.user.password !== null && this.user.password !== '')
 		},
+
+		emptyList: function (list) {
+			return (list && list.length == 0)
+		}
 	},
 
 	beforeMount() {

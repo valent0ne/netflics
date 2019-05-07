@@ -41,7 +41,7 @@ public class DispatcherServiceImpl implements DispatcherService {
 
     private ConcurrentHashMap<Supplier, Availability> supplierAvailability = new ConcurrentHashMap<>();
 
-    @Value("#{cfg.recent-availability-threshold}")
+    @Value("#{cfg.recentavailabilitythreshold}")
     private int recentAvailabilityThreshold;
 
     @Autowired
@@ -85,6 +85,8 @@ public class DispatcherServiceImpl implements DispatcherService {
      * @return if the operation goes to good end
      */
     public Boolean logOut(String token){
+
+        LOGGER.info("logout token: {}", token);
 
         LogOutRequest logOutRequest = new LogOutRequest();
         logOutRequest.setToken(token);
@@ -130,9 +132,15 @@ public class DispatcherServiceImpl implements DispatcherService {
     @Override
     public List<Movie> lastViewed(String token) {
 
+        LOGGER.info("lastviewed token: {}", token);
+
         LastViewedRequest lastViewedRequest = new LastViewedRequest();
         lastViewedRequest.setToken(token);
         LastViewedResponse lastViewedResponse = informerPT.lastViewed(lastViewedRequest);
+
+        if (!lastViewedResponse.getResult().equals("200")){
+            throw new BusinessException(lastViewedResponse.getResult()+"/error while retrieving last viewed movie list");
+        }
 
         return lastViewedResponse.getMoviesList();
     }

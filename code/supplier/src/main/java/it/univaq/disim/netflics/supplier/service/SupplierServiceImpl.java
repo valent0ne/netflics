@@ -65,7 +65,7 @@ public class SupplierServiceImpl implements SupplierService {
 
         // check credentials
         if (!auth(token)) {
-            throw new BusinessException("301/token not valid");
+            throw new BusinessException("401/token not valid");
         }
 
         String pathToFile = videopath + imdbId;
@@ -106,7 +106,7 @@ public class SupplierServiceImpl implements SupplierService {
 
         // check credentials
         if (!auth(token)) {
-            throw new BusinessException("301/token not valid");
+            throw new BusinessException("401/token not valid");
         }
 
         OperatingSystemMXBean osBean = ManagementFactory.getPlatformMXBean(OperatingSystemMXBean.class);
@@ -143,7 +143,7 @@ public class SupplierServiceImpl implements SupplierService {
 
         // check credentials
         if (!auth(token)) {
-            throw new BusinessException("301/token not valid");
+            throw new BusinessException("401/token not valid");
         }
 
         SupplierMovie sm = new SupplierMovie();

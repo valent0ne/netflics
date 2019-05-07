@@ -43,6 +43,7 @@ public class UserRepositoryImpl implements UserRepository {
                 u.setRole(rs.getString("role"));
             } else {
                 LOGGER.info("user {} is not registered", user.getEmail());
+                return null;
             }
 
         } catch (SQLException e) {

@@ -46,7 +46,7 @@ public class VaultServiceImpl implements VaultService {
         if (!auth(parameters.getToken())) {
             GetMovieResponse getMovieResponse = new GetMovieResponse();
             getMovieResponse.setMovie(null);
-            getMovieResponse.setResult("301");
+            getMovieResponse.setResult("401");
             return getMovieResponse;
         }
 
@@ -81,7 +81,7 @@ public class VaultServiceImpl implements VaultService {
 
         // check credentials
         if (!auth(parameters.getToken())) {
-            addMovieResponse.setResult("301");
+            addMovieResponse.setResult("401");
             return addMovieResponse;
         }
 

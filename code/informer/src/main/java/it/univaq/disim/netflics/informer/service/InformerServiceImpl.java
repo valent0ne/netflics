@@ -73,7 +73,7 @@ public class InformerServiceImpl implements InformerService {
         // check credentials
         if (!auth(parameters.getToken())) {
             LastViewedResponse lastViewedResponse = new LastViewedResponse();
-            lastViewedResponse.setResult("301");
+            lastViewedResponse.setResult("401");
             return lastViewedResponse;
         }
         LastViewedResponse response = new LastViewedResponse();
