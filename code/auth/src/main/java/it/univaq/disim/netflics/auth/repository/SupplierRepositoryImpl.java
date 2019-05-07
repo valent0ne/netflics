@@ -18,7 +18,7 @@ public class SupplierRepositoryImpl implements SupplierRepository {
     @Autowired
     private DataSource dataSource;
 
-    public Boolean findByToken(String token) {
+    public Boolean findByToken(String token) throws BusinessException{
 
         ResultSet rs;
 

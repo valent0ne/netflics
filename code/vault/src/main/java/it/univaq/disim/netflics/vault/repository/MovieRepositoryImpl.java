@@ -21,7 +21,7 @@ public class MovieRepositoryImpl implements MovieRepository {
     @Autowired
     private DataSource dataSource;
 
-    public Movie save(Movie movie) {
+    public Movie save(Movie movie) throws BusinessException{
 
         int rs;
 
@@ -53,7 +53,7 @@ public class MovieRepositoryImpl implements MovieRepository {
         return movie;
     }
 
-    public Movie update(Movie movie) {
+    public Movie update(Movie movie) throws BusinessException{
 
         int rs;
 
@@ -85,7 +85,7 @@ public class MovieRepositoryImpl implements MovieRepository {
         return movie;
     }
 
-    public Movie findOneByImdbId(String imdbId ) {
+    public Movie findOneByImdbId(String imdbId ) throws BusinessException{
 
         ResultSet rs;
 
@@ -120,7 +120,7 @@ public class MovieRepositoryImpl implements MovieRepository {
         return m;
     }
 
-    public void deleteByImdbId(String imdbId) {
+    public void deleteByImdbId(String imdbId) throws BusinessException{
 
         int rs;
 

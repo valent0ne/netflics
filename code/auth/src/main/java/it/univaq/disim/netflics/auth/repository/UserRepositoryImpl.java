@@ -19,7 +19,7 @@ public class UserRepositoryImpl implements UserRepository {
     @Autowired
     private DataSource dataSource;
 
-    public User findOne(User user) {
+    public User findOne(User user) throws BusinessException{
 
         LOGGER.debug("user data: {}", user.getEmail());
 
@@ -52,7 +52,7 @@ public class UserRepositoryImpl implements UserRepository {
         return u;
     }
 
-    public User findOneById(Long id) {
+    public User findOneById(Long id) throws BusinessException{
 
         LOGGER.debug("user data: {}", id);
 

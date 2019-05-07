@@ -22,7 +22,7 @@ public class AvailabilityRepositoryImpl implements AvailabilityRepository {
     @Autowired
     private DataSource dataSource;
 
-    public Availability save(Availability availability) {
+    public Availability save(Availability availability) throws BusinessException {
 
         int rs;
 

@@ -20,7 +20,7 @@ public class SupplierMovieRepositoryImpl implements SupplierMovieRepository {
     @Autowired
     private DataSource dataSource;
 
-    public SupplierMovie save(SupplierMovie sm) {
+    public SupplierMovie save(SupplierMovie sm) throws BusinessException{
 
         LOGGER.debug("suppliermovie data: {} {} {}", sm.getMovieId(), sm.getSupplierId(), sm.getStatus());
 
@@ -47,7 +47,7 @@ public class SupplierMovieRepositoryImpl implements SupplierMovieRepository {
         return sm;
     }
 
-    public SupplierMovie update(SupplierMovie sm) {
+    public SupplierMovie update(SupplierMovie sm) throws BusinessException{
 
         LOGGER.debug("suppliermovie data: {} {} {}", sm.getMovieId(), sm.getSupplierId(), sm.getStatus());
 
@@ -74,7 +74,7 @@ public class SupplierMovieRepositoryImpl implements SupplierMovieRepository {
         return sm;
     }
 
-    public void delete (SupplierMovie sm){
+    public void delete (SupplierMovie sm)throws BusinessException{
         int rs;
 
         String sql = "DELETE FROM supplier_movie WHERE movie_id = ? AND supplier_id = ?";
