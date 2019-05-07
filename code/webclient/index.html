@@ -56,7 +56,7 @@
 				</a>
 
 				<!-- either login or logout can be visible at a given time -->
-				<a href="#" v-if="checkToken()">LogOut</a>
+				<a href="#" v-if="checkToken()" v-on:click="logOut">LogOut&ensp;<i class="fas fa-arrow-circle-right"></i></a>
 			</nav>
 		</header>
 		<!-- END OF HEADER -->
@@ -67,28 +67,37 @@
 			<!-- visible only if the user is logged in-->
 			<div class="location" id="lastviewed" v-if="checkToken()">
 				<h1 id="lastviewed">Last Viewed</h1>
-				<div class="box">
+				<div class="box" v-if="!emptyList(lastViewed)">
 					<a href="" v-for="(item, index) in lastViewed">
 						<img v-bind:src="posterUrl + item.poster" v-bind:alt="item.title">
 					</a>
+				</div>
+				<div class="box smalltext" v-if="emptyList(lastViewed)">
+					Nothing watched yet ¯\_(ツ)_/¯
 				</div>
 			</div>
 
 			<div class="location" id="mostviewed">
 				<h1 id="mostviewed">Most Viewed</h1>
-				<div class="box">
+				<div class="box" v-if="!emptyList(mostViewed)">
 					<a href="" v-for="(item, index) in mostViewed">
 						<img v-bind:src="posterUrl + item.poster" v-bind:alt="item.title">
 					</a>
+				</div>
+				<div class="box smalltext" v-if="emptyList(mostViewed)">
+					Nothing to see here (´･_･`)
 				</div>
 			</div>
 
 			<div class="location" id="bestones">
 				<h1 id="bestones">Best Ones</h1>
-				<div class="box">
+				<div class="box" v-if="!emptyList(bestOnes)">
 					<a href="" v-for="(item, index) in bestOnes">
 						<img v-bind:src="posterUrl + item.poster" v-bind:alt="item.title">
 					</a>
+				</div>
+				<div class="box smalltext" v-if="emptyList(bestOnes)">
+					Nothing to see here ʘ‿ʘ
 				</div>
 			</div>
 

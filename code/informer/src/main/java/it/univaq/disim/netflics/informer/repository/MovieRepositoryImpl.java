@@ -125,7 +125,7 @@ public class MovieRepositoryImpl implements MovieRepository {
                             "movie.rating as rating, " +
                             "movie.poster as poster, " +
                             "movie.imdb_id as imdb_id " +
-                      "FROM user_movies LEFT JOIN movie " +
+                      "FROM user_movie LEFT JOIN movie " +
                             "ON user_movie.movie_id = movie.id " +
                       "WHERE user_movie.user_id = ? " +
                       "ORDER BY user_movie.id DESC LIMIT ?";

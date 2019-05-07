@@ -21,6 +21,10 @@ img {
   max-width: 100%;
 }
 
+.smalltext{
+  font-size: 13px!important;
+}
+
 h1 {
   padding-top: 60px;  
 }

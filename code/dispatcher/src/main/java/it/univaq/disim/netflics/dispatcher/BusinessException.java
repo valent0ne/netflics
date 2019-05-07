@@ -32,7 +32,7 @@ public class BusinessException extends RuntimeException {
         String message = this.getMessage().substring(4);
 
         switch(statusCode){
-            case "301":
+            case "401":
                 s = Response.Status.UNAUTHORIZED;
                 break;
             case "400":

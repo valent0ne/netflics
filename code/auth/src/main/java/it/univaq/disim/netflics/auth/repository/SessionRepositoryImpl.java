@@ -43,7 +43,7 @@ public class SessionRepositoryImpl implements SessionRepository {
                 s.setUserId(rs.getLong("user_id"));
 
             } else {
-                LOGGER.info("Token not valid");
+                LOGGER.info("Token does not belong to an user/token not valid");
                 s = null;
             }
 
