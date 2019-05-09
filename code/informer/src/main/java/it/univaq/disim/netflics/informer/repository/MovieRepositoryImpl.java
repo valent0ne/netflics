@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -119,16 +120,17 @@ public class MovieRepositoryImpl implements MovieRepository {
     @Override
     public List<Movie> lastViewed(User u, int limit) throws BusinessException{
         ResultSet rs;
-        String sql = "SELECT movie.title as title, " +
+        String sql = "SELECT DISTINCT movie.title as title, " +
                             "movie.genres as genres, " +
                             "movie.directors as directors, " +
                             "movie.rating as rating, " +
                             "movie.poster as poster, " +
+                            "movie.views as views, " +
                             "movie.imdb_id as imdb_id " +
                       "FROM user_movie LEFT JOIN movie " +
                             "ON user_movie.movie_id = movie.id " +
                       "WHERE user_movie.user_id = ? " +
-                      "ORDER BY user_movie.id DESC LIMIT ?";
+                      "LIMIT ?";
 
         List<Movie> movies = new ArrayList<>();
 
@@ -146,12 +148,16 @@ public class MovieRepositoryImpl implements MovieRepository {
                 m.setPoster(rs.getString("poster"));
                 m.setImdbId(rs.getString("imdb_id"));
                 m.setViews(rs.getInt("views"));
+
                 movies.add(m);
             }
         } catch (SQLException e) {
             e.printStackTrace();
             throw new BusinessException(e);
         }
+
+        Collections.reverse(movies);
+
         return movies;
     }
 

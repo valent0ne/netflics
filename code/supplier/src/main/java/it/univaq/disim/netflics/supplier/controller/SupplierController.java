@@ -34,8 +34,9 @@ public class SupplierController {
      */
     @GET
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
-    @Path("/movie/{id}")
-    public Response getMovie(@HeaderParam("Token") String token, @PathParam("id") String imdbId) {
+    @Path("{token}/movie/{id}")
+    public Response getMovie(@PathParam("token") String token, @PathParam("id") String imdbId) {
+        LOGGER.info("supplier - getMovie(), received token: {}", token);
         ResponseBuilder response;
         StreamingOutput file = service.getMovie(token, imdbId);
         if (file != null) {
@@ -54,8 +55,9 @@ public class SupplierController {
      */
     @GET
     @Produces("application/json")
-    @Path("/availability")
-    public Response getAvailability(@HeaderParam("Token") String token) {
+    @Path("/{token}/availability")
+    public Response getAvailability(@PathParam("token") String token) {
+        LOGGER.info("supplier - getAvailability(), received token: {}", token);
         try{
             Availability a = service.getAvailability(token);
             // system's info reads could be wrong,
@@ -83,9 +85,10 @@ public class SupplierController {
      * @param imdbId the movie identifier
      */
     @POST
-    @Path("/movie/{id}")
+    @Path("/{token}/movie/{id}")
     @Produces("application/json")
-    public Response fetchMovie(@HeaderParam("Token") String token, @PathParam("id") String imdbId) {
+    public Response fetchMovie(@PathParam("token") String token, @PathParam("id") String imdbId) {
+        LOGGER.info("supplier - fecthMovie(), received token: {}", token);
         new Thread(() -> service.fetchMovie(token, imdbId)).start();
         return Response.status(201).build();
     }

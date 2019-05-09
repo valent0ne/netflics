@@ -1,5 +1,7 @@
 package it.univaq.disim.netflics.informer.model;
 
+import java.util.Objects;
+
 public class Movie implements java.io.Serializable {
     private Long id;
     private String title;
@@ -106,4 +108,13 @@ public class Movie implements java.io.Serializable {
     public void setViews(Integer views) {
         this.views = views;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Movie movie = (Movie) o;
+        return Objects.equals(id, movie.id);
+    }
+
 }
