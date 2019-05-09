@@ -21,7 +21,8 @@ import java.io.File;
 @Controller("supplierrestcontroller")
 public class SupplierController {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(it.univaq.disim.netflics.supplier.controller.SupplierController.class);
+    private static Logger LOGGER = LoggerFactory
+            .getLogger(it.univaq.disim.netflics.supplier.controller.SupplierController.class);
 
     @Autowired
     private SupplierService service;
@@ -42,13 +43,13 @@ public class SupplierController {
         if (file != null) {
             response = Response.ok(file);
             response.header("Content-Disposition", "attachment;filename=" + imdbId);
-        }else{
-            response = Response.status(Response.Status.SEE_OTHER).entity("Movie "+imdbId+" cannot be found on this supplier.");
+        } else {
+            response = Response.status(Response.Status.SEE_OTHER)
+                    .entity("Movie " + imdbId + " cannot be found on this supplier.");
         }
         return response.build();
 
     }
-
 
     /**
      * @return the system's % of occupied cpu and memory
@@ -58,10 +59,11 @@ public class SupplierController {
     @Path("/{token}/availability")
     public Response getAvailability(@PathParam("token") String token) {
         LOGGER.info("supplier - getAvailability(), received token: {}", token);
-        try{
+        try {
             Availability a = service.getAvailability(token);
             // system's info reads could be wrong,
-            // see it.univaq.disim.netflics.supplier.service.SupplierServiceImpl.getAvailability()
+            // see
+            // it.univaq.disim.netflics.supplier.service.SupplierServiceImpl.getAvailability()
             // for more infos
             while (a == null) {
                 try {
@@ -72,15 +74,15 @@ public class SupplierController {
                 a = service.getAvailability(token);
             }
             return Response.ok(a).build();
-        }catch (BusinessException e){
+        } catch (BusinessException e) {
             return e.restResponseHandler();
         }
 
     }
 
-
     /**
-     * commands this supplier to fetch the movie identified by the imdbId from the vault service
+     * commands this supplier to fetch the movie identified by the imdbId from the
+     * vault service
      *
      * @param imdbId the movie identifier
      */
@@ -89,7 +91,11 @@ public class SupplierController {
     @Produces("application/json")
     public Response fetchMovie(@PathParam("token") String token, @PathParam("id") String imdbId) {
         LOGGER.info("supplier - fecthMovie(), received token: {}", token);
-        new Thread(() -> service.fetchMovie(token, imdbId)).start();
-        return Response.status(201).build();
+        try {
+            new Thread(() -> service.fetchMovie(token, imdbId)).start();
+            return Response.status(201).build();
+        } catch (BusinessException e) {
+            return e.restResponseHandler();
+        }
     }
 }

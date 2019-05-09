@@ -184,7 +184,7 @@ public class SupplierServiceImpl implements SupplierService {
         String result = getMovieResponse.getResult();
         String status = result.substring(0,3);
 
-        // if the vault service returned an error
+        // if the vault service did not return an error
         if (status.equals("200")) {
             // save movie to disk
             try {
