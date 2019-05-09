@@ -49,8 +49,8 @@ public class DispatcherController {
 
     @POST
     @Produces("application/json")
-    @Path("/logout")
-    public Response logOut(@HeaderParam("Token") String token){
+    @Path("/{token}/logout")
+    public Response logOut(@PathParam("token") String token){
 
         try{
             boolean outcome = service.logOut(token);
@@ -79,11 +79,11 @@ public class DispatcherController {
 
     @GET
     @Produces("application/json")
-    @Path("/movie/bestmovies")
-    public Response bestMovies(){
+    @Path("/movie/bestones")
+    public Response bestOnes(){
 
         try{
-            List<Movie> bestMovies = service.bestMovies();
+            List<Movie> bestMovies = service.bestOnes();
             return Response.ok(bestMovies).build();
 
         }catch (BusinessException e){
@@ -94,8 +94,8 @@ public class DispatcherController {
 
     @GET
     @Produces("application/json")
-    @Path("/movie/lastviewed")
-    public Response lastViewed(@HeaderParam("Token") String token){
+    @Path("/{token}/movie/lastviewed")
+    public Response lastViewed(@PathParam("token") String token){
 
         try{
             List<Movie> lastViewed = service.lastViewed(token);
@@ -138,8 +138,8 @@ public class DispatcherController {
 
     @GET
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
-    @Path("/movie/stream/{imdbId}")
-    public Response getMovieStream(@HeaderParam("Token") String token, @PathParam("imdbId") String imdbId){
+    @Path("/{token}/movie/stream/{imdbId}")
+    public Response getMovieStream(@PathParam("token") String token, @PathParam("imdbId") String imdbId){
 
         try{
             StreamingOutput streamingOutput = service.getMovieStream(token,imdbId);

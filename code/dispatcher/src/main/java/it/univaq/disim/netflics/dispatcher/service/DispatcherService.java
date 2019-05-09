@@ -14,7 +14,7 @@ public interface DispatcherService {
 
     List<Movie> mostViewed();
 
-    List<Movie> bestMovies();
+    List<Movie> bestOnes();
 
     List<Movie> lastViewed(String token);
 

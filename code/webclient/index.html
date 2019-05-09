@@ -27,7 +27,6 @@
 	<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-	<link rel="manifest" href="images/site.webmanifest">
 	<link rel="mask-icon" href="images/safari-pinned-tab.svg" color="#5bbad5">
 
 </head>
@@ -40,7 +39,8 @@
 
 			<div class="netflixLogo">
 				<a id="logo" href="#">
-					<img src="https://fontmeme.com/permalink/190504/b1003295039bd3465ae0484ca719607e.png" alt="Netflics">
+					<img src="https://fontmeme.com/permalink/190504/b1003295039bd3465ae0484ca719607e.png"
+						alt="Netflics">
 				</a>
 			</div>
 
@@ -49,14 +49,16 @@
 			</nav>
 
 			<nav class="sub-nav">
-				<input v-if="!checkToken()" v-model="user.email" placeholder="email" class="netflix-input" type="email" />
+				<input v-if="!checkToken()" v-model="user.email" placeholder="email" class="netflix-input"
+					type="email" />
 				<input v-if="!checkToken()" v-model="user.password" placeholder="password" class="netflix-input"
 					type="password" />
 				<a href="#" v-if="!checkToken()" v-on:click="logIn">LogIn&ensp;<i class="fas fa-arrow-circle-right"></i>
 				</a>
 
 				<!-- either login or logout can be visible at a given time -->
-				<a href="#" v-if="checkToken()" v-on:click="logOut">LogOut&ensp;<i class="fas fa-arrow-circle-right"></i></a>
+				<a href="#" v-if="checkToken()" v-on:click="logOut">LogOut&ensp;<i
+						class="fas fa-arrow-circle-right"></i></a>
 			</nav>
 		</header>
 		<!-- END OF HEADER -->
@@ -68,8 +70,8 @@
 			<div class="location" id="lastviewed" v-if="checkToken()">
 				<h1 id="lastviewed">Last Viewed</h1>
 				<div class="box" v-if="!emptyList(lastViewed)">
-					<a href="" v-for="(item, index) in lastViewed">
-						<img v-bind:src="posterUrl + item.poster" v-bind:alt="item.title">
+					<a href="#" v-for="(item, index) in lastViewed">
+						<img v-bind:src="posterUrl + item.poster" v-bind:alt="item.title" v-on:click="open(item)">
 					</a>
 				</div>
 				<div class="box smalltext" v-if="emptyList(lastViewed)">
@@ -80,8 +82,8 @@
 			<div class="location" id="mostviewed">
 				<h1 id="mostviewed">Most Viewed</h1>
 				<div class="box" v-if="!emptyList(mostViewed)">
-					<a href="" v-for="(item, index) in mostViewed">
-						<img v-bind:src="posterUrl + item.poster" v-bind:alt="item.title">
+					<a href="#" v-for="(item, index) in mostViewed">
+						<img v-bind:src="posterUrl + item.poster" v-bind:alt="item.title" v-on:click="open(item)">
 					</a>
 				</div>
 				<div class="box smalltext" v-if="emptyList(mostViewed)">
@@ -92,8 +94,8 @@
 			<div class="location" id="bestones">
 				<h1 id="bestones">Best Ones</h1>
 				<div class="box" v-if="!emptyList(bestOnes)">
-					<a href="" v-for="(item, index) in bestOnes">
-						<img v-bind:src="posterUrl + item.poster" v-bind:alt="item.title">
+					<a href="#" v-for="(item, index) in bestOnes">
+						<img v-bind:src="posterUrl + item.poster" v-bind:alt="item.title" v-on:click="open(item)">
 					</a>
 				</div>
 				<div class="box smalltext" v-if="emptyList(bestOnes)">

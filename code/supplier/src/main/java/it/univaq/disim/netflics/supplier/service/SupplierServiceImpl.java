@@ -10,6 +10,7 @@ import it.univaq.disim.netflics.clients.vault.GetMovieResponse;
 import it.univaq.disim.netflics.clients.vault.VaultPT;
 import it.univaq.disim.netflics.clients.vault.VaultService;
 import it.univaq.disim.netflics.supplier.model.Availability;
+import it.univaq.disim.netflics.supplier.model.Movie;
 import it.univaq.disim.netflics.supplier.model.SupplierMovie;
 import it.univaq.disim.netflics.supplier.repository.AvailabilityRepository;
 import it.univaq.disim.netflics.supplier.repository.MovieRepository;
@@ -27,6 +28,8 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.StreamingOutput;
 import java.io.*;
 import java.lang.management.ManagementFactory;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.nio.file.Files;
 import java.sql.Timestamp;
 
@@ -77,7 +80,11 @@ public class SupplierServiceImpl implements SupplierService {
             // remove entry from db to signal that this supplier doesn't have the requested movie
             SupplierMovie sm = new SupplierMovie();
             sm.setSupplierId(supplierId);
-            sm.setMovieId(movieRepository.findOneByImdbId(imdbId).getId());
+            Movie m = movieRepository.findOneByImdbId(imdbId);
+            if(m == null){
+                return null;
+            }
+            sm.setMovieId(m.getId());
             // if there is a wrong entry into the db, clean it
             if(sm.getMovieId() != null){
                 supplierMovieRepository.delete(sm);
@@ -114,8 +121,11 @@ public class SupplierServiceImpl implements SupplierService {
 
         Timestamp ts = new Timestamp(System.currentTimeMillis());
 
-        double occupiedCpuPercentage = osBean.getSystemCpuLoad();
-        double occupiedMemPercentage = ((double) osBean.getFreePhysicalMemorySize() / osBean.getTotalPhysicalMemorySize()) * 100;
+        Double occupiedCpuPercentage = osBean.getSystemCpuLoad();
+        Double occupiedMemPercentage = (((double) osBean.getTotalPhysicalMemorySize() - (double)osBean.getFreePhysicalMemorySize()) / (double)osBean.getTotalPhysicalMemorySize());
+
+        occupiedCpuPercentage = new BigDecimal(occupiedCpuPercentage.toString()).setScale(2, RoundingMode.HALF_UP).doubleValue();
+        occupiedMemPercentage = new BigDecimal(occupiedMemPercentage.toString()).setScale(2, RoundingMode.HALF_UP).doubleValue();
 
         // it could happen that the reads are incorrect from time to time
         // it usually takes a bit of time to get cpu readings
@@ -148,13 +158,17 @@ public class SupplierServiceImpl implements SupplierService {
 
         SupplierMovie sm = new SupplierMovie();
         sm.setSupplierId(supplierId);
-        sm.setMovieId(movieRepository.findOneByImdbId(imdbId).getId());
+        Movie m = movieRepository.findOneByImdbId(imdbId);
+        if(m == null){
+            throw new BusinessException("404/the requested movie cannot be found");
+        }
+        sm.setMovieId(m.getId());
         sm.setStatus("FETCHING");
 
         File file = new File(videopath + imdbId);
 
         if(file.exists() && file.length() > 0){
-            throw new BusinessException("401/movie already available");
+            throw new BusinessException("500/movie already available");
         }
 
         // signal that the supplier is fetching the movie
@@ -169,7 +183,6 @@ public class SupplierServiceImpl implements SupplierService {
         DataHandler dh = getMovieResponse.getMovie();
         String result = getMovieResponse.getResult();
         String status = result.substring(0,3);
-        String message = result.substring(4);
 
         // if the vault service returned an error
         if (status.equals("200")) {
@@ -206,6 +219,7 @@ public class SupplierServiceImpl implements SupplierService {
      * @return true if the token is valid
      */
     private boolean auth(String token) {
+
         AuthService authService = new AuthService();
         AuthPT authPT = authService.getAuthPort();
         CheckTokenRequest checkTokenRequest = new CheckTokenRequest();

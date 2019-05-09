@@ -76,14 +76,16 @@ public class AvailabilityRepositoryImpl implements AvailabilityRepository{
 
         int rs;
 
-        String sql = "INSERT INTO availability (supplier_id, timestamp, available) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO availability (supplier_id, timestamp, cpu_saturation, mem_saturation, available) VALUES (?, ?, ?, ?, ?)";
 
         LOGGER.debug("query: {}", sql);
 
         try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
             st.setLong(1, s.getId());
             st.setTimestamp(2, new Timestamp(System.currentTimeMillis()));
-            st.setBoolean(3, false);
+            st.setDouble(3, 0.0);
+            st.setDouble(4, 0.0);
+            st.setBoolean(5, false);
 
             rs = st.executeUpdate();
 

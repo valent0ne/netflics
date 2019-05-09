@@ -38,6 +38,9 @@ public class BusinessException extends RuntimeException {
             case "400":
                 s = Response.Status.BAD_REQUEST;
                 break;
+            case "404":
+                s = Response.Status.NOT_FOUND;
+                break;
             case "503":
                 s = Response.Status.SERVICE_UNAVAILABLE;
                 break;
