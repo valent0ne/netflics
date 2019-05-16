@@ -14,4 +14,8 @@ public interface SupplierService {
 
     void fetchMovie(String token, String imdbId);
 
+    void awake(String token);
+
+    void sleep(String token);
+
 }

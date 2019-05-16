@@ -6,10 +6,9 @@ import it.univaq.disim.netflics.dispatcher.BusinessException;
 import it.univaq.disim.netflics.dispatcher.model.Availability;
 import it.univaq.disim.netflics.dispatcher.model.Supplier;
 import it.univaq.disim.netflics.dispatcher.model.User;
-
 import it.univaq.disim.netflics.dispatcher.model.UserMovie;
 import it.univaq.disim.netflics.dispatcher.repository.*;
-import org.apache.cxf.Bus;
+
 import org.apache.cxf.helpers.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,13 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.client.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.StreamingOutput;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -186,7 +183,8 @@ public class DispatcherServiceImpl implements DispatcherService {
     }
 
     /**
-     *
+     * stream function, performs the supplier selection
+     * and redirects the supplier stream to the client
      */
     @Override
     public StreamingOutput getMovieStream(String token, String imdbId) throws BusinessException {
@@ -196,8 +194,14 @@ public class DispatcherServiceImpl implements DispatcherService {
             throw new BusinessException("401/token not valid");
         }
 
+        // check if the movie exists in the system
+        it.univaq.disim.netflics.dispatcher.model.Movie m = movieRepository.findOneByImdbId(imdbId);
+        if(m == null){
+            throw new BusinessException("404/the requested movie does not exists");
+        }
+
         // retrieve full supplier list
-        List<Supplier> allSuppliers = new ArrayList<>();
+        List<Supplier> allSuppliers;
         try{
             allSuppliers = supplierRepository.findAll();
             if(allSuppliers == null || allSuppliers.size() == 0){
@@ -208,9 +212,10 @@ public class DispatcherServiceImpl implements DispatcherService {
             throw new BusinessException(e);
         }
 
+        // retrieve the list of suppliers having the movie
         List<Supplier> allSuppliersHavingMovie = new ArrayList<>();
         try{
-            allSuppliersHavingMovie = supplierRepository.findAllByMovie(imdbId);
+            allSuppliersHavingMovie = supplierRepository.findAllByMovieFetched(imdbId);
             if(allSuppliersHavingMovie == null || allSuppliersHavingMovie.size() == 0){
                 LOGGER.error("500/error while retrieving suppliers list");
             }
@@ -220,21 +225,26 @@ public class DispatcherServiceImpl implements DispatcherService {
         }
 
 
-        // execute the following code only if i was able to retrieve the suppliers list
+        // execute the following code (sendFetchMovie) only if i was able to retrieve the suppliers list
         if(allSuppliersHavingMovie != null){ // the case in which allsuppliersHavingMovie.size()=0 is still allowed
             // compute the list of all the suppliers that do not have the movie
             List<Supplier> allSuppliersNotHavingMovie = new ArrayList<>(allSuppliers);
             allSuppliersNotHavingMovie.removeAll(allSuppliersHavingMovie);
 
+            // ignore the suppliers that are still fetching the movie
+            allSuppliersNotHavingMovie.removeAll(supplierRepository.findAllByMovieFetching(imdbId));
+
             if(allSuppliersNotHavingMovie.size() > 0){
                 // send fetchMovie() to suppliers that do not have the movie
+                // TODO maybe do not send the fetchMovie() to all suppliers, but only to someone (?)
                 ExecutorService fetchMovieThreadPool = Executors.newFixedThreadPool(allSuppliersNotHavingMovie.size());
                 try{
                     for(Supplier s: allSuppliersNotHavingMovie){
                         fetchMovieThreadPool.submit(() -> sendFetchMovie(s, token, imdbId));
                     }
                 }catch (Exception e){
-                    e.printStackTrace();
+                    LOGGER.warn("error while sending fethMovies(): {}", e.getMessage());
+                    // e.printStackTrace();
                     // try to continue anyway...the following calls to this method will retry to submit the fetchMovie()
                 }finally {
                     fetchMovieThreadPool.shutdown();
@@ -242,7 +252,7 @@ public class DispatcherServiceImpl implements DispatcherService {
                 }
             }
 
-            // after having sent the requests, if there are no suppliers with the movie then abort
+            // after having sent the requests, if there are no suppliers with the movie then abort and retry
             if(allSuppliersHavingMovie.size() == 0){
                 LOGGER.info("the movie is not available on any supplier, try again later");
                 throw new BusinessException("404/the requested movie is not available");
@@ -250,8 +260,8 @@ public class DispatcherServiceImpl implements DispatcherService {
 
         }
 
-        // consider the remaining ones for the polling
-        // if the availability from the remaining suppliers is older then 5 seconds or it is missing poll them
+        // consider the remaining ones for the polling (getAvailability())
+        // if the availability from the remaining suppliers is older then 5 seconds or it is missing then poll them
         HashMap<Supplier, Availability> recentAvailability = new HashMap<>();
         try{
             recentAvailability = availabilityRepository.findRecent(recentAvailabilityThreshold);
@@ -260,7 +270,8 @@ public class DispatcherServiceImpl implements DispatcherService {
             // add the new entries
             supplierAvailability.putAll(recentAvailability);
         }catch (Exception e){
-            e.printStackTrace();
+            LOGGER.warn("cannot retrieve recent availabilities, contuing anyway...");
+            // e.printStackTrace();
             // try to continue anyway
         }
 
@@ -281,24 +292,22 @@ public class DispatcherServiceImpl implements DispatcherService {
                     getAvailabilityThreadPool.awaitTermination(3000, TimeUnit.MILLISECONDS);
 
                 }catch (Exception e){
-                    LOGGER.error("500/error while polling the suppliers, continuing anyway: {}", e.getMessage());
+                    LOGGER.warn("500/error while polling the suppliers, continuing anyway: {}", e.getMessage());
                     // throw new BusinessException("500/error while polling the suppliers");
                     // try to continue anyway...the suppliers will be polled again during the next method invocation
                 }
             }
-
         }
 
         // choose the least loaded supplier
         Supplier chosenOne = getBestSupplier();
 
         if(chosenOne == null || chosenOne.getIp() == null || chosenOne.getPort() == null){
+            // TODO no suppliers are available, plan B (?) maybe try to retrieve the movie directly from the vault
             throw new BusinessException("500/error while choosing the best supplier");
         }
 
         LOGGER.info("starting stream...");
-
-        it.univaq.disim.netflics.dispatcher.model.Movie m = movieRepository.findOneByImdbId(imdbId);
 
         // add entry to user_movie signaling that this user has seen this movie
         userMovieRepository.save(new UserMovie(null, sessionRepository.findByToken(token).getUserId(), m.getId()));
@@ -307,6 +316,8 @@ public class DispatcherServiceImpl implements DispatcherService {
         movieRepository.updateViews(m);
 
         // return the stream
+
+        // TODO make this parametric by allowing to choose between a supplier or the vault (so rest/soap request)
         return outputStream -> {
 
             Client client = ClientBuilder.newClient();
@@ -314,9 +325,16 @@ public class DispatcherServiceImpl implements DispatcherService {
                     .target("http://"+chosenOne.getIp()+":"+chosenOne.getPort()+"/supplier/api/supplier/"+token+"/movie/"+imdbId);
             InputStream is = target.request(MediaType.APPLICATION_OCTET_STREAM).get(InputStream.class);
 
-            IOUtils.copy(is, outputStream);
-            is.close();
-            outputStream.close();
+            try {
+                IOUtils.copy(is, outputStream);
+
+            } catch (Exception e) {
+                LOGGER.warn("streaming error (stream closed by the user?)");
+
+            } finally {
+                is.close();
+                outputStream.close();
+            }
 
         };
     }

@@ -51,7 +51,7 @@ public class SupplierRepositoryImpl implements SupplierRepository{
         return suppliers;
     }
 
-    public List<Supplier> findAllByMovie(String imdbId) throws BusinessException {
+    public List<Supplier> findAllByMovieFetched(String imdbId) throws BusinessException {
 
         ResultSet rs;
 
@@ -62,6 +62,39 @@ public class SupplierRepositoryImpl implements SupplierRepository{
                      "JOIN movie as m " +
                         "ON sm.movie_id = m.id " +
                      "WHERE m.imdb_id = ? AND sm.status = 'FETCHED'";
+
+        List<Supplier> suppliers = new ArrayList<>();
+
+        try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1,imdbId);
+            rs = st.executeQuery();
+
+            while(rs.next()){
+                Supplier s = new Supplier();
+                s.setId(rs.getLong("id"));
+                s.setIp(rs.getString("ip"));
+                s.setPort(rs.getString("port"));
+                s.setToken(rs.getString("token"));
+                suppliers.add(s);
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+            throw new BusinessException(e);
+        }
+        return suppliers;
+    }
+
+    public List<Supplier> findAllByMovieFetching(String imdbId) throws BusinessException {
+
+        ResultSet rs;
+
+        String sql = "SELECT s.id, s.ip, s.port, s.token " +
+                     "FROM supplier as s " +
+                     "JOIN supplier_movie as sm " +
+                        "ON s.id = sm.supplier_id " +
+                     "JOIN movie as m " +
+                        "ON sm.movie_id = m.id " +
+                     "WHERE m.imdb_id = ? AND sm.status = 'FETCHING'";
 
         List<Supplier> suppliers = new ArrayList<>();
 

@@ -32,6 +32,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.nio.file.Files;
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 
 
 @Service
@@ -93,15 +94,45 @@ public class SupplierServiceImpl implements SupplierService {
         }
         LOGGER.info("movie "+imdbId+" has been found");
 
-        StreamingOutput output = new StreamingOutput() {
-            @Override
-            public void write(OutputStream out) throws IOException, WebApplicationException {
-                Files.copy(file.toPath(), out);
-                out.flush();
-                out.close();
+
+        LOGGER.info("sending stream...");
+
+        return outputStream -> {
+            try {
+                // TODO increment number of active clients
+                Files.copy(file.toPath(), outputStream);
+                outputStream.flush();
+            } finally {
+                outputStream.close();
+                // TODO decrement number of active clients
             }
         };
-        return output;
+    }
+
+    /**
+     * awakes this supplier
+     * @param token auth token
+     */
+    public void awake(String token){
+        // check credentials
+        if (!auth(token)) {
+            throw new BusinessException("401/token not valid");
+        }
+        // TODO update db
+        LOGGER.info("this supplier has been woken up");
+    }
+
+    /**
+     * put this supplier to sleep
+     * @param token auth token
+     */
+    public void sleep(String token){
+        // check credentials
+        if (!auth(token)) {
+            throw new BusinessException("401/token not valid");
+        }
+        // TODO delete movies and update db
+        LOGGER.info("this supplier has been put to sleep");
     }
 
     /**
@@ -124,8 +155,16 @@ public class SupplierServiceImpl implements SupplierService {
         Double occupiedCpuPercentage = osBean.getSystemCpuLoad();
         Double occupiedMemPercentage = (((double) osBean.getTotalPhysicalMemorySize() - (double)osBean.getFreePhysicalMemorySize()) / (double)osBean.getTotalPhysicalMemorySize());
 
-        occupiedCpuPercentage = new BigDecimal(occupiedCpuPercentage.toString()).setScale(2, RoundingMode.HALF_UP).doubleValue();
-        occupiedMemPercentage = new BigDecimal(occupiedMemPercentage.toString()).setScale(2, RoundingMode.HALF_UP).doubleValue();
+        DecimalFormat df = new DecimalFormat("#.##");
+        df.setRoundingMode(RoundingMode.CEILING);
+
+        occupiedCpuPercentage = new Double(df.format(occupiedCpuPercentage));
+        occupiedMemPercentage = new Double(df.format(occupiedMemPercentage));
+
+        // occupiedCpuPercentage = new BigDecimal(occupiedCpuPercentage.toString()).setScale(2, RoundingMode.HALF_UP).doubleValue();
+        // occupiedMemPercentage = new BigDecimal(occupiedMemPercentage.toString()).setScale(2, RoundingMode.HALF_UP).doubleValue();
+
+        // TODO add other load value (expressed either with % or with "free slots"
 
         // it could happen that the reads are incorrect from time to time
         // it usually takes a bit of time to get cpu readings
@@ -172,6 +211,7 @@ public class SupplierServiceImpl implements SupplierService {
         }
 
         // signal that the supplier is fetching the movie
+        supplierMovieRepository.delete(sm);
         supplierMovieRepository.save(sm);
 
         VaultService vaultService = new VaultService();
@@ -228,6 +268,8 @@ public class SupplierServiceImpl implements SupplierService {
 
         return (checkTokenResponse.isResult());
     }
+
+
 
 
 }

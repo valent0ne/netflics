@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import it.univaq.disim.netflics.clients.informer.Movie;
 
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -21,6 +22,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.StreamingOutput;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 @Controller("dispatcherrestcontroller")
@@ -30,6 +32,9 @@ public class DispatcherController {
 
     @Autowired
     private DispatcherService service;
+
+    @Value("#{cfg.retrythreshold}")
+    private int retrythreshold;
 
     @POST
     @Consumes("application/json")
@@ -141,13 +146,30 @@ public class DispatcherController {
     @Path("/{token}/movie/stream/{imdbId}")
     public Response getMovieStream(@PathParam("token") String token, @PathParam("imdbId") String imdbId){
 
-        try{
-            StreamingOutput streamingOutput = service.getMovieStream(token,imdbId);
-            return Response.ok(streamingOutput).build();
+        int retrycount=0;
 
-        }catch (BusinessException e){
-            return e.restResponseHandler();
+        while(true){
+
+            try{
+                StreamingOutput streamingOutput = service.getMovieStream(token,imdbId);
+                return Response.ok(streamingOutput).build();
+
+            }catch (BusinessException e){
+
+                // if the movie is not available on any supplier
+                if(e.getMessage().equals("404/the requested movie is not available") && retrycount < retrythreshold){
+                    retrycount++;
+                    try {
+                        TimeUnit.MILLISECONDS.sleep(2000);
+                    }catch (Exception ignored){
+                        LOGGER.warn("{}, retrying {}/{}...", e.getMessage(), retrycount, retrythreshold);
+                    }
+                    continue;
+                }
+                return e.restResponseHandler();
+            }
         }
+
     }
 
 }
