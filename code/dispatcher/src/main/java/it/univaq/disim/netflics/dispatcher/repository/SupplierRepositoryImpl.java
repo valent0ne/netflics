@@ -55,7 +55,7 @@ public class SupplierRepositoryImpl implements SupplierRepository{
 
         ResultSet rs;
 
-        String sql = "SELECT s.id, s.ip, s.port, s.token " +
+        String sql = "SELECT s.id, s.ip, s.port, s.token, s.slots " +
                      "FROM supplier as s " +
                      "JOIN supplier_movie as sm " +
                         "ON s.id = sm.supplier_id " +
@@ -75,6 +75,7 @@ public class SupplierRepositoryImpl implements SupplierRepository{
                 s.setIp(rs.getString("ip"));
                 s.setPort(rs.getString("port"));
                 s.setToken(rs.getString("token"));
+                s.setSlots(rs.getInt("slots"));
                 suppliers.add(s);
             }
         }catch (SQLException e) {
@@ -88,7 +89,7 @@ public class SupplierRepositoryImpl implements SupplierRepository{
 
         ResultSet rs;
 
-        String sql = "SELECT s.id, s.ip, s.port, s.token " +
+        String sql = "SELECT s.id, s.ip, s.port, s.token, s.slots " +
                      "FROM supplier as s " +
                      "JOIN supplier_movie as sm " +
                         "ON s.id = sm.supplier_id " +
@@ -108,6 +109,7 @@ public class SupplierRepositoryImpl implements SupplierRepository{
                 s.setIp(rs.getString("ip"));
                 s.setPort(rs.getString("port"));
                 s.setToken(rs.getString("token"));
+                s.setSlots(rs.getInt("slots"));
                 suppliers.add(s);
             }
         }catch (SQLException e) {

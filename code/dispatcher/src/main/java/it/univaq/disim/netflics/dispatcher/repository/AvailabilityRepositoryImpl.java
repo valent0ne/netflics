@@ -39,7 +39,8 @@ public class AvailabilityRepositoryImpl implements AvailabilityRepository{
                             "a1.timestamp, " +
                             "a1.cpu_saturation, " +
                             "a1.mem_saturation, " +
-                            "a1.available " +
+                            "a1.available, " +
+                            "a1.free_slots " +
                      "FROM supplier as s JOIN availability as a1 " +
                      "ON s.id = a1.supplier_id " +
                      "WHERE timestamp = (SELECT MAX(timestamp) " +
@@ -63,6 +64,7 @@ public class AvailabilityRepositoryImpl implements AvailabilityRepository{
                 a.setCpuSaturation(rs.getDouble("cpu_saturation"));
                 a.setMemSaturation(rs.getDouble("mem_saturation"));
                 a.setAvailable(rs.getBoolean("available"));
+                a.setFreeSlots(rs.getInt("free_slots"));
                 recentAvailability.put(s,a);
             }
         }catch (SQLException e) {
@@ -76,7 +78,7 @@ public class AvailabilityRepositoryImpl implements AvailabilityRepository{
 
         int rs;
 
-        String sql = "INSERT INTO availability (supplier_id, timestamp, cpu_saturation, mem_saturation, available) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO availability (supplier_id, timestamp, cpu_saturation, mem_saturation, available, free_slots) VALUES (?, ?, ?, ?, ?, ?)";
 
         LOGGER.debug("query: {}", sql);
 
@@ -86,6 +88,7 @@ public class AvailabilityRepositoryImpl implements AvailabilityRepository{
             st.setDouble(3, 0.0);
             st.setDouble(4, 0.0);
             st.setBoolean(5, false);
+            st.setInt(6, 0);
 
             rs = st.executeUpdate();
 

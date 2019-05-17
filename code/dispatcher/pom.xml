@@ -131,6 +131,15 @@
                                         <extraarg>it.univaq.disim.netflics.clients.informer</extraarg>
                                     </extraargs>
                                 </wsdlOption>
+								<wsdlOption>
+									<wsdl>src/main/resources/clients/vault.wsdl</wsdl>
+									<faultSerialVersionUID>1</faultSerialVersionUID>
+									<extraargs>
+										<extraarg>-verbose</extraarg>
+										<extraarg>-p </extraarg>
+										<extraarg>it.univaq.disim.netflics.clients.vault</extraarg>
+									</extraargs>
+								</wsdlOption>
 							</wsdlOptions>
 						</configuration>
 						<goals>

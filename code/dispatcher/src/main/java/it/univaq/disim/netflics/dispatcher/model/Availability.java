@@ -15,6 +15,7 @@ public class Availability implements java.io.Serializable {
     private Double cpuSaturation;
     private Double memSaturation;
     private Boolean available;
+    private Integer freeSlots;
 
     public Availability() {
         this.id = null;
@@ -23,15 +24,17 @@ public class Availability implements java.io.Serializable {
         this.cpuSaturation = null;
         this.memSaturation = null;
         this.available = null;
+        this.freeSlots = null;
     }
 
-    public Availability(Long id, Long supplier_id, Timestamp timestamp, Double cpuSaturation, Double memSaturation, Boolean available) {
+    public Availability(Long id, Long supplier_id, Timestamp timestamp, Double cpuSaturation, Double memSaturation, Boolean available, Integer freeSlots) {
         this.id = id;
         this.supplier_id = supplier_id;
         this.timestamp = timestamp;
         this.cpuSaturation = cpuSaturation;
         this.memSaturation = memSaturation;
         this.available = available;
+        this.freeSlots = freeSlots;
     }
 
     public Long getId() {
@@ -81,4 +84,8 @@ public class Availability implements java.io.Serializable {
     public void setAvailable(Boolean available) {
         this.available = available;
     }
+
+    public Integer getFreeSlots() {return freeSlots; }
+
+    public void setFreeSlots(Integer freeSlots) {this.freeSlots = freeSlots; }
 }

@@ -2,6 +2,10 @@ package it.univaq.disim.netflics.dispatcher.service;
 
 import it.univaq.disim.netflics.clients.auth.*;
 import it.univaq.disim.netflics.clients.informer.*;
+import it.univaq.disim.netflics.clients.vault.AddMovieRequest;
+import it.univaq.disim.netflics.clients.vault.AddMovieResponse;
+import it.univaq.disim.netflics.clients.vault.VaultPT;
+import it.univaq.disim.netflics.clients.vault.VaultService;
 import it.univaq.disim.netflics.dispatcher.BusinessException;
 import it.univaq.disim.netflics.dispatcher.model.Availability;
 import it.univaq.disim.netflics.dispatcher.model.Supplier;
@@ -37,6 +41,8 @@ public class DispatcherServiceImpl implements DispatcherService {
     private AuthPT authPT = authService.getAuthPort();
     private InformerService informerService = new InformerService();
     private InformerPT informerPT = informerService.getInformerPort();
+    private VaultService vaultService = new VaultService();
+    private VaultPT vaultPT = vaultService.getVaultPort();
 
     private ConcurrentHashMap<Supplier, Availability> supplierAvailability = new ConcurrentHashMap<>();
 
@@ -359,8 +365,53 @@ public class DispatcherServiceImpl implements DispatcherService {
         }
         DataHandler dh = movieFile.getDataHandler();
 
-        // TODO send addMovie to vault
-        // TODO chose the least loaded supplier and send fetchMovie to it
+        AddMovieRequest addMovieRequest = new AddMovieRequest();
+        addMovieRequest.setToken(token);
+        addMovieRequest.setMovie(dh);
+        addMovieRequest.setImdbId(imdbId);
+        AddMovieResponse addMovieResponse = vaultPT.addMovie(addMovieRequest);
+
+        if(!addMovieResponse.getResult().equals("200")){
+            throw new BusinessException(addMovieResponse.getResult());
+        }
+
+        List<Supplier> suppliersToPoll;
+        suppliersToPoll = supplierRepository.findAll();
+        if(suppliersToPoll !=null && suppliersToPoll.size()>0){
+            // call getAvailability of all suppliers
+            try{
+                ExecutorService getAvailabilityThreadPool = Executors.newFixedThreadPool(suppliersToPoll.size());
+                for(Supplier s: suppliersToPoll){
+                    getAvailabilityThreadPool.submit(() -> sendGetAvailability(s, token));
+                }
+                getAvailabilityThreadPool.shutdown();
+                getAvailabilityThreadPool.awaitTermination(3000, TimeUnit.MILLISECONDS);
+
+            }catch (Exception e){
+                LOGGER.warn("500/error while polling the suppliers, continuing anyway: {}", e.getMessage());
+                // throw new BusinessException("500/error while polling the suppliers");
+                // try to continue anyway...the suppliers will be polled again during the next method invocation
+            }
+
+            // Choose the supplier that has the higher number of free slots
+            Supplier bestOne = new Supplier();
+            int maxFreeSlots = -1;
+            for(Map.Entry<Supplier, Availability> entry: supplierAvailability.entrySet()){
+                int localFreeSlots = (entry.getValue().getFreeSlots());
+                if (localFreeSlots > maxFreeSlots){
+                    maxFreeSlots = localFreeSlots;
+                    bestOne = entry.getKey();
+                }
+            }
+            LOGGER.info("chosen supplier: {} - {}:{}, max free slots: {}", bestOne.getId(), bestOne.getIp(), bestOne.getPort(), maxFreeSlots);
+
+            sendFetchMovie(bestOne, token, imdbId);
+            LOGGER.info("sent fatch movie to the best supplier: {}", bestOne.getId());
+        }
+
+
+
+
     }
 
     /**
@@ -404,23 +455,5 @@ public class DispatcherServiceImpl implements DispatcherService {
             LOGGER.info("supplier "+a.getSupplier_id()+" is available");
             supplierAvailability.put(s, a);
         }
-    }
-
-    /**
-     * returns the supplier with lowest load, computed as the average between the cpu and memory load
-     * @return the best supplier object
-     */
-    private Supplier getBestSupplier(){
-        Supplier bestOne = new Supplier();
-        Double minAverageLoad = 100.0;
-        for(Map.Entry<Supplier, Availability> entry: supplierAvailability.entrySet()){
-            Double localAverageLoad = (entry.getValue().getCpuSaturation()+entry.getValue().getMemSaturation())/2;
-            if (localAverageLoad < minAverageLoad){
-                minAverageLoad = localAverageLoad;
-                bestOne = entry.getKey();
-            }
-        }
-        LOGGER.info("chosen supplier: {} - {}:{}, load: {}", bestOne.getId(), bestOne.getIp(), bestOne.getPort(), minAverageLoad);
-        return bestOne;
     }
 }
