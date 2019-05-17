@@ -4,6 +4,8 @@ package it.univaq.disim.netflics.dispatcher.controller;
 import it.univaq.disim.netflics.dispatcher.BusinessException;
 import it.univaq.disim.netflics.dispatcher.model.User;
 import it.univaq.disim.netflics.dispatcher.service.DispatcherService;
+import org.apache.cxf.jaxrs.ext.multipart.Attachment;
+import org.apache.cxf.jaxrs.ext.multipart.Multipart;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.StreamingOutput;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -35,6 +36,18 @@ public class DispatcherController {
 
     @Value("#{cfg.retrythreshold}")
     private int retrythreshold;
+
+    @PUT
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    @Path("/{token}/movie/{imdbId}")
+    public Response addMovie(@PathParam("token") String token, @PathParam("imdbId") String imdbId, @Multipart("file") Attachment uploadedInputStream){
+        try{
+            service.addMovie(token, uploadedInputStream, imdbId);
+            return Response.ok().build();
+        }catch (BusinessException e){
+            return e.restResponseHandler();
+        }
+    }
 
     @POST
     @Consumes("application/json")

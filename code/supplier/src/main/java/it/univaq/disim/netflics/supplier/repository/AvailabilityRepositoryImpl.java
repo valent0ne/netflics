@@ -26,7 +26,7 @@ public class AvailabilityRepositoryImpl implements AvailabilityRepository {
 
         int rs;
 
-        String sql = "INSERT INTO availability (supplier_id, timestamp, cpu_saturation, mem_saturation, available) VALUES (?, ?, ?, ?, ?) ";
+        String sql = "INSERT INTO availability (supplier_id, timestamp, cpu_saturation, mem_saturation, available, free_slots) VALUES (?, ?, ?, ?, ?, ?) ";
 
         LOGGER.debug("query: {}", sql);
 
@@ -37,6 +37,7 @@ public class AvailabilityRepositoryImpl implements AvailabilityRepository {
             st.setDouble(3, availability.getCpuSaturation());
             st.setDouble(4, availability.getMemSaturation());
             st.setBoolean(5, availability.getAvailable());
+            st.setInt(6, availability.getFreeSlots());
             rs = st.executeUpdate();
 
             if(rs != 1){

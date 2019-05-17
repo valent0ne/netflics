@@ -15,6 +15,8 @@ import it.univaq.disim.netflics.supplier.model.SupplierMovie;
 import it.univaq.disim.netflics.supplier.repository.AvailabilityRepository;
 import it.univaq.disim.netflics.supplier.repository.MovieRepository;
 import it.univaq.disim.netflics.supplier.repository.SupplierMovieRepository;
+import it.univaq.disim.netflics.supplier.repository.SupplierRepository;
+import org.apache.commons.io.FileUtils;
 import org.apache.cxf.Bus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,6 +52,9 @@ public class SupplierServiceImpl implements SupplierService {
     @Value("#{cfg.token}")
     private String token;
 
+    @Value("#{cfg.max_active_clients}")
+    private int maxActiveClients;
+
     @Autowired
     private AvailabilityRepository availabilityRepository;
 
@@ -58,6 +63,11 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Autowired
     private MovieRepository movieRepository;
+
+    @Autowired
+    private SupplierRepository supplierRepository;
+
+    private static int activeClients = 0;
 
     /**
      * retrieves the movie from the filesystem and returns it
@@ -99,12 +109,12 @@ public class SupplierServiceImpl implements SupplierService {
 
         return outputStream -> {
             try {
-                // TODO increment number of active clients
+                activeClients += 1;
                 Files.copy(file.toPath(), outputStream);
                 outputStream.flush();
             } finally {
                 outputStream.close();
-                // TODO decrement number of active clients
+                activeClients -= 1;
             }
         };
     }
@@ -118,7 +128,7 @@ public class SupplierServiceImpl implements SupplierService {
         if (!auth(token)) {
             throw new BusinessException("401/token not valid");
         }
-        // TODO update db
+        supplierRepository.setAwake();
         LOGGER.info("this supplier has been woken up");
     }
 
@@ -131,7 +141,14 @@ public class SupplierServiceImpl implements SupplierService {
         if (!auth(token)) {
             throw new BusinessException("401/token not valid");
         }
-        // TODO delete movies and update db
+        supplierRepository.setSleep();
+        supplierMovieRepository.deleteAllBySupplierId(supplierId);
+        try {
+            FileUtils.cleanDirectory(new File(videopath));
+        } catch (IOException e) {
+            e.printStackTrace();
+            LOGGER.warn("could not delete video files");
+        }
         LOGGER.info("this supplier has been put to sleep");
     }
 
@@ -164,17 +181,18 @@ public class SupplierServiceImpl implements SupplierService {
         // occupiedCpuPercentage = new BigDecimal(occupiedCpuPercentage.toString()).setScale(2, RoundingMode.HALF_UP).doubleValue();
         // occupiedMemPercentage = new BigDecimal(occupiedMemPercentage.toString()).setScale(2, RoundingMode.HALF_UP).doubleValue();
 
-        // TODO add other load value (expressed either with % or with "free slots"
+        Integer freeSlots = maxActiveClients - activeClients;
 
         // it could happen that the reads are incorrect from time to time
         // it usually takes a bit of time to get cpu readings
-        if (occupiedCpuPercentage != 0 && occupiedCpuPercentage != 0) {
+        if (occupiedCpuPercentage != 0 && occupiedCpuPercentage != 0 && freeSlots >= 0) {
             availability = new Availability();
             availability.setSupplier_id(supplierId);
             availability.setAvailable(true);
             availability.setCpuSaturation(occupiedCpuPercentage);
             availability.setMemSaturation(occupiedMemPercentage);
             availability.setTimestamp(ts);
+            availability.setFreeSlots(freeSlots);
 
             availabilityRepository.save(availability);
         }

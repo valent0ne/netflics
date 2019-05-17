@@ -96,5 +96,26 @@ public class SupplierMovieRepositoryImpl implements SupplierMovieRepository {
         }
     }
 
+    public void deleteAllBySupplierId (Long supplierId)throws BusinessException{
+        int rs;
+
+        String sql = "DELETE FROM supplier_movie WHERE supplier_id = ?";
+        LOGGER.debug("query: {}", sql);
+
+        try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
+            st.setLong(1, supplierId);
+
+            rs = st.executeUpdate();
+
+            if (rs != 1) {
+                LOGGER.error("query failed");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new BusinessException(e);
+        }
+    }
+
 
 }

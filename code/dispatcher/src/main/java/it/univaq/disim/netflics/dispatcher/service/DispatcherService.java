@@ -2,6 +2,7 @@ package it.univaq.disim.netflics.dispatcher.service;
 
 import it.univaq.disim.netflics.dispatcher.model.User;
 import it.univaq.disim.netflics.clients.informer.Movie;
+import org.apache.cxf.jaxrs.ext.multipart.Attachment;
 
 import javax.ws.rs.core.StreamingOutput;
 import java.util.List;
@@ -24,9 +25,6 @@ public interface DispatcherService {
 
     StreamingOutput getMovieStream(String token, String ImdbId);
 
+    void addMovie(String token, Attachment movieFile, String imdbId);
 
-
-
-
-
-}
+    }

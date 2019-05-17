@@ -10,16 +10,17 @@ import it.univaq.disim.netflics.dispatcher.model.UserMovie;
 import it.univaq.disim.netflics.dispatcher.repository.*;
 
 import org.apache.cxf.helpers.IOUtils;
+import org.apache.cxf.jaxrs.ext.multipart.Attachment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import javax.activation.DataHandler;
 import javax.ws.rs.client.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.StreamingOutput;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -60,15 +61,22 @@ public class DispatcherServiceImpl implements DispatcherService {
     /**
      * calls the auth service to check the user's credentials (token)
      * @param token user's token
+     * @param role the role the user should have
      * @return true if the token is valid
      */
-    private boolean auth(String token) {
+    private boolean auth(String token, String role) {
 
         CheckTokenRequest checkTokenRequest = new CheckTokenRequest();
         checkTokenRequest.setToken(token);
         CheckTokenResponse checkTokenResponse = authPT.checkToken(checkTokenRequest);
 
-        return (checkTokenResponse.isResult());
+        if(role.equals("ANY")){
+            return (checkTokenResponse.isResult());
+
+        }else{
+            return (checkTokenResponse.isResult() && checkTokenResponse.getRole().equals(role));
+        }
+
     }
 
 
@@ -190,8 +198,8 @@ public class DispatcherServiceImpl implements DispatcherService {
     public StreamingOutput getMovieStream(String token, String imdbId) throws BusinessException {
 
         // check credentials
-        if (!auth(token)) {
-            throw new BusinessException("401/token not valid");
+        if (!auth(token, "ANY")) {
+            throw new BusinessException("401/unauthorized");
         }
 
         // check if the movie exists in the system
@@ -337,6 +345,22 @@ public class DispatcherServiceImpl implements DispatcherService {
             }
 
         };
+    }
+
+    /**
+     * forwards the movie file to the vault and commands the least loaded supplier to fetch it
+     * @param token auth token
+     * @param movieFile movie file
+     * @param imdbId movie unique identifier
+     */
+    public void addMovie(String token, Attachment movieFile, String imdbId){
+        if(!auth(token, "ADMIN")){
+            throw new BusinessException("401/unauthorized");
+        }
+        DataHandler dh = movieFile.getDataHandler();
+
+        // TODO send addMovie to vault
+        // TODO chose the least loaded supplier and send fetchMovie to it
     }
 
     /**

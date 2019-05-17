@@ -13,4 +13,6 @@ public interface SupplierMovieRepository {
 
         SupplierMovie update(SupplierMovie supplierMovie) throws BusinessException;
 
+        void deleteAllBySupplierId(Long supplierId) throws BusinessException;
+
 }
