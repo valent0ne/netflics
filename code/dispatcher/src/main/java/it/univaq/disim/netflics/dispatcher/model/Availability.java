@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.sql.Timestamp;
 
-public class Availability implements java.io.Serializable {
+public class Availability implements Comparable<Availability> {
 
     @JsonIgnore
     private Long id;
@@ -88,4 +88,10 @@ public class Availability implements java.io.Serializable {
     public Integer getFreeSlots() {return freeSlots; }
 
     public void setFreeSlots(Integer freeSlots) {this.freeSlots = freeSlots; }
+
+
+    @Override
+    public int compareTo(Availability o) {
+        return this.freeSlots.compareTo(o.freeSlots);
+    }
 }

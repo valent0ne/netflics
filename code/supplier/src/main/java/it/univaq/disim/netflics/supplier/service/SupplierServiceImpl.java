@@ -123,7 +123,7 @@ public class SupplierServiceImpl implements SupplierService {
      * awakes this supplier
      * @param token auth token
      */
-    public void awake(String token){
+    public void wakeUp(String token){
         // check credentials
         if (!auth(token)) {
             throw new BusinessException("401/token not valid");

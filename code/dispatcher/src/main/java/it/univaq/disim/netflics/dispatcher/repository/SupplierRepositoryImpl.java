@@ -42,6 +42,8 @@ public class SupplierRepositoryImpl implements SupplierRepository{
                 s.setIp(rs.getString("ip"));
                 s.setPort(rs.getString("port"));
                 s.setToken(rs.getString("token"));
+                s.setSlots(rs.getInt("slots"));
+                s.setStatus(rs.getString("status"));
                 suppliers.add(s);
             }
         }catch (SQLException e) {
@@ -50,6 +52,35 @@ public class SupplierRepositoryImpl implements SupplierRepository{
         }
         return suppliers;
     }
+
+    public List<Supplier> findAllByStatus(String status) throws BusinessException {
+
+        ResultSet rs;
+        String sql = "SELECT * FROM supplier WHERE status = ?";
+
+        List<Supplier> suppliers = new ArrayList<>();
+
+        try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, status);
+            rs = st.executeQuery();
+
+            while(rs.next()){
+                Supplier s = new Supplier();
+                s.setId(rs.getLong("id"));
+                s.setIp(rs.getString("ip"));
+                s.setPort(rs.getString("port"));
+                s.setToken(rs.getString("token"));
+                s.setSlots(rs.getInt("slots"));
+                s.setStatus(rs.getString("status"));
+                suppliers.add(s);
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+            throw new BusinessException(e);
+        }
+        return suppliers;
+    }
+
 
     public List<Supplier> findAllByMovieFetched(String imdbId) throws BusinessException {
 

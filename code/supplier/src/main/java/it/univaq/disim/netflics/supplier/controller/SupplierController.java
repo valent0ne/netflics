@@ -105,16 +105,16 @@ public class SupplierController {
 
 
     /**
-     * awake this supplier
+     * wakes up this supplier
      * @param token auth token
      * @return status based on obtained outcome
      */
     @POST
-    @Path("/{token}/awake")
-    public Response awake(@PathParam("token") String token){
-        LOGGER.info("supplier - awake(), token: {}", token);
+    @Path("/{token}/wakeup")
+    public Response wakeUp(@PathParam("token") String token){
+        LOGGER.info("supplier - wakeUp(), token: {}", token);
         try{
-            service.awake(token);
+            service.wakeUp(token);
             return Response.status(200).build();
         }catch (BusinessException e){
             return e.restResponseHandler();

@@ -15,5 +15,7 @@ public interface SupplierRepository {
 
     List<Supplier> findAllByMovieFetched(String imdbId) throws BusinessException;
 
+    List<Supplier> findAllByStatus(String status) throws BusinessException;
+
 
 }

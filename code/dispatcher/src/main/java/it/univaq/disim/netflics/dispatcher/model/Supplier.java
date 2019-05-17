@@ -9,6 +9,7 @@ public class Supplier {
     private String port;
     private String token;
     private Integer slots;
+    private String status;
 
 
     public Supplier() {
@@ -17,6 +18,7 @@ public class Supplier {
         this.port = null;
         this.token = null;
         this.slots = null;
+        this.status = null;
     }
 
 
@@ -26,6 +28,7 @@ public class Supplier {
         this.port = port;
         this.token = token;
         this.slots = slots;
+        this.status = status;
     }
 
     public Long getId() {
@@ -64,6 +67,13 @@ public class Supplier {
 
     public void setSlots(Integer slots) { this.slots = slots; }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     @Override
     public boolean equals(Object o) {
