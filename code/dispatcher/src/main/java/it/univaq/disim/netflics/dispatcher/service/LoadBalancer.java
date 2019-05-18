@@ -79,7 +79,6 @@ public class LoadBalancer {
     private VaultPT vaultPT = vaultService.getVaultPort();;
 
     private Movie movie;
-
     private String token;
 
     LoadBalancer(){}
@@ -112,8 +111,6 @@ public class LoadBalancer {
 
         } catch (Exception e) {
             LOGGER.warn("500/error while polling the suppliers, continuing anyway: {}", e.getMessage());
-            // throw new BusinessException("500/error while polling the suppliers");
-            // try to continue anyway...the suppliers will be polled again during the next method invocation
         }
         // freeSuppliers is now filled
     }
@@ -124,6 +121,7 @@ public class LoadBalancer {
     void analyze(){
 
         List<Supplier> allSuplliersHavingMovie = supplierRepository.findAllByMovieFetched(movie.getImdbId());
+
         for (Map.Entry<Supplier, Availability> entry : freeSuppliers.entrySet()) {
             if (allSuplliersHavingMovie.contains(entry.getKey())) {
                 freeSuppliersHavingMovie.put(entry.getKey(), entry.getValue());
@@ -131,7 +129,7 @@ public class LoadBalancer {
                 freeSuppliersNotHavingMovie.put(entry.getKey(), entry.getValue());
             }
         }
-        // freeSuppliersHavingMovie and freeSuppliersNotHavingMovie are fille
+        // freeSuppliersHavingMovie and freeSuppliersNotHavingMovie are file
     }
 
     /**
@@ -144,7 +142,7 @@ public class LoadBalancer {
             if(freeSuppliersHavingMovie.size() > 0){
                 // chose the best supplier to stream
                 chosenOne = bestSuppliers(freeSuppliersHavingMovie).get(0);
-            }else{ // there are no free suppliers having movie
+            }else{ // there are free suppliers not having movie
                 // choose suppliers to fetch movie
                 suppliersToFetch = bestSuppliers(freeSuppliersNotHavingMovie).subList(0, Math.min(freeSuppliersNotHavingMovie.size(), numSuppliersToFetch));
             }
@@ -155,6 +153,9 @@ public class LoadBalancer {
                     suppliersToSleep.add(entry.getKey());
                 }
             }
+            // if the chosen one ended up on the sleep list, remove it
+            suppliersToSleep.remove(chosenOne);
+
         }else{ // there are no free suppliers
 
             if(sleepingSuppliers.size() > 0){
@@ -166,7 +167,6 @@ public class LoadBalancer {
                 streamFromVault = true; // stream from vault
             }
         }
-
 
     }
 
@@ -188,7 +188,6 @@ public class LoadBalancer {
 
             } catch (Exception e) {
                 LOGGER.warn("500/error sending sleep: {}", e.getMessage());
-
             }
         }
 
@@ -205,12 +204,12 @@ public class LoadBalancer {
 
             } catch (Exception e) {
                 LOGGER.warn("500/error sending wakeUp: {}", e.getMessage());
-
             }
         }
 
         // send fetch
         if(suppliersToFetch.size() > 0){
+
             LOGGER.info("sending fetchMovie...");
             try {
                 ExecutorService sendFetchThreadPool = Executors.newFixedThreadPool(suppliersToSleep.size());
@@ -219,10 +218,8 @@ public class LoadBalancer {
                 }
                 sendFetchThreadPool.shutdown();
                 // getAvailabilityThreadPool.awaitTermination(3000, TimeUnit.MILLISECONDS);
-
             } catch (Exception e) {
                 LOGGER.warn("500/error sending fetchMovie: {}", e.getMessage());
-
             }
         }
 
@@ -294,7 +291,7 @@ public class LoadBalancer {
             };
         }
 
-        throw new BusinessException("404/the requested movie is currently not available");
+        throw new BusinessException("503/the requested movie is currently not available due to system overload, try again later");
 
     }
 

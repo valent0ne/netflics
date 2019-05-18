@@ -170,7 +170,7 @@ public class DispatcherController {
             }catch (BusinessException e){
 
                 // if the movie is not available on any supplier
-                if(e.getMessage().equals("404/the requested movie is currently not available") && retrycount < retrythreshold){
+                if(e.getMessage().startsWith("503") && retrycount < retrythreshold){
                     retrycount++;
                     try {
                         TimeUnit.MILLISECONDS.sleep(2000);
@@ -182,7 +182,6 @@ public class DispatcherController {
                 return e.restResponseHandler();
             }
         }
-
     }
 
 }
