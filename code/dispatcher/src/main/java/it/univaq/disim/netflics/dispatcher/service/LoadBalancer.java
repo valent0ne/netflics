@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -28,45 +29,35 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import static java.util.Map.Entry.comparingByValue;
 import static java.util.stream.Collectors.toMap;
 
 @SuppressWarnings("Duplicates")
-@Component
 public class LoadBalancer {
 
     private static Logger LOGGER = LoggerFactory.getLogger(LoadBalancer.class);
 
-    @Autowired
-    private static SupplierRepository supplierRepository;
+    private SupplierRepository supplierRepository;
 
-    @Autowired
-    private static SessionRepository sessionRepository;
+    private SessionRepository sessionRepository;
 
-    @Autowired
-    private static AvailabilityRepository availabilityRepository;
+    private AvailabilityRepository availabilityRepository;
 
-    @Autowired
-    private static UserMovieRepository userMovieRepository;
+    private UserMovieRepository userMovieRepository;
 
-    @Autowired
-    private static MovieRepository movieRepository;
+    private MovieRepository movieRepository;
 
-    @Value("#{cfg.numsupplierstofetch}")
     private int numSuppliersToFetch;
-
-    @Value("#{cfg.numsupplierstowakeup}")
     private int numSuppliersToWakeUp;
-
-    @Value("#{cfg.freeslotsthreshold}")
     private int freeSlotsThreshold;
 
     private ConcurrentHashMap<Supplier, Availability> freeSuppliers = new ConcurrentHashMap<>();
-    private HashMap<Supplier, Availability> freeSuppliersHavingMovie = new HashMap<>();;
+    private HashMap<Supplier, Availability> freeSuppliersHavingMovie = new HashMap<>();
     private HashMap<Supplier, Availability> freeSuppliersNotHavingMovie = new HashMap<>();
 
-    private List<Supplier> sleepingSuppliers = new ArrayList<>();;
+    private List<Supplier> sleepingSuppliers = new ArrayList<>();
 
     private List<Supplier> suppliersToWakeUp = new ArrayList<>();
     private List<Supplier> suppliersToSleep = new ArrayList<>();
@@ -81,9 +72,26 @@ public class LoadBalancer {
     private Movie movie;
     private String token;
 
-    LoadBalancer(){}
+    LoadBalancer(AvailabilityRepository availabilityRepository,
+                 SupplierRepository supplierRepository,
+                 UserMovieRepository userMovieRepository,
+                 SessionRepository sessionRepository,
+                 MovieRepository movieRepository,
+                 int numSuppliersToFetch,
+                 int numSuppliersToWakeUp,
+                 int freeSlotsThreshold,
+                 String token,
+                 Movie movie) {
 
-    LoadBalancer(String token, Movie movie) {
+        this.availabilityRepository = availabilityRepository;
+        this.supplierRepository = supplierRepository;
+        this.userMovieRepository = userMovieRepository;
+        this.movieRepository = movieRepository;
+        this.sessionRepository = sessionRepository;
+
+        this.numSuppliersToFetch = numSuppliersToFetch;
+        this.numSuppliersToWakeUp = numSuppliersToWakeUp;
+        this.freeSlotsThreshold = freeSlotsThreshold;
 
         this.movie = movie;
         this.token = token;
@@ -93,6 +101,7 @@ public class LoadBalancer {
      * retrieves the system's status (suppliers data and their availabilities
      */
     void monitor() {
+        LOGGER.info("MONITOR PHASE");
 
         // fill the sleepingSuppliers list
         sleepingSuppliers = supplierRepository.findAllByStatus("SLEEP");
@@ -104,7 +113,7 @@ public class LoadBalancer {
         try {
             ExecutorService getAvailabilityThreadPool = Executors.newFixedThreadPool(suppliersToPoll.size());
             for (Supplier s : suppliersToPoll) {
-                getAvailabilityThreadPool.submit(() -> sendGetAvailability(s, token, freeSuppliers, freeSlotsThreshold));
+                getAvailabilityThreadPool.submit(() -> sendGetAvailability(s, token, freeSuppliers, freeSlotsThreshold, availabilityRepository));
             }
             getAvailabilityThreadPool.shutdown();
             getAvailabilityThreadPool.awaitTermination(3000, TimeUnit.MILLISECONDS);
@@ -119,6 +128,7 @@ public class LoadBalancer {
      * analyzes the data retrieved by the monitor phase
      */
     void analyze(){
+        LOGGER.info("ANALYZE PHASE");
 
         List<Supplier> allSuplliersHavingMovie = supplierRepository.findAllByMovieFetched(movie.getImdbId());
 
@@ -136,15 +146,20 @@ public class LoadBalancer {
      * defines what operations ust be performed
      */
     void plan(){
+        LOGGER.info("PLAN PHASE");
+
 
         if(freeSuppliers.size() > 0){
-
+            LOGGER.info("there are free suppliers");
             if(freeSuppliersHavingMovie.size() > 0){
+                LOGGER.info("there are free suppliers having movie");
                 // chose the best supplier to stream
                 chosenOne = bestSuppliers(freeSuppliersHavingMovie).get(0);
+                LOGGER.info("there best supplier has been chosen");
             }else{ // there are free suppliers not having movie
+                LOGGER.info("there are free suppliers not having the movie");
                 // choose suppliers to fetch movie
-                suppliersToFetch = bestSuppliers(freeSuppliersNotHavingMovie).subList(0, Math.min(freeSuppliersNotHavingMovie.size(), numSuppliersToFetch));
+                suppliersToFetch.addAll(bestSuppliers(freeSuppliersNotHavingMovie).subList(0, Math.min(freeSuppliersNotHavingMovie.size(), numSuppliersToFetch)));
             }
 
             // if there are suppliers that are not serving anyone, put them to sleep list
@@ -157,13 +172,17 @@ public class LoadBalancer {
             suppliersToSleep.remove(chosenOne);
 
         }else{ // there are no free suppliers
-
+            LOGGER.info("there are no free suppliers available");
             if(sleepingSuppliers.size() > 0){
+                LOGGER.info("there are sleeping suppliers");
                 // choose suppliers to wake up and fecth (between sleep suppliers, if any)
                 Collections.shuffle(sleepingSuppliers);
-                suppliersToWakeUp = sleepingSuppliers.subList(0, Math.min(sleepingSuppliers.size(), numSuppliersToWakeUp));
+                suppliersToWakeUp.addAll(sleepingSuppliers.subList(0, Math.min(sleepingSuppliers.size(), numSuppliersToWakeUp)));
                 suppliersToFetch.addAll(suppliersToWakeUp);
+                LOGGER.info("waiting for suppliers to wake up and fecth: streaming from vault");
+                streamFromVault = true;
             }else{ // there are suppliers that can be awaken and there are no supplier free, so ask the vault
+                LOGGER.info("no free suppliers and no sleeping suppliers: streaming from vault");
                 streamFromVault = true; // stream from vault
             }
         }
@@ -174,6 +193,7 @@ public class LoadBalancer {
      * executes the operations defined in the plan phase
      */
     StreamingOutput execute(){
+        LOGGER.info("EXECUTE PHASE");
 
         // send sleep
         if(suppliersToSleep.size() > 0){
@@ -187,7 +207,7 @@ public class LoadBalancer {
                 // getAvailabilityThreadPool.awaitTermination(3000, TimeUnit.MILLISECONDS);
 
             } catch (Exception e) {
-                LOGGER.warn("500/error sending sleep: {}", e.getMessage());
+                LOGGER.warn("error sending sleep: {}", e.getMessage());
             }
         }
 
@@ -203,7 +223,7 @@ public class LoadBalancer {
                 // getAvailabilityThreadPool.awaitTermination(3000, TimeUnit.MILLISECONDS);
 
             } catch (Exception e) {
-                LOGGER.warn("500/error sending wakeUp: {}", e.getMessage());
+                LOGGER.warn("error sending wakeUp: {}", e.getMessage());
             }
         }
 
@@ -219,7 +239,7 @@ public class LoadBalancer {
                 sendFetchThreadPool.shutdown();
                 // getAvailabilityThreadPool.awaitTermination(3000, TimeUnit.MILLISECONDS);
             } catch (Exception e) {
-                LOGGER.warn("500/error sending fetchMovie: {}", e.getMessage());
+                LOGGER.warn("error sending fetchMovie: {}", e.getMessage());
             }
         }
 
@@ -303,7 +323,7 @@ public class LoadBalancer {
      * @param token auth token
      * @param map contains the result
      */
-    static void sendGetAvailability(Supplier s, String token, ConcurrentHashMap<Supplier, Availability> map, int freeSlotsThreshold) {
+    static void sendGetAvailability(Supplier s, String token, ConcurrentHashMap<Supplier, Availability> map, int freeSlotsThreshold, AvailabilityRepository availabilityRepository) {
 
         LOGGER.info("sending getAvailability to supplier: {} - {}:{}, token: {}", s.getId(), s.getIp(), s.getPort(), token);
 
@@ -315,7 +335,6 @@ public class LoadBalancer {
                     .target("http://" + s.getIp() + ":" + s.getPort() + "/supplier/api/supplier/" + token + "/availability");
             a = target.request(MediaType.APPLICATION_JSON).get(Availability.class);
         } catch (Exception e) {
-            //e.printStackTrace();
             LOGGER.error("the supplier " + s.getId() + " seems unavailable: {}", e.getMessage());
             availabilityRepository.setUnavailable(s);
             return;

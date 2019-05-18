@@ -169,14 +169,14 @@ public class SupplierServiceImpl implements SupplierService {
 
         Timestamp ts = new Timestamp(System.currentTimeMillis());
 
-        Double occupiedCpuPercentage = osBean.getSystemCpuLoad();
-        Double occupiedMemPercentage = (((double) osBean.getTotalPhysicalMemorySize() - (double)osBean.getFreePhysicalMemorySize()) / (double)osBean.getTotalPhysicalMemorySize());
+        //Double occupiedCpuPercentage = osBean.getSystemCpuLoad();
+        //Double occupiedMemPercentage = (((double) osBean.getTotalPhysicalMemorySize() - (double)osBean.getFreePhysicalMemorySize()) / (double)osBean.getTotalPhysicalMemorySize());
 
-        DecimalFormat df = new DecimalFormat("#.##");
-        df.setRoundingMode(RoundingMode.CEILING);
+        //DecimalFormat df = new DecimalFormat("#.##");
+        //df.setRoundingMode(RoundingMode.UP);
 
-        occupiedCpuPercentage = new Double(df.format(occupiedCpuPercentage));
-        occupiedMemPercentage = new Double(df.format(occupiedMemPercentage));
+        //occupiedCpuPercentage = new Double(df.format(occupiedCpuPercentage));
+        //occupiedMemPercentage = new Double(df.format(occupiedMemPercentage));
 
         // occupiedCpuPercentage = new BigDecimal(occupiedCpuPercentage.toString()).setScale(2, RoundingMode.HALF_UP).doubleValue();
         // occupiedMemPercentage = new BigDecimal(occupiedMemPercentage.toString()).setScale(2, RoundingMode.HALF_UP).doubleValue();
@@ -185,12 +185,12 @@ public class SupplierServiceImpl implements SupplierService {
 
         // it could happen that the reads are incorrect from time to time
         // it usually takes a bit of time to get cpu readings
-        if (occupiedCpuPercentage != 0 && occupiedCpuPercentage != 0 && freeSlots >= 0) {
+        if (freeSlots >= 0) {
             availability = new Availability();
             availability.setSupplier_id(supplierId);
             availability.setAvailable(true);
-            availability.setCpuSaturation(occupiedCpuPercentage);
-            availability.setMemSaturation(occupiedMemPercentage);
+            availability.setCpuSaturation(0.0);
+            availability.setMemSaturation(0.0);
             availability.setTimestamp(ts);
             availability.setFreeSlots(freeSlots);
 

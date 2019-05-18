@@ -175,8 +175,8 @@ public class DispatcherController {
                     try {
                         TimeUnit.MILLISECONDS.sleep(2000);
                     }catch (Exception ignored){
-                        LOGGER.warn("{}, retrying {}/{}...", e.getMessage(), retrycount, retrythreshold);
                     }
+                    LOGGER.warn("{}, retrying {}/{}...", e.getMessage(), retrycount, retrythreshold);
                     continue;
                 }
                 return e.restResponseHandler();

@@ -62,6 +62,12 @@ public class DispatcherServiceImpl implements DispatcherService {
     @Autowired
     private MovieRepository movieRepository;
 
+    @Value("#{cfg.numsupplierstofetch}")
+    private int numSuppliersToFetch;
+
+    @Value("#{cfg.numsupplierstowakeup}")
+    private int numSuppliersToWakeUp;
+
     @Value("#{cfg.freeslotsthreshold}")
     private int freeSlotsThreshold;
 
@@ -215,12 +221,28 @@ public class DispatcherServiceImpl implements DispatcherService {
             throw new BusinessException("404/the requested movie does not exists");
         }
 
-        LoadBalancer lb = new LoadBalancer(token, m);
+        try{
+            LoadBalancer lb = new LoadBalancer(availabilityRepository,
+                                               supplierRepository,
+                                               userMovieRepository,
+                                               sessionRepository,
+                                               movieRepository,
+                                               numSuppliersToFetch,
+                                               numSuppliersToWakeUp,
+                                               freeSlotsThreshold,
+                                               token,
+                                               m);
 
-        lb.monitor();
-        lb.analyze();
-        lb.plan();
-        return lb.execute();
+            lb.monitor();
+            lb.analyze();
+            lb.plan();
+            return lb.execute();
+
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new BusinessException(e.getMessage());
+        }
+
 
     }
 
@@ -254,7 +276,7 @@ public class DispatcherServiceImpl implements DispatcherService {
             try{
                 ExecutorService getAvailabilityThreadPool = Executors.newFixedThreadPool(suppliersToPoll.size());
                 for(Supplier s: suppliersToPoll){
-                    getAvailabilityThreadPool.submit(() -> sendGetAvailability(s, token, map, freeSlotsThreshold));
+                    getAvailabilityThreadPool.submit(() -> sendGetAvailability(s, token, map, freeSlotsThreshold, availabilityRepository));
                 }
                 getAvailabilityThreadPool.shutdown();
                 getAvailabilityThreadPool.awaitTermination(3000, TimeUnit.MILLISECONDS);
