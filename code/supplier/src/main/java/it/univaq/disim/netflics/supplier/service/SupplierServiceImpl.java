@@ -18,6 +18,7 @@ import it.univaq.disim.netflics.supplier.repository.SupplierMovieRepository;
 import it.univaq.disim.netflics.supplier.repository.SupplierRepository;
 import org.apache.commons.io.FileUtils;
 import org.apache.cxf.Bus;
+import org.apache.cxf.helpers.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,7 @@ import java.nio.file.Files;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 @Service
@@ -68,7 +70,7 @@ public class SupplierServiceImpl implements SupplierService {
     @Autowired
     private SupplierRepository supplierRepository;
 
-    private static int activeClients = 0;
+    private static AtomicInteger activeClients = new AtomicInteger(0);
 
     /**
      * retrieves the movie from the filesystem and returns it
@@ -93,35 +95,35 @@ public class SupplierServiceImpl implements SupplierService {
             SupplierMovie sm = new SupplierMovie();
             sm.setSupplierId(supplierId);
             Movie m = movieRepository.findOneByImdbId(imdbId);
-            if(m == null){
+            if (m == null) {
                 return null;
             }
             sm.setMovieId(m.getId());
             // if there is a wrong entry into the db, clean it
-            if(sm.getMovieId() != null){
+            if (sm.getMovieId() != null) {
                 supplierMovieRepository.delete(sm);
             }
             return null;
         }
-        LOGGER.info("movie "+imdbId+" has been found, token: {}", token);
-
-
-        LOGGER.info("sending stream...");
+        LOGGER.info("movie " + imdbId + " has been found, token: {}", token);
 
         return outputStream -> {
             try {
-                activeClients += 1;
-                LOGGER.info("streaming...free slots: {}, token: {}", maxActiveClients - activeClients, token);
+                int currentActiveClients = activeClients.incrementAndGet();
+                LOGGER.info("streaming...free slots: {}, token: {}", maxActiveClients - currentActiveClients, token);
                 // artificial delay
                 TimeUnit.SECONDS.sleep(10);
-                Files.copy(file.toPath(), outputStream);
+
+                InputStream is = FileUtils.openInputStream(file);
+                outputStream.write(is.read());
                 outputStream.flush();
-            }catch (Exception ignored){
+
+            } catch (Exception ignored){
 
             } finally {
+                int currentActiveClients = activeClients.decrementAndGet();
+                LOGGER.info("stream ended, free slots: {}, token: {}", maxActiveClients - currentActiveClients, token);
                 outputStream.close();
-                activeClients -= 1;
-                LOGGER.info("stream ended, free slots: {}, token: {}", maxActiveClients-activeClients, token);
 
             }
         };
@@ -129,9 +131,10 @@ public class SupplierServiceImpl implements SupplierService {
 
     /**
      * awakes this supplier
+     *
      * @param token auth token
      */
-    public void wakeUp(String token){
+    public void wakeUp(String token) {
         // check credentials
         if (!auth(token)) {
             throw new BusinessException("401/token not valid");
@@ -142,14 +145,15 @@ public class SupplierServiceImpl implements SupplierService {
 
     /**
      * put this supplier to sleep
+     *
      * @param token auth token
      */
-    public void sleep(String token){
+    public void sleep(String token) {
         // check credentials
         if (!auth(token)) {
             throw new BusinessException("401/token not valid");
         }
-        if(supplierMovieRepository.findAllByStatusFetching(supplierId).size() > 0){
+        if (supplierMovieRepository.findAllByStatusFetching(supplierId).size() > 0) {
             LOGGER.warn("cant go to sleep, I'm retrieving movies, token: {}", token);
             return;
         }
@@ -194,7 +198,7 @@ public class SupplierServiceImpl implements SupplierService {
         // occupiedCpuPercentage = new BigDecimal(occupiedCpuPercentage.toString()).setScale(2, RoundingMode.HALF_UP).doubleValue();
         // occupiedMemPercentage = new BigDecimal(occupiedMemPercentage.toString()).setScale(2, RoundingMode.HALF_UP).doubleValue();
 
-        Integer freeSlots = maxActiveClients - activeClients;
+        Integer freeSlots = maxActiveClients - activeClients.get();
 
         // it could happen that the reads are incorrect from time to time
         // it usually takes a bit of time to get cpu readings
@@ -229,7 +233,7 @@ public class SupplierServiceImpl implements SupplierService {
         SupplierMovie sm = new SupplierMovie();
         sm.setSupplierId(supplierId);
         Movie m = movieRepository.findOneByImdbId(imdbId);
-        if(m == null){
+        if (m == null) {
             throw new BusinessException("404/the requested movie cannot be found");
         }
         sm.setMovieId(m.getId());
@@ -237,7 +241,7 @@ public class SupplierServiceImpl implements SupplierService {
 
         File file = new File(videopath + imdbId);
 
-        if(file.exists() && file.length() > 0){
+        if (file.exists() && file.length() > 0) {
             throw new BusinessException("500/movie already available");
         }
 
@@ -253,7 +257,7 @@ public class SupplierServiceImpl implements SupplierService {
         GetMovieResponse getMovieResponse = vaultPT.getMovie(getMovieRequest);
         DataHandler dh = getMovieResponse.getMovie();
         String result = getMovieResponse.getResult();
-        String status = result.substring(0,3);
+        String status = result.substring(0, 3);
 
         // if the vault service did not return an error
         if (status.equals("200")) {
@@ -299,8 +303,6 @@ public class SupplierServiceImpl implements SupplierService {
 
         return (checkTokenResponse.isResult());
     }
-
-
 
 
 }

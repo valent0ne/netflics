@@ -1,386 +1,374 @@
-2019-05-19 11:49:10,381  INFO [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 0
-2019-05-19 11:49:10,385  WARN [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - error while polling the suppliers, continuing anyway: null
-2019-05-19 11:49:10,385  INFO [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 0
-2019-05-19 11:49:10,387  INFO [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 0
-2019-05-19 11:49:10,387  INFO [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are no free suppliers available
-2019-05-19 11:49:10,387  INFO [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are sleeping suppliers, token: 0
-2019-05-19 11:49:10,387  INFO [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - waiting for suppliers to wake up and fecth: try again later, token: 0
-2019-05-19 11:49:10,387  INFO [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 0
-2019-05-19 11:49:10,387  INFO [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending wake up..., token: 0
-2019-05-19 11:49:10,388  INFO [pool-29-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending wakeUp to supplier: 3 - localhost8083, token: 0
-2019-05-19 11:49:10,388  INFO [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie..., token: 0
-2019-05-19 11:49:10,389  INFO [pool-30-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie to supplier: 3 - localhost8083, token: 0
-2019-05-19 11:49:10,390  WARN [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.service.DispatcherServiceImpl - serviceexception: 503/the requested movie is currently not available due to system overload, try again later
- INFO [http-nio-8080-exec-10] org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean - Creating Service {http://it.univaq.disim.netflics/auth}AuthService from WSDL: file:/Users/valent0ne/Projects/netflics/code/vault/src/main/resources/clients/auth.wsdl
-2019-05-19 11:49:11,287  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 1
-2019-05-19 11:49:11,295  INFO [pool-31-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 1
-2019-05-19 11:49:11,994  INFO [pool-31-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is available
-2019-05-19 11:49:11,994  INFO [pool-31-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is free (5 slots are available), token: 1
-2019-05-19 11:49:11,994  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 1
-2019-05-19 11:49:11,996  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 1
-2019-05-19 11:49:11,996  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 1
-2019-05-19 11:49:11,996  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers not having the movie, token: 1
-2019-05-19 11:49:11,996  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 1
-2019-05-19 11:49:11,996  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie..., token: 1
-2019-05-19 11:49:11,996  WARN [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.DispatcherServiceImpl - serviceexception: 503/the requested movie is currently not available due to system overload, try again later
-2019-05-19 11:49:11,997  INFO [pool-32-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie to supplier: 3 - localhost8083, token: 1
+2019-05-19 14:28:55,240  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 0
+2019-05-19 14:28:55,243  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 3 sleeping suppliers, token: 0
+2019-05-19 14:28:55,245  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 0 awake suppliers, token: 0
+2019-05-19 14:28:55,245  WARN [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - error while polling the suppliers, continuing anyway: null
+2019-05-19 14:28:55,246  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 0
+2019-05-19 14:28:55,247  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 0
+2019-05-19 14:28:55,247  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are no free suppliers available
+2019-05-19 14:28:55,247  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are sleeping suppliers, token: 0
+2019-05-19 14:28:55,248  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - waiting for suppliers to wake up and fecth: try again later, token: 0
+2019-05-19 14:28:55,248  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 0
+2019-05-19 14:28:55,248  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending wake up..., token: 0
+2019-05-19 14:28:55,249  INFO [pool-6-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending wakeUp to supplier: 1 - localhost8081, token: 0
+2019-05-19 14:28:55,252  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie..., token: 0
+2019-05-19 14:28:55,254  INFO [pool-7-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie to supplier: 1 - localhost8081, token: 0
+2019-05-19 14:28:55,254  WARN [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.DispatcherServiceImpl - serviceexception: 503/the requested movie is currently not available due to system overload, try again later
+2019-05-19 14:28:55,492  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 1
+2019-05-19 14:28:55,494  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 3 sleeping suppliers, token: 1
+2019-05-19 14:28:55,495  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 0 awake suppliers, token: 1
+2019-05-19 14:28:55,496  WARN [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - error while polling the suppliers, continuing anyway: null
+2019-05-19 14:28:55,496  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 1
+2019-05-19 14:28:55,497  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 1
+2019-05-19 14:28:55,497  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are no free suppliers available
+2019-05-19 14:28:55,497  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are sleeping suppliers, token: 1
+2019-05-19 14:28:55,497  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - waiting for suppliers to wake up and fecth: try again later, token: 1
+2019-05-19 14:28:55,497  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 1
+2019-05-19 14:28:55,497  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending wake up..., token: 1
+2019-05-19 14:28:55,498  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie..., token: 1
+2019-05-19 14:28:55,498  INFO [pool-9-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending wakeUp to supplier: 2 - localhost8082, token: 1
+2019-05-19 14:28:55,498  WARN [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.DispatcherServiceImpl - serviceexception: 503/the requested movie is currently not available due to system overload, try again later
+2019-05-19 14:28:55,500  INFO [pool-10-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie to supplier: 2 - localhost8082, token: 1
+2019-05-19 14:28:57,258  WARN [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.controller.DispatcherController - 503/the requested movie is currently not available due to system overload, try again later, retrying 1/3..., token 0
+2019-05-19 14:28:57,286  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 0
+2019-05-19 14:28:57,287  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 1 sleeping suppliers, token: 0
+2019-05-19 14:28:57,289  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 2 awake suppliers, token: 0
+2019-05-19 14:28:57,290  INFO [pool-11-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 0
+2019-05-19 14:28:57,290  INFO [pool-11-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 0
+2019-05-19 14:28:57,493  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 2
+2019-05-19 14:28:57,495  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 1 sleeping suppliers, token: 2
+2019-05-19 14:28:57,497  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 2 awake suppliers, token: 2
+2019-05-19 14:28:57,497  INFO [pool-12-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 2
+2019-05-19 14:28:57,498  INFO [pool-12-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 2
+2019-05-19 14:28:57,503  WARN [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.controller.DispatcherController - 503/the requested movie is currently not available due to system overload, try again later, retrying 1/3..., token 1
+2019-05-19 14:28:57,545  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 1
+2019-05-19 14:28:57,547  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 1 sleeping suppliers, token: 1
+2019-05-19 14:28:57,549  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 2 awake suppliers, token: 1
+2019-05-19 14:28:57,549  INFO [pool-13-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 1
+2019-05-19 14:28:57,549  INFO [pool-13-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 1
+ INFO [http-nio-8080-exec-9] org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean - Creating Service {http://it.univaq.disim.netflics/auth}AuthService from WSDL: file:/Users/valent0ne/Projects/netflics/code/vault/src/main/resources/clients/auth.wsdl
  INFO [http-nio-8080-exec-2] org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean - Creating Service {http://it.univaq.disim.netflics/auth}AuthService from WSDL: file:/Users/valent0ne/Projects/netflics/code/vault/src/main/resources/clients/auth.wsdl
-2019-05-19 11:49:12,391  WARN [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.controller.DispatcherController - 503/the requested movie is currently not available due to system overload, try again later, retrying 1/3..., token 0
-2019-05-19 11:49:12,432  INFO [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 0
-2019-05-19 11:49:12,436  INFO [pool-33-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 0
-2019-05-19 11:49:12,492  INFO [pool-33-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is available
-2019-05-19 11:49:12,492  INFO [pool-33-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is free (5 slots are available), token: 0
-2019-05-19 11:49:12,492  INFO [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 0
-2019-05-19 11:49:12,494  INFO [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 0
-2019-05-19 11:49:12,494  INFO [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 0
-2019-05-19 11:49:12,494  INFO [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 0
-2019-05-19 11:49:12,494  INFO [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 3, token: 0
-2019-05-19 11:49:12,494  INFO [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 0
-2019-05-19 11:49:12,494  INFO [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 3..., token: 0
-2019-05-19 11:49:13,279  INFO [http-nio-8080-exec-11] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 2
-2019-05-19 11:49:13,283  INFO [pool-34-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 2
-2019-05-19 11:49:13,342  INFO [pool-34-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is available
-2019-05-19 11:49:13,342  INFO [pool-34-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is free (4 slots are available), token: 2
-2019-05-19 11:49:13,342  INFO [http-nio-8080-exec-11] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 2
-2019-05-19 11:49:13,343  INFO [http-nio-8080-exec-11] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 2
-2019-05-19 11:49:13,344  INFO [http-nio-8080-exec-11] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 2
-2019-05-19 11:49:13,344  INFO [http-nio-8080-exec-11] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 2
-2019-05-19 11:49:13,344  INFO [http-nio-8080-exec-11] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 3, token: 2
-2019-05-19 11:49:13,344  INFO [http-nio-8080-exec-11] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 2
-2019-05-19 11:49:13,344  INFO [http-nio-8080-exec-11] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 3..., token: 2
-2019-05-19 11:49:14,000  WARN [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.controller.DispatcherController - 503/the requested movie is currently not available due to system overload, try again later, retrying 1/3..., token 1
-2019-05-19 11:49:14,027  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 1
-2019-05-19 11:49:14,031  INFO [pool-35-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 1
-2019-05-19 11:49:14,092  INFO [pool-35-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is available
-2019-05-19 11:49:14,092  INFO [pool-35-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is free (3 slots are available), token: 1
-2019-05-19 11:49:14,093  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 1
-2019-05-19 11:49:14,095  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 1
-2019-05-19 11:49:14,095  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 1
-2019-05-19 11:49:14,095  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 1
-2019-05-19 11:49:14,095  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 3, token: 1
-2019-05-19 11:49:14,095  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 1
-2019-05-19 11:49:14,095  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 3..., token: 1
-2019-05-19 11:49:15,267  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 3
-2019-05-19 11:49:15,270  INFO [pool-36-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 3
-2019-05-19 11:49:15,324  INFO [pool-36-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is available
-2019-05-19 11:49:15,324  INFO [pool-36-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is not free (2 slots are available), token: 3
-2019-05-19 11:49:15,324  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 3
-2019-05-19 11:49:15,326  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 3
-2019-05-19 11:49:15,326  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are no free suppliers available
-2019-05-19 11:49:15,326  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are sleeping suppliers, token: 3
-2019-05-19 11:49:15,326  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - waiting for suppliers to wake up and fecth: try again later, token: 3
-2019-05-19 11:49:15,326  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 3
-2019-05-19 11:49:15,326  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending wake up..., token: 3
-2019-05-19 11:49:15,326  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie..., token: 3
-2019-05-19 11:49:15,326  INFO [pool-37-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending wakeUp to supplier: 1 - localhost8081, token: 3
-2019-05-19 11:49:15,327  INFO [pool-38-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie to supplier: 1 - localhost8081, token: 3
-2019-05-19 11:49:15,327  WARN [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.DispatcherServiceImpl - serviceexception: 503/the requested movie is currently not available due to system overload, try again later
- INFO [http-nio-8080-exec-9] org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean - Creating Service {http://it.univaq.disim.netflics/auth}AuthService from WSDL: file:/Users/valent0ne/Projects/netflics/code/vault/src/main/resources/clients/auth.wsdl
-2019-05-19 11:49:17,284  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 4
-2019-05-19 11:49:17,286  INFO [pool-39-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 4
-2019-05-19 11:49:17,286  INFO [pool-39-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 4
-2019-05-19 11:49:17,337  WARN [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.controller.DispatcherController - 503/the requested movie is currently not available due to system overload, try again later, retrying 1/3..., token 3
-2019-05-19 11:49:17,394  INFO [pool-39-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is available
-2019-05-19 11:49:17,394  INFO [pool-39-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is not free (2 slots are available), token: 4
-2019-05-19 11:49:17,401  INFO [pool-39-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
-2019-05-19 11:49:17,401  INFO [pool-39-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is free (5 slots are available), token: 4
-2019-05-19 11:49:17,404  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 4
-2019-05-19 11:49:17,406  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 4
-2019-05-19 11:49:17,406  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 4
-2019-05-19 11:49:17,406  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 4
-2019-05-19 11:49:17,406  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 1, token: 4
-2019-05-19 11:49:17,406  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 4
-2019-05-19 11:49:17,406  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 1..., token: 4
-2019-05-19 11:49:17,414  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 3
-2019-05-19 11:49:17,418  INFO [pool-40-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 3
-2019-05-19 11:49:17,418  INFO [pool-40-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 3
-2019-05-19 11:49:17,513  INFO [pool-40-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
-2019-05-19 11:49:17,513  INFO [pool-40-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is free (5 slots are available), token: 3
-2019-05-19 11:49:17,550  INFO [pool-40-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is available
-2019-05-19 11:49:17,550  INFO [pool-40-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is not free (2 slots are available), token: 3
-2019-05-19 11:49:17,551  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 3
-2019-05-19 11:49:17,553  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 3
-2019-05-19 11:49:17,553  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 3
-2019-05-19 11:49:17,553  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 3
-2019-05-19 11:49:17,553  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 1, token: 3
-2019-05-19 11:49:17,553  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 3
-2019-05-19 11:49:17,553  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 1..., token: 3
-2019-05-19 11:49:19,280  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 5
-2019-05-19 11:49:19,282  INFO [pool-41-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 5
-2019-05-19 11:49:19,283  INFO [pool-41-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 5
-2019-05-19 11:49:19,346  INFO [pool-41-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
-2019-05-19 11:49:19,346  INFO [pool-41-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is free (3 slots are available), token: 5
-2019-05-19 11:49:19,350  INFO [pool-41-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is available
-2019-05-19 11:49:19,350  INFO [pool-41-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is not free (2 slots are available), token: 5
-2019-05-19 11:49:19,350  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 5
-2019-05-19 11:49:19,352  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 5
-2019-05-19 11:49:19,352  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 5
-2019-05-19 11:49:19,352  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 5
-2019-05-19 11:49:19,352  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 1, token: 5
-2019-05-19 11:49:19,352  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 5
-2019-05-19 11:49:19,352  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 1..., token: 5
-2019-05-19 11:49:21,279  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 6
-2019-05-19 11:49:21,282  INFO [pool-42-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 6
-2019-05-19 11:49:21,282  INFO [pool-42-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 6
-2019-05-19 11:49:21,341  INFO [pool-42-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is available
-2019-05-19 11:49:21,341  INFO [pool-42-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is not free (2 slots are available), token: 6
-2019-05-19 11:49:21,347  INFO [pool-42-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
-2019-05-19 11:49:21,347  INFO [pool-42-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (2 slots are available), token: 6
-2019-05-19 11:49:21,347  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 6
-2019-05-19 11:49:21,349  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 6
-2019-05-19 11:49:21,349  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are no free suppliers available
-2019-05-19 11:49:21,349  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are sleeping suppliers, token: 6
-2019-05-19 11:49:21,349  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - waiting for suppliers to wake up and fecth: try again later, token: 6
-2019-05-19 11:49:21,349  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 6
-2019-05-19 11:49:21,349  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending wake up..., token: 6
-2019-05-19 11:49:21,350  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie..., token: 6
-2019-05-19 11:49:21,350  INFO [pool-43-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending wakeUp to supplier: 2 - localhost8082, token: 6
-2019-05-19 11:49:21,350  INFO [pool-44-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie to supplier: 2 - localhost8082, token: 6
-2019-05-19 11:49:21,350  WARN [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.DispatcherServiceImpl - serviceexception: 503/the requested movie is currently not available due to system overload, try again later
- INFO [http-nio-8080-exec-9] org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean - Creating Service {http://it.univaq.disim.netflics/auth}AuthService from WSDL: file:/Users/valent0ne/Projects/netflics/code/vault/src/main/resources/clients/auth.wsdl
-2019-05-19 11:49:23,306  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 7
-2019-05-19 11:49:23,311  INFO [pool-45-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 7
-2019-05-19 11:49:23,312  INFO [pool-45-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 7
-2019-05-19 11:49:23,313  INFO [pool-45-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 7
-2019-05-19 11:49:23,355  WARN [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.controller.DispatcherController - 503/the requested movie is currently not available due to system overload, try again later, retrying 1/3..., token 6
-2019-05-19 11:49:23,422  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 6
-2019-05-19 11:49:23,433  INFO [pool-46-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 6
-2019-05-19 11:49:23,437  INFO [pool-46-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 6
-2019-05-19 11:49:23,454  INFO [pool-45-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is available
-2019-05-19 11:49:23,454  INFO [pool-45-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is free (5 slots are available), token: 7
-2019-05-19 11:49:23,467  INFO [pool-46-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 6
-2019-05-19 11:49:23,534  INFO [pool-46-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
-2019-05-19 11:49:23,534  INFO [pool-46-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (2 slots are available), token: 6
-2019-05-19 11:49:23,545  INFO [pool-45-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is available
-2019-05-19 11:49:23,545  INFO [pool-45-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is not free (2 slots are available), token: 7
-2019-05-19 11:49:23,562  INFO [pool-46-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is available
-2019-05-19 11:49:23,562  INFO [pool-46-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is not free (2 slots are available), token: 6
-2019-05-19 11:49:23,605  INFO [pool-45-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
-2019-05-19 11:49:23,605  INFO [pool-45-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (2 slots are available), token: 7
-2019-05-19 11:49:23,605  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 7
-2019-05-19 11:49:23,608  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 7
-2019-05-19 11:49:23,608  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 7
-2019-05-19 11:49:23,608  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 7
-2019-05-19 11:49:23,608  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 2, token: 7
-2019-05-19 11:49:23,608  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 7
-2019-05-19 11:49:23,611  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 2..., token: 7
-2019-05-19 11:49:23,704  INFO [pool-46-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is available
-2019-05-19 11:49:23,704  INFO [pool-46-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is free (5 slots are available), token: 6
-2019-05-19 11:49:23,704  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 6
-2019-05-19 11:49:23,707  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 6
-2019-05-19 11:49:23,707  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 6
-2019-05-19 11:49:23,707  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 6
-2019-05-19 11:49:23,707  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 2, token: 6
-2019-05-19 11:49:23,707  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 6
-2019-05-19 11:49:23,707  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 2..., token: 6
-2019-05-19 11:49:25,278  INFO [http-nio-8080-exec-12] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 8
-2019-05-19 11:49:25,281  INFO [pool-47-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 8
-2019-05-19 11:49:25,281  INFO [pool-47-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 8
-2019-05-19 11:49:25,281  INFO [pool-47-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 8
-2019-05-19 11:49:25,391  INFO [pool-47-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
-2019-05-19 11:49:25,391  INFO [pool-47-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (2 slots are available), token: 8
-2019-05-19 11:49:25,392  INFO [pool-47-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is available
-2019-05-19 11:49:25,392  INFO [pool-47-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is free (3 slots are available), token: 8
-2019-05-19 11:49:25,394  INFO [pool-47-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is available
-2019-05-19 11:49:25,395  INFO [pool-47-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is not free (2 slots are available), token: 8
-2019-05-19 11:49:25,395  INFO [http-nio-8080-exec-12] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 8
-2019-05-19 11:49:25,399  INFO [http-nio-8080-exec-12] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 8
-2019-05-19 11:49:25,399  INFO [http-nio-8080-exec-12] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 8
-2019-05-19 11:49:25,399  INFO [http-nio-8080-exec-12] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 8
-2019-05-19 11:49:25,400  INFO [http-nio-8080-exec-12] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 2, token: 8
-2019-05-19 11:49:25,400  INFO [http-nio-8080-exec-12] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 8
-2019-05-19 11:49:25,400  INFO [http-nio-8080-exec-12] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 2..., token: 8
-2019-05-19 11:49:27,278  INFO [http-nio-8080-exec-14] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 9
-2019-05-19 11:49:27,281  INFO [pool-48-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 9
-2019-05-19 11:49:27,281  INFO [pool-48-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 9
-2019-05-19 11:49:27,281  INFO [pool-48-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 9
-2019-05-19 11:49:27,379  INFO [pool-48-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is available
-2019-05-19 11:49:27,379  INFO [pool-48-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is not free (2 slots are available), token: 9
-2019-05-19 11:49:27,390  INFO [pool-48-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is available
-2019-05-19 11:49:27,390  INFO [pool-48-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is not free (2 slots are available), token: 9
-2019-05-19 11:49:27,399  INFO [pool-48-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
-2019-05-19 11:49:27,399  INFO [pool-48-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (2 slots are available), token: 9
-2019-05-19 11:49:27,399  INFO [http-nio-8080-exec-14] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 9
-2019-05-19 11:49:27,400  INFO [http-nio-8080-exec-14] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 9
-2019-05-19 11:49:27,400  INFO [http-nio-8080-exec-14] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are no free suppliers available
-2019-05-19 11:49:27,400  INFO [http-nio-8080-exec-14] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - no free suppliers and no sleeping suppliers: streaming from vault, token: 9
-2019-05-19 11:49:27,400  INFO [http-nio-8080-exec-14] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 9
-2019-05-19 11:49:27,400  INFO [http-nio-8080-exec-14] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from Vault..., token: 9
- INFO [http-nio-8080-exec-15] org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean - Creating Service {http://it.univaq.disim.netflics/auth}AuthService from WSDL: file:/Users/valent0ne/Projects/netflics/code/vault/src/main/resources/clients/auth.wsdl
-2019-05-19 11:49:29,324  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 10
-2019-05-19 11:49:29,330  INFO [pool-49-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 10
-2019-05-19 11:49:29,331  INFO [pool-49-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 10
-2019-05-19 11:49:29,331  INFO [pool-49-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 10
-2019-05-19 11:49:29,435  INFO [pool-49-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is available
-2019-05-19 11:49:29,435  INFO [pool-49-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
-2019-05-19 11:49:29,435  INFO [pool-49-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is not free (2 slots are available), token: 10
-2019-05-19 11:49:29,435  INFO [pool-49-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (2 slots are available), token: 10
-2019-05-19 11:49:29,459  INFO [pool-49-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is available
-2019-05-19 11:49:29,459  INFO [pool-49-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is not free (2 slots are available), token: 10
-2019-05-19 11:49:29,459  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 10
-2019-05-19 11:49:29,461  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 10
-2019-05-19 11:49:29,461  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are no free suppliers available
-2019-05-19 11:49:29,461  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - no free suppliers and no sleeping suppliers: streaming from vault, token: 10
-2019-05-19 11:49:29,461  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 10
-2019-05-19 11:49:29,461  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from Vault..., token: 10
- INFO [http-nio-8080-exec-15] org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean - Creating Service {http://it.univaq.disim.netflics/auth}AuthService from WSDL: file:/Users/valent0ne/Projects/netflics/code/vault/src/main/resources/clients/auth.wsdl
-2019-05-19 11:49:35,488  WARN [http-nio-8080-exec-14] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - streaming error (stream closed by the user?)
-2019-05-19 11:49:35,488  WARN [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - streaming error (stream closed by the user?)
-2019-05-19 11:49:35,489  WARN [http-nio-8080-exec-12] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - streaming error (stream closed by the user?), token: 8
-2019-05-19 11:49:35,489  WARN [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - streaming error (stream closed by the user?), token: 7
-2019-05-19 11:49:35,489  WARN [http-nio-8080-exec-11] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - streaming error (stream closed by the user?), token: 2
-2019-05-19 11:49:35,490  WARN [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - streaming error (stream closed by the user?), token: 5
-2019-05-19 11:49:35,494  WARN [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - streaming error (stream closed by the user?), token: 6
-2019-05-19 11:49:35,499  WARN [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - streaming error (stream closed by the user?), token: 1
-2019-05-19 11:49:35,500  WARN [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - streaming error (stream closed by the user?), token: 3
-2019-05-19 11:49:35,500  WARN [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - streaming error (stream closed by the user?), token: 4
-2019-05-19 11:49:35,500  WARN [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - streaming error (stream closed by the user?), token: 0
-2019-05-19 11:49:35,496 ERROR [http-nio-8080-exec-4] org.apache.cxf.jaxrs.utils.JAXRSUtils - Problem with writing the data, class it.univaq.disim.netflics.dispatcher.service.LoadBalancer$$Lambda$402/1017797003, ContentType: application/octet-stream
-2019-05-19 11:49:35,513  WARN [http-nio-8080-exec-4] org.apache.cxf.phase.PhaseInterceptorChain - Interceptor for {http://controller.dispatcher.netflics.disim.univaq.it/}DispatcherController has thrown exception, unwinding now
-org.apache.cxf.interceptor.Fault: java.io.IOException: Broken pipe
-	at org.apache.cxf.jaxrs.interceptor.JAXRSOutInterceptor.handleWriteException(JAXRSOutInterceptor.java:396)
-	at org.apache.cxf.jaxrs.interceptor.JAXRSOutInterceptor.serializeMessage(JAXRSOutInterceptor.java:272)
-	at org.apache.cxf.jaxrs.interceptor.JAXRSOutInterceptor.processResponse(JAXRSOutInterceptor.java:122)
-	at org.apache.cxf.jaxrs.interceptor.JAXRSOutInterceptor.handleMessage(JAXRSOutInterceptor.java:84)
-	at org.apache.cxf.phase.PhaseInterceptorChain.doIntercept(PhaseInterceptorChain.java:308)
-	at org.apache.cxf.interceptor.OutgoingChainInterceptor.handleMessage(OutgoingChainInterceptor.java:90)
-	at org.apache.cxf.phase.PhaseInterceptorChain.doIntercept(PhaseInterceptorChain.java:308)
-	at org.apache.cxf.transport.ChainInitiationObserver.onMessage(ChainInitiationObserver.java:121)
-	at org.apache.cxf.transport.http.AbstractHTTPDestination.invoke(AbstractHTTPDestination.java:267)
-	at org.apache.cxf.transport.servlet.ServletController.invokeDestination(ServletController.java:234)
-	at org.apache.cxf.transport.servlet.ServletController.invoke(ServletController.java:208)
-	at org.apache.cxf.transport.servlet.ServletController.invoke(ServletController.java:160)
-	at org.apache.cxf.transport.servlet.CXFNonSpringServlet.invoke(CXFNonSpringServlet.java:216)
-	at org.apache.cxf.transport.servlet.AbstractHTTPServlet.handleRequest(AbstractHTTPServlet.java:301)
-	at org.apache.cxf.transport.servlet.AbstractHTTPServlet.doGet(AbstractHTTPServlet.java:225)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
-	at org.apache.cxf.transport.servlet.AbstractHTTPServlet.service(AbstractHTTPServlet.java:276)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:836)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1747)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.lang.Thread.run(Thread.java:748)
-Caused by: org.apache.catalina.connector.ClientAbortException: java.io.IOException: Broken pipe
-	at org.apache.catalina.connector.OutputBuffer.realWriteBytes(OutputBuffer.java:341)
-	at org.apache.catalina.connector.OutputBuffer.flushByteBuffer(OutputBuffer.java:766)
-	at org.apache.catalina.connector.OutputBuffer.doFlush(OutputBuffer.java:288)
-	at org.apache.catalina.connector.OutputBuffer.close(OutputBuffer.java:241)
-	at org.apache.catalina.connector.CoyoteOutputStream.close(CoyoteOutputStream.java:157)
-	at org.apache.cxf.transport.http.AbstractHTTPDestination$WrappedOutputStream.close(AbstractHTTPDestination.java:825)
-	at it.univaq.disim.netflics.dispatcher.service.LoadBalancer.lambda$execute$5(LoadBalancer.java:310)
-	at org.apache.cxf.jaxrs.provider.BinaryDataProvider.writeTo(BinaryDataProvider.java:177)
-	at org.apache.cxf.jaxrs.utils.JAXRSUtils.writeMessageBody(JAXRSUtils.java:1422)
-	at org.apache.cxf.jaxrs.interceptor.JAXRSOutInterceptor.serializeMessage(JAXRSOutInterceptor.java:246)
-	... 37 more
-Caused by: java.io.IOException: Broken pipe
-	at sun.nio.ch.FileDispatcherImpl.write0(Native Method)
-	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47)
-	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93)
-	at sun.nio.ch.IOUtil.write(IOUtil.java:65)
-	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:471)
-	at org.apache.tomcat.util.net.NioChannel.write(NioChannel.java:136)
-	at org.apache.tomcat.util.net.NioBlockingSelector.write(NioBlockingSelector.java:105)
-	at org.apache.tomcat.util.net.NioSelectorPool.write(NioSelectorPool.java:144)
-	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.doWrite(NioEndpoint.java:1265)
-	at org.apache.tomcat.util.net.SocketWrapperBase.doWrite(SocketWrapperBase.java:748)
-	at org.apache.tomcat.util.net.SocketWrapperBase.writeBlocking(SocketWrapperBase.java:518)
-	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:456)
-	at org.apache.coyote.http11.Http11OutputBuffer$SocketOutputBuffer.doWrite(Http11OutputBuffer.java:530)
-	at org.apache.coyote.http11.filters.ChunkedOutputFilter.doWrite(ChunkedOutputFilter.java:112)
-	at org.apache.coyote.http11.Http11OutputBuffer.doWrite(Http11OutputBuffer.java:189)
-	at org.apache.coyote.Response.doWrite(Response.java:599)
-	at org.apache.catalina.connector.OutputBuffer.realWriteBytes(OutputBuffer.java:329)
-	... 46 more
-2019-05-19 11:49:35,565  WARN [http-nio-8080-exec-4] org.apache.cxf.phase.PhaseInterceptorChain - Interceptor for {http://controller.dispatcher.netflics.disim.univaq.it/}DispatcherController has thrown exception, unwinding now
-org.apache.cxf.interceptor.Fault: XML_WRITE_EXC
-	at org.apache.cxf.jaxrs.interceptor.JAXRSDefaultFaultOutInterceptor.handleMessage(JAXRSDefaultFaultOutInterceptor.java:106)
-	at org.apache.cxf.phase.PhaseInterceptorChain.doIntercept(PhaseInterceptorChain.java:308)
-	at org.apache.cxf.interceptor.AbstractFaultChainInitiatorObserver.onMessage(AbstractFaultChainInitiatorObserver.java:112)
-	at org.apache.cxf.phase.PhaseInterceptorChain.wrapExceptionAsFault(PhaseInterceptorChain.java:374)
-	at org.apache.cxf.phase.PhaseInterceptorChain.doIntercept(PhaseInterceptorChain.java:332)
-	at org.apache.cxf.interceptor.OutgoingChainInterceptor.handleMessage(OutgoingChainInterceptor.java:90)
-	at org.apache.cxf.phase.PhaseInterceptorChain.doIntercept(PhaseInterceptorChain.java:308)
-	at org.apache.cxf.transport.ChainInitiationObserver.onMessage(ChainInitiationObserver.java:121)
-	at org.apache.cxf.transport.http.AbstractHTTPDestination.invoke(AbstractHTTPDestination.java:267)
-	at org.apache.cxf.transport.servlet.ServletController.invokeDestination(ServletController.java:234)
-	at org.apache.cxf.transport.servlet.ServletController.invoke(ServletController.java:208)
-	at org.apache.cxf.transport.servlet.ServletController.invoke(ServletController.java:160)
-	at org.apache.cxf.transport.servlet.CXFNonSpringServlet.invoke(CXFNonSpringServlet.java:216)
-	at org.apache.cxf.transport.servlet.AbstractHTTPServlet.handleRequest(AbstractHTTPServlet.java:301)
-	at org.apache.cxf.transport.servlet.AbstractHTTPServlet.doGet(AbstractHTTPServlet.java:225)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
-	at org.apache.cxf.transport.servlet.AbstractHTTPServlet.service(AbstractHTTPServlet.java:276)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:836)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1747)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.lang.Thread.run(Thread.java:748)
-Caused by: com.ctc.wstx.exc.WstxIOException: java.io.IOException: Broken pipe
-	at com.ctc.wstx.sw.BaseStreamWriter.flush(BaseStreamWriter.java:262)
-	at org.apache.cxf.jaxrs.interceptor.JAXRSDefaultFaultOutInterceptor.handleMessage(JAXRSDefaultFaultOutInterceptor.java:104)
-	... 38 more
-Caused by: org.apache.catalina.connector.ClientAbortException: java.io.IOException: Broken pipe
-	at org.apache.catalina.connector.OutputBuffer.realWriteBytes(OutputBuffer.java:341)
-	at org.apache.catalina.connector.OutputBuffer.flushByteBuffer(OutputBuffer.java:766)
-	at org.apache.catalina.connector.OutputBuffer.append(OutputBuffer.java:671)
-	at org.apache.catalina.connector.OutputBuffer.writeBytes(OutputBuffer.java:376)
-	at org.apache.catalina.connector.OutputBuffer.write(OutputBuffer.java:354)
-	at org.apache.catalina.connector.CoyoteOutputStream.write(CoyoteOutputStream.java:96)
-	at org.apache.cxf.io.AbstractWrappedOutputStream.write(AbstractWrappedOutputStream.java:51)
-	at com.ctc.wstx.io.UTF8Writer.flush(UTF8Writer.java:100)
-	at com.ctc.wstx.sw.BufferingXmlWriter.flush(BufferingXmlWriter.java:242)
-	at com.ctc.wstx.sw.BaseStreamWriter.flush(BaseStreamWriter.java:260)
-	... 39 more
-Caused by: java.io.IOException: Broken pipe
-	at sun.nio.ch.FileDispatcherImpl.write0(Native Method)
-	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47)
-	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93)
-	at sun.nio.ch.IOUtil.write(IOUtil.java:65)
-	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:471)
-	at org.apache.tomcat.util.net.NioChannel.write(NioChannel.java:136)
-	at org.apache.tomcat.util.net.NioBlockingSelector.write(NioBlockingSelector.java:105)
-	at org.apache.tomcat.util.net.NioSelectorPool.write(NioSelectorPool.java:144)
-	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.doWrite(NioEndpoint.java:1265)
-	at org.apache.tomcat.util.net.SocketWrapperBase.doWrite(SocketWrapperBase.java:748)
-	at org.apache.tomcat.util.net.SocketWrapperBase.writeBlocking(SocketWrapperBase.java:518)
-	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:456)
-	at org.apache.coyote.http11.Http11OutputBuffer$SocketOutputBuffer.doWrite(Http11OutputBuffer.java:530)
-	at org.apache.coyote.http11.filters.ChunkedOutputFilter.doWrite(ChunkedOutputFilter.java:110)
-	at org.apache.coyote.http11.Http11OutputBuffer.doWrite(Http11OutputBuffer.java:189)
-	at org.apache.coyote.Response.doWrite(Response.java:599)
-	at org.apache.catalina.connector.OutputBuffer.realWriteBytes(OutputBuffer.java:329)
-	... 48 more
+2019-05-19 14:28:59,042  INFO [pool-11-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 14:28:59,042  INFO [pool-13-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 14:28:59,042  INFO [pool-11-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is free (5 slots are available), token: 0
+2019-05-19 14:28:59,042  INFO [pool-13-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is free (5 slots are available), token: 1
+2019-05-19 14:28:59,042  INFO [pool-12-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 14:28:59,042  INFO [pool-12-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is free (5 slots are available), token: 2
+2019-05-19 14:28:59,042  INFO [pool-13-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is available
+2019-05-19 14:28:59,042  INFO [pool-13-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is free (5 slots are available), token: 1
+2019-05-19 14:28:59,042  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 1
+2019-05-19 14:28:59,043  INFO [pool-11-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is available
+2019-05-19 14:28:59,043  INFO [pool-11-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is free (5 slots are available), token: 0
+2019-05-19 14:28:59,043  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 0
+2019-05-19 14:28:59,043  INFO [pool-12-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is available
+2019-05-19 14:28:59,044  INFO [pool-12-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is free (5 slots are available), token: 2
+2019-05-19 14:28:59,044  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 2
+2019-05-19 14:28:59,044  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 1
+2019-05-19 14:28:59,044  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 1
+2019-05-19 14:28:59,045  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers not having the movie, token: 1
+2019-05-19 14:28:59,047  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 2
+2019-05-19 14:28:59,047  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 2
+2019-05-19 14:28:59,047  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers not having the movie, token: 2
+2019-05-19 14:28:59,049  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 2
+2019-05-19 14:28:59,049  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 1
+2019-05-19 14:28:59,049  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending sleep..., token: 1
+2019-05-19 14:28:59,049  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending sleep..., token: 2
+2019-05-19 14:28:59,049  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 0
+2019-05-19 14:28:59,049  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 0
+2019-05-19 14:28:59,049  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers not having the movie, token: 0
+2019-05-19 14:28:59,049  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 0
+2019-05-19 14:28:59,050  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending sleep..., token: 0
+2019-05-19 14:28:59,050  INFO [pool-14-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending sleep to supplier: 2 - localhost8082, token: 1
+2019-05-19 14:28:59,050  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie..., token: 2
+2019-05-19 14:28:59,050  INFO [pool-15-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending sleep to supplier: 2 - localhost8082, token: 2
+2019-05-19 14:28:59,050  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie..., token: 1
+2019-05-19 14:28:59,051  INFO [pool-17-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie to supplier: 1 - localhost8081, token: 2
+2019-05-19 14:28:59,052  WARN [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.DispatcherServiceImpl - serviceexception: 503/the requested movie is currently not available due to system overload, try again later
+2019-05-19 14:28:59,052  INFO [pool-18-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie to supplier: 1 - localhost8081, token: 1
+2019-05-19 14:28:59,053  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie..., token: 0
+2019-05-19 14:28:59,053  WARN [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.DispatcherServiceImpl - serviceexception: 503/the requested movie is currently not available due to system overload, try again later
+2019-05-19 14:28:59,053  WARN [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.DispatcherServiceImpl - serviceexception: 503/the requested movie is currently not available due to system overload, try again later
+2019-05-19 14:28:59,054  INFO [pool-19-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie to supplier: 1 - localhost8081, token: 0
+2019-05-19 14:28:59,054  INFO [pool-16-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending sleep to supplier: 2 - localhost8082, token: 0
+ INFO [http-nio-8080-exec-2] org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean - Creating Service {http://it.univaq.disim.netflics/auth}AuthService from WSDL: file:/Users/valent0ne/Projects/netflics/code/vault/src/main/resources/clients/auth.wsdl
+ INFO [http-nio-8080-exec-10] org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean - Creating Service {http://it.univaq.disim.netflics/auth}AuthService from WSDL: file:/Users/valent0ne/Projects/netflics/code/vault/src/main/resources/clients/auth.wsdl
+ INFO [http-nio-8080-exec-4] org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean - Creating Service {http://it.univaq.disim.netflics/auth}AuthService from WSDL: file:/Users/valent0ne/Projects/netflics/code/vault/src/main/resources/clients/auth.wsdl
+2019-05-19 14:28:59,507  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 3
+2019-05-19 14:28:59,509  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 1 sleeping suppliers, token: 3
+2019-05-19 14:28:59,511  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 2 awake suppliers, token: 3
+2019-05-19 14:28:59,512  INFO [pool-20-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 3
+2019-05-19 14:28:59,513  INFO [pool-20-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 3
+2019-05-19 14:29:00,063  INFO [pool-20-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 14:29:00,063  INFO [pool-20-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is free (5 slots are available), token: 3
+2019-05-19 14:29:00,255  INFO [pool-20-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is available
+2019-05-19 14:29:00,255  INFO [pool-20-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is free (5 slots are available), token: 3
+2019-05-19 14:29:00,255  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 3
+2019-05-19 14:29:00,257  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 3
+2019-05-19 14:29:00,257  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 3
+2019-05-19 14:29:00,257  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers not having the movie, token: 3
+2019-05-19 14:29:00,257  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 3
+2019-05-19 14:29:00,257  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending sleep..., token: 3
+2019-05-19 14:29:00,257  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie..., token: 3
+2019-05-19 14:29:00,258  INFO [pool-21-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending sleep to supplier: 2 - localhost8082, token: 3
+2019-05-19 14:29:00,258  WARN [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.DispatcherServiceImpl - serviceexception: 503/the requested movie is currently not available due to system overload, try again later
+2019-05-19 14:29:00,258  INFO [pool-22-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie to supplier: 1 - localhost8081, token: 3
+ INFO [http-nio-8080-exec-7] org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean - Creating Service {http://it.univaq.disim.netflics/auth}AuthService from WSDL: file:/Users/valent0ne/Projects/netflics/code/vault/src/main/resources/clients/auth.wsdl
+2019-05-19 14:29:01,052  WARN [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.controller.DispatcherController - 503/the requested movie is currently not available due to system overload, try again later, retrying 2/3..., token 1
+2019-05-19 14:29:01,058  WARN [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.controller.DispatcherController - 503/the requested movie is currently not available due to system overload, try again later, retrying 1/3..., token 2
+2019-05-19 14:29:01,058  WARN [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.controller.DispatcherController - 503/the requested movie is currently not available due to system overload, try again later, retrying 2/3..., token 0
+2019-05-19 14:29:01,134  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 2
+2019-05-19 14:29:01,135  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 0
+2019-05-19 14:29:01,136  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 1 sleeping suppliers, token: 0
+2019-05-19 14:29:01,136  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 1 sleeping suppliers, token: 2
+2019-05-19 14:29:01,138  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 2 awake suppliers, token: 2
+2019-05-19 14:29:01,138  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 2 awake suppliers, token: 0
+2019-05-19 14:29:01,138  INFO [pool-23-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 2
+2019-05-19 14:29:01,138  INFO [pool-24-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 0
+2019-05-19 14:29:01,138  INFO [pool-23-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 2
+2019-05-19 14:29:01,138  INFO [pool-24-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 0
+2019-05-19 14:29:01,167  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 1
+2019-05-19 14:29:01,192  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 1 sleeping suppliers, token: 1
+2019-05-19 14:29:01,204  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 2 awake suppliers, token: 1
+2019-05-19 14:29:01,205  INFO [pool-25-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 1
+2019-05-19 14:29:01,245  INFO [pool-24-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is available
+2019-05-19 14:29:01,246  INFO [pool-24-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is free (5 slots are available), token: 0
+2019-05-19 14:29:01,248  INFO [pool-23-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is available
+2019-05-19 14:29:01,248  INFO [pool-23-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is free (5 slots are available), token: 2
+2019-05-19 14:29:01,252  INFO [pool-25-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 1
+2019-05-19 14:29:01,384  INFO [pool-25-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is available
+2019-05-19 14:29:01,384  INFO [pool-25-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is free (5 slots are available), token: 1
+2019-05-19 14:29:01,599  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 4
+2019-05-19 14:29:01,601  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 1 sleeping suppliers, token: 4
+2019-05-19 14:29:01,603  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 2 awake suppliers, token: 4
+2019-05-19 14:29:01,604  INFO [pool-26-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 4
+2019-05-19 14:29:01,604  INFO [pool-26-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 4
+2019-05-19 14:29:01,720  INFO [pool-26-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is available
+2019-05-19 14:29:01,720  INFO [pool-26-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is free (5 slots are available), token: 4
+2019-05-19 14:29:02,076  INFO [pool-24-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 14:29:02,076  INFO [pool-24-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is free (5 slots are available), token: 0
+2019-05-19 14:29:02,076  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 0
+2019-05-19 14:29:02,078  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 0
+2019-05-19 14:29:02,078  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 0
+2019-05-19 14:29:02,078  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 0
+2019-05-19 14:29:02,078  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 1, token: 0
+2019-05-19 14:29:02,078  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 0
+2019-05-19 14:29:02,078  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending sleep..., token: 0
+2019-05-19 14:29:02,079  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 1..., token: 0
+2019-05-19 14:29:02,079  INFO [pool-27-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending sleep to supplier: 2 - localhost8082, token: 0
+2019-05-19 14:29:02,099  INFO [pool-26-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 14:29:02,099  INFO [pool-26-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is free (5 slots are available), token: 4
+2019-05-19 14:29:02,100  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 4
+2019-05-19 14:29:02,102  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 4
+2019-05-19 14:29:02,102  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 4
+2019-05-19 14:29:02,102  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 4
+2019-05-19 14:29:02,103  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 1, token: 4
+2019-05-19 14:29:02,103  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 4
+2019-05-19 14:29:02,103  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending sleep..., token: 4
+2019-05-19 14:29:02,103  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 1..., token: 4
+2019-05-19 14:29:02,103  INFO [pool-28-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending sleep to supplier: 2 - localhost8082, token: 4
+2019-05-19 14:29:02,160  INFO [pool-25-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 14:29:02,160  INFO [pool-25-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is free (5 slots are available), token: 1
+2019-05-19 14:29:02,160  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 1
+2019-05-19 14:29:02,162  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 1
+2019-05-19 14:29:02,162  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 1
+2019-05-19 14:29:02,162  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 1
+2019-05-19 14:29:02,162  INFO [pool-23-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 14:29:02,162  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 1, token: 1
+2019-05-19 14:29:02,162  INFO [pool-23-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is free (5 slots are available), token: 2
+2019-05-19 14:29:02,162  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 1
+2019-05-19 14:29:02,162  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending sleep..., token: 1
+2019-05-19 14:29:02,162  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 2
+2019-05-19 14:29:02,163  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 1..., token: 1
+2019-05-19 14:29:02,163  INFO [pool-29-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending sleep to supplier: 2 - localhost8082, token: 1
+2019-05-19 14:29:02,164  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 2
+2019-05-19 14:29:02,164  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 2
+2019-05-19 14:29:02,164  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 2
+2019-05-19 14:29:02,164  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 1, token: 2
+2019-05-19 14:29:02,164  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 2
+2019-05-19 14:29:02,164  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending sleep..., token: 2
+2019-05-19 14:29:02,164  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 1..., token: 2
+2019-05-19 14:29:02,164  INFO [pool-30-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending sleep to supplier: 2 - localhost8082, token: 2
+2019-05-19 14:29:02,263  WARN [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.controller.DispatcherController - 503/the requested movie is currently not available due to system overload, try again later, retrying 1/3..., token 3
+2019-05-19 14:29:02,334  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 3
+2019-05-19 14:29:02,336  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 2 sleeping suppliers, token: 3
+2019-05-19 14:29:02,339  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 1 awake suppliers, token: 3
+2019-05-19 14:29:02,340  INFO [pool-31-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 3
+2019-05-19 14:29:02,442  INFO [pool-31-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 14:29:02,442  INFO [pool-31-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (1 slots are available), token: 3
+2019-05-19 14:29:02,442  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 3
+2019-05-19 14:29:02,444  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 3
+2019-05-19 14:29:02,444  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are no free suppliers available
+2019-05-19 14:29:02,444  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are sleeping suppliers, token: 3
+2019-05-19 14:29:02,444  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - waiting for suppliers to wake up and fecth: try again later, token: 3
+2019-05-19 14:29:02,444  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 3
+2019-05-19 14:29:02,444  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending wake up..., token: 3
+2019-05-19 14:29:02,444  INFO [pool-32-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending wakeUp to supplier: 2 - localhost8082, token: 3
+2019-05-19 14:29:02,445  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie..., token: 3
+2019-05-19 14:29:02,446  INFO [pool-33-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie to supplier: 2 - localhost8082, token: 3
+2019-05-19 14:29:02,446  WARN [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.DispatcherServiceImpl - serviceexception: 503/the requested movie is currently not available due to system overload, try again later
+ INFO [http-nio-8080-exec-8] org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean - Creating Service {http://it.univaq.disim.netflics/auth}AuthService from WSDL: file:/Users/valent0ne/Projects/netflics/code/vault/src/main/resources/clients/auth.wsdl
+2019-05-19 14:29:03,495  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 5
+2019-05-19 14:29:03,497  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 1 sleeping suppliers, token: 5
+2019-05-19 14:29:03,498  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 2 awake suppliers, token: 5
+2019-05-19 14:29:03,499  INFO [pool-34-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 5
+2019-05-19 14:29:03,500  INFO [pool-34-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 5
+2019-05-19 14:29:03,576  INFO [pool-34-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 14:29:03,576  INFO [pool-34-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (1 slots are available), token: 5
+2019-05-19 14:29:03,761  INFO [pool-34-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is available
+2019-05-19 14:29:03,761  INFO [pool-34-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is free (5 slots are available), token: 5
+2019-05-19 14:29:03,761  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 5
+2019-05-19 14:29:03,763  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 5
+2019-05-19 14:29:03,763  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 5
+2019-05-19 14:29:03,763  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers not having the movie, token: 5
+2019-05-19 14:29:03,763  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 5
+2019-05-19 14:29:03,763  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie..., token: 5
+2019-05-19 14:29:03,763  WARN [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.DispatcherServiceImpl - serviceexception: 503/the requested movie is currently not available due to system overload, try again later
+2019-05-19 14:29:03,763  INFO [pool-35-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie to supplier: 2 - localhost8082, token: 5
+ INFO [http-nio-8080-exec-6] org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean - Creating Service {http://it.univaq.disim.netflics/auth}AuthService from WSDL: file:/Users/valent0ne/Projects/netflics/code/vault/src/main/resources/clients/auth.wsdl
+2019-05-19 14:29:04,449  WARN [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.controller.DispatcherController - 503/the requested movie is currently not available due to system overload, try again later, retrying 2/3..., token 3
+2019-05-19 14:29:04,493  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 3
+2019-05-19 14:29:04,495  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 1 sleeping suppliers, token: 3
+2019-05-19 14:29:04,497  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 2 awake suppliers, token: 3
+2019-05-19 14:29:04,497  INFO [pool-36-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 3
+2019-05-19 14:29:04,498  INFO [pool-36-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 3
+2019-05-19 14:29:04,562  INFO [pool-36-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 14:29:04,562  INFO [pool-36-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (1 slots are available), token: 3
+2019-05-19 14:29:04,703  INFO [pool-36-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is available
+2019-05-19 14:29:04,703  INFO [pool-36-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is free (5 slots are available), token: 3
+2019-05-19 14:29:04,703  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 3
+2019-05-19 14:29:04,705  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 3
+2019-05-19 14:29:04,705  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 3
+2019-05-19 14:29:04,705  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 3
+2019-05-19 14:29:04,705  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 2, token: 3
+2019-05-19 14:29:04,705  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 3
+2019-05-19 14:29:04,705  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 2..., token: 3
+2019-05-19 14:29:05,483  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 6
+2019-05-19 14:29:05,484  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 1 sleeping suppliers, token: 6
+2019-05-19 14:29:05,486  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 2 awake suppliers, token: 6
+2019-05-19 14:29:05,487  INFO [pool-37-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 6
+2019-05-19 14:29:05,487  INFO [pool-37-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 6
+2019-05-19 14:29:05,573  INFO [pool-37-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 14:29:05,573  INFO [pool-37-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (1 slots are available), token: 6
+2019-05-19 14:29:05,584  INFO [pool-37-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is available
+2019-05-19 14:29:05,584  INFO [pool-37-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is free (4 slots are available), token: 6
+2019-05-19 14:29:05,585  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 6
+2019-05-19 14:29:05,586  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 6
+2019-05-19 14:29:05,586  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 6
+2019-05-19 14:29:05,587  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 6
+2019-05-19 14:29:05,587  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 2, token: 6
+2019-05-19 14:29:05,587  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 6
+2019-05-19 14:29:05,587  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 2..., token: 6
+2019-05-19 14:29:05,766  WARN [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.controller.DispatcherController - 503/the requested movie is currently not available due to system overload, try again later, retrying 1/3..., token 5
+2019-05-19 14:29:05,795  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 5
+2019-05-19 14:29:05,797  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 1 sleeping suppliers, token: 5
+2019-05-19 14:29:05,798  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 2 awake suppliers, token: 5
+2019-05-19 14:29:05,798  INFO [pool-38-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 5
+2019-05-19 14:29:05,799  INFO [pool-38-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 5
+2019-05-19 14:29:05,853  INFO [pool-38-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is available
+2019-05-19 14:29:05,853  INFO [pool-38-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is free (3 slots are available), token: 5
+2019-05-19 14:29:05,857  INFO [pool-38-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 14:29:05,857  INFO [pool-38-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (1 slots are available), token: 5
+2019-05-19 14:29:05,857  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 5
+2019-05-19 14:29:05,859  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 5
+2019-05-19 14:29:05,859  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 5
+2019-05-19 14:29:05,859  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 5
+2019-05-19 14:29:05,859  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 2, token: 5
+2019-05-19 14:29:05,859  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 5
+2019-05-19 14:29:05,859  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 2..., token: 5
+2019-05-19 14:29:07,486  INFO [http-nio-8080-exec-7] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 7
+2019-05-19 14:29:07,488  INFO [http-nio-8080-exec-7] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 1 sleeping suppliers, token: 7
+2019-05-19 14:29:07,489  INFO [http-nio-8080-exec-7] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 2 awake suppliers, token: 7
+2019-05-19 14:29:07,490  INFO [pool-39-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 7
+2019-05-19 14:29:07,490  INFO [pool-39-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 7
+2019-05-19 14:29:07,596  INFO [pool-39-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is available
+2019-05-19 14:29:07,596  INFO [pool-39-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is not free (2 slots are available), token: 7
+2019-05-19 14:29:07,604  INFO [pool-39-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 14:29:07,604  INFO [pool-39-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (1 slots are available), token: 7
+2019-05-19 14:29:07,604  INFO [http-nio-8080-exec-7] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 7
+2019-05-19 14:29:07,606  INFO [http-nio-8080-exec-7] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 7
+2019-05-19 14:29:07,606  INFO [http-nio-8080-exec-7] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are no free suppliers available
+2019-05-19 14:29:07,606  INFO [http-nio-8080-exec-7] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are sleeping suppliers, token: 7
+2019-05-19 14:29:07,606  INFO [http-nio-8080-exec-7] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - waiting for suppliers to wake up and fecth: try again later, token: 7
+2019-05-19 14:29:07,606  INFO [http-nio-8080-exec-7] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 7
+2019-05-19 14:29:07,606  INFO [http-nio-8080-exec-7] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending wake up..., token: 7
+2019-05-19 14:29:07,606  INFO [http-nio-8080-exec-7] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie..., token: 7
+2019-05-19 14:29:07,606  INFO [pool-40-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending wakeUp to supplier: 3 - localhost8083, token: 7
+2019-05-19 14:29:07,606  INFO [pool-41-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie to supplier: 3 - localhost8083, token: 7
+2019-05-19 14:29:07,606  WARN [http-nio-8080-exec-7] it.univaq.disim.netflics.dispatcher.service.DispatcherServiceImpl - serviceexception: 503/the requested movie is currently not available due to system overload, try again later
+ INFO [http-nio-8080-exec-6] org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean - Creating Service {http://it.univaq.disim.netflics/auth}AuthService from WSDL: file:/Users/valent0ne/Projects/netflics/code/vault/src/main/resources/clients/auth.wsdl
+2019-05-19 14:29:09,607  WARN [http-nio-8080-exec-7] it.univaq.disim.netflics.dispatcher.controller.DispatcherController - 503/the requested movie is currently not available due to system overload, try again later, retrying 1/3..., token 7
+2019-05-19 14:29:09,621  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 8
+2019-05-19 14:29:09,641  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 0 sleeping suppliers, token: 8
+2019-05-19 14:29:09,642  INFO [http-nio-8080-exec-7] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 7
+2019-05-19 14:29:09,643  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 3 awake suppliers, token: 8
+2019-05-19 14:29:09,644  INFO [http-nio-8080-exec-7] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 0 sleeping suppliers, token: 7
+2019-05-19 14:29:09,644  INFO [pool-42-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 8
+2019-05-19 14:29:09,645  INFO [http-nio-8080-exec-7] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 3 awake suppliers, token: 7
+2019-05-19 14:29:09,650  INFO [pool-42-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 8
+2019-05-19 14:29:09,651  INFO [pool-43-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 7
+2019-05-19 14:29:09,676  INFO [pool-43-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 7
+2019-05-19 14:29:09,760  INFO [pool-42-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 8
+2019-05-19 14:29:09,763  INFO [pool-43-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 7
+2019-05-19 14:29:09,925  INFO [pool-43-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is available
+2019-05-19 14:29:09,925  INFO [pool-43-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is not free (2 slots are available), token: 7
+2019-05-19 14:29:09,973  INFO [pool-43-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 14:29:09,973  INFO [pool-43-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (1 slots are available), token: 7
+2019-05-19 14:29:09,980  INFO [pool-42-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 14:29:09,980  INFO [pool-42-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (1 slots are available), token: 8
+2019-05-19 14:29:09,981  INFO [pool-42-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is available
+2019-05-19 14:29:09,981  INFO [pool-42-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is not free (2 slots are available), token: 8
+2019-05-19 14:29:10,873  INFO [pool-42-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is available
+2019-05-19 14:29:10,873  INFO [pool-42-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is free (5 slots are available), token: 8
+2019-05-19 14:29:10,873  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 8
+2019-05-19 14:29:10,874  INFO [pool-43-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is available
+2019-05-19 14:29:10,874  INFO [pool-43-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is free (5 slots are available), token: 7
+2019-05-19 14:29:10,874  INFO [http-nio-8080-exec-7] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 7
+2019-05-19 14:29:10,875  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 8
+2019-05-19 14:29:10,875  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 8
+2019-05-19 14:29:10,875  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 8
+2019-05-19 14:29:10,875  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 3, token: 8
+2019-05-19 14:29:10,875  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 8
+2019-05-19 14:29:10,875  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 3..., token: 8
+2019-05-19 14:29:10,876  INFO [http-nio-8080-exec-7] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 7
+2019-05-19 14:29:10,876  INFO [http-nio-8080-exec-7] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 7
+2019-05-19 14:29:10,876  INFO [http-nio-8080-exec-7] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 7
+2019-05-19 14:29:10,876  INFO [http-nio-8080-exec-7] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 3, token: 7
+2019-05-19 14:29:10,876  INFO [http-nio-8080-exec-7] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 7
+2019-05-19 14:29:10,876  INFO [http-nio-8080-exec-7] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 3..., token: 7
+2019-05-19 14:29:11,489  INFO [http-nio-8080-exec-11] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 9
+2019-05-19 14:29:11,491  INFO [http-nio-8080-exec-11] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 0 sleeping suppliers, token: 9
+2019-05-19 14:29:11,492  INFO [http-nio-8080-exec-11] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 3 awake suppliers, token: 9
+2019-05-19 14:29:11,493  INFO [pool-44-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 9
+2019-05-19 14:29:11,493  INFO [pool-44-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 9
+2019-05-19 14:29:11,496  INFO [pool-44-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 9
+2019-05-19 14:29:11,566  INFO [pool-44-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 14:29:11,566  INFO [pool-44-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (1 slots are available), token: 9
+2019-05-19 14:29:11,582  INFO [pool-44-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is available
+2019-05-19 14:29:11,582  INFO [pool-44-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is not free (2 slots are available), token: 9
+2019-05-19 14:29:11,602  INFO [pool-44-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is available
+2019-05-19 14:29:11,602  INFO [pool-44-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is free (3 slots are available), token: 9
+2019-05-19 14:29:11,603  INFO [http-nio-8080-exec-11] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 9
+2019-05-19 14:29:11,604  INFO [http-nio-8080-exec-11] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 9
+2019-05-19 14:29:11,604  INFO [http-nio-8080-exec-11] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 9
+2019-05-19 14:29:11,604  INFO [http-nio-8080-exec-11] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 9
+2019-05-19 14:29:11,604  INFO [http-nio-8080-exec-11] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 3, token: 9
+2019-05-19 14:29:11,604  INFO [http-nio-8080-exec-11] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 9
+2019-05-19 14:29:11,604  INFO [http-nio-8080-exec-11] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 3..., token: 9
+2019-05-19 14:29:13,487  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 10
+2019-05-19 14:29:13,488  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 0 sleeping suppliers, token: 10
+2019-05-19 14:29:13,490  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 3 awake suppliers, token: 10
+2019-05-19 14:29:13,490  INFO [pool-45-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 10
+2019-05-19 14:29:13,491  INFO [pool-45-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 10
+2019-05-19 14:29:13,493  INFO [pool-45-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 10
+2019-05-19 14:29:13,587  INFO [pool-45-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 14:29:13,587  INFO [pool-45-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is free (5 slots are available), token: 10
+2019-05-19 14:29:13,598  INFO [pool-45-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is available
+2019-05-19 14:29:13,598  INFO [pool-45-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is not free (2 slots are available), token: 10
+2019-05-19 14:29:13,642  INFO [pool-45-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is available
+2019-05-19 14:29:13,642  INFO [pool-45-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is not free (2 slots are available), token: 10
+2019-05-19 14:29:13,642  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 10
+2019-05-19 14:29:13,644  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 10
+2019-05-19 14:29:13,644  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 10
+2019-05-19 14:29:13,644  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 10
+2019-05-19 14:29:13,645  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 1, token: 10
+2019-05-19 14:29:13,645  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 10
+2019-05-19 14:29:13,645  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 1..., token: 10

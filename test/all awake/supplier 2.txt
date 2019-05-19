@@ -1,30 +1,39 @@
-2019-05-19 11:57:42,268  INFO [http-nio-8082-exec-4] it.univaq.disim.netflics.supplier.controller.SupplierController - supplier - getAvailability(), token: 0
-2019-05-19 11:57:42,480  INFO [http-nio-8082-exec-5] it.univaq.disim.netflics.supplier.controller.SupplierController - received sleep command, token: 0
-2019-05-19 11:57:42,531  INFO [http-nio-8082-exec-5] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - this supplier has been put to sleep, token: 0
-2019-05-19 11:57:53,198  INFO [http-nio-8082-exec-1] it.univaq.disim.netflics.supplier.controller.SupplierController - supplier - wakeUp(), token: 6
-2019-05-19 11:57:53,198  INFO [http-nio-8082-exec-2] it.univaq.disim.netflics.supplier.controller.SupplierController - supplier - fecthMovie(), token: 6
-2019-05-19 11:57:53,271  INFO [http-nio-8082-exec-1] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - this supplier has been woken up, token: 6
-2019-05-19 11:57:53,272 ERROR [Thread-18] it.univaq.disim.netflics.supplier.repository.SupplierMovieRepositoryImpl - query failed
-2019-05-19 11:57:54,474  INFO [Thread-18] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - movie retrieved, token: 6
-2019-05-19 11:57:54,474  INFO [Thread-18] it.univaq.disim.netflics.supplier.repository.SupplierMovieRepositoryImpl - query: UPDATE supplier_movie SET status = ? WHERE movie_id = ? AND supplier_id = ?
-2019-05-19 11:57:54,479  INFO [Thread-18] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - supplier-movie db data updated, token: 6
-2019-05-19 11:57:55,143  INFO [http-nio-8082-exec-3] it.univaq.disim.netflics.supplier.controller.SupplierController - supplier - getAvailability(), token: 7
-2019-05-19 11:57:55,275  INFO [http-nio-8082-exec-7] it.univaq.disim.netflics.supplier.controller.SupplierController - supplier - getAvailability(), token: 6
-2019-05-19 11:57:55,354  INFO [http-nio-8082-exec-6] it.univaq.disim.netflics.supplier.controller.SupplierController - supplier - getMovie(), token: 7
-2019-05-19 11:57:55,403  INFO [http-nio-8082-exec-6] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - movie tt5013056 has been found, token: 7
-2019-05-19 11:57:55,403  INFO [http-nio-8082-exec-6] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - sending stream...
-2019-05-19 11:57:55,404  INFO [http-nio-8082-exec-6] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - streaming...free slots: 4, token: 7
-2019-05-19 11:57:55,428  INFO [http-nio-8082-exec-10] it.univaq.disim.netflics.supplier.controller.SupplierController - supplier - getMovie(), token: 6
-2019-05-19 11:57:55,456  INFO [http-nio-8082-exec-10] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - movie tt5013056 has been found, token: 6
-2019-05-19 11:57:55,456  INFO [http-nio-8082-exec-10] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - sending stream...
-2019-05-19 11:57:55,457  INFO [http-nio-8082-exec-10] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - streaming...free slots: 3, token: 6
-2019-05-19 11:57:57,152  INFO [http-nio-8082-exec-8] it.univaq.disim.netflics.supplier.controller.SupplierController - supplier - getAvailability(), token: 8
-2019-05-19 11:57:57,229  INFO [http-nio-8082-exec-4] it.univaq.disim.netflics.supplier.controller.SupplierController - supplier - getMovie(), token: 8
-2019-05-19 11:57:57,258  INFO [http-nio-8082-exec-4] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - movie tt5013056 has been found, token: 8
-2019-05-19 11:57:57,258  INFO [http-nio-8082-exec-4] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - sending stream...
-2019-05-19 11:57:57,259  INFO [http-nio-8082-exec-4] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - streaming...free slots: 2, token: 8
-2019-05-19 11:57:59,136  INFO [http-nio-8082-exec-5] it.univaq.disim.netflics.supplier.controller.SupplierController - supplier - getAvailability(), token: 9
-2019-05-19 11:58:01,155  INFO [http-nio-8082-exec-9] it.univaq.disim.netflics.supplier.controller.SupplierController - supplier - getAvailability(), token: 10
-2019-05-19 11:58:07,315  INFO [http-nio-8082-exec-4] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - stream ended, free slots: 3, token: 8
-2019-05-19 11:58:07,326  INFO [http-nio-8082-exec-10] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - stream ended, free slots: 4, token: 6
-2019-05-19 11:58:07,326  INFO [http-nio-8082-exec-6] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - stream ended, free slots: 5, token: 7
+2019-05-19 14:35:09,724  INFO [http-nio-8082-exec-5] it.univaq.disim.netflics.supplier.controller.SupplierController - supplier - getAvailability(), token: 0
+2019-05-19 14:35:09,970  INFO [http-nio-8082-exec-4] it.univaq.disim.netflics.supplier.controller.SupplierController - received sleep command, token: 0
+2019-05-19 14:35:10,033  INFO [http-nio-8082-exec-4] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - this supplier has been put to sleep, token: 0
+2019-05-19 14:35:14,633  INFO [http-nio-8082-exec-3] it.univaq.disim.netflics.supplier.controller.SupplierController - supplier - fecthMovie(), token: 3
+2019-05-19 14:35:14,650  INFO [http-nio-8082-exec-6] it.univaq.disim.netflics.supplier.controller.SupplierController - supplier - wakeUp(), token: 3
+2019-05-19 14:35:14,693 ERROR [Thread-20] it.univaq.disim.netflics.supplier.repository.SupplierMovieRepositoryImpl - query failed
+2019-05-19 14:35:14,709  INFO [http-nio-8082-exec-6] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - this supplier has been woken up, token: 3
+2019-05-19 14:35:15,682  INFO [Thread-20] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - movie retrieved, token: 3
+2019-05-19 14:35:15,682  INFO [Thread-20] it.univaq.disim.netflics.supplier.repository.SupplierMovieRepositoryImpl - query: UPDATE supplier_movie SET status = ? WHERE movie_id = ? AND supplier_id = ?
+2019-05-19 14:35:15,684  INFO [Thread-20] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - supplier-movie db data updated, token: 3
+2019-05-19 14:35:16,596  INFO [http-nio-8082-exec-7] it.univaq.disim.netflics.supplier.controller.SupplierController - supplier - getAvailability(), token: 4
+2019-05-19 14:35:16,682  INFO [http-nio-8082-exec-8] it.univaq.disim.netflics.supplier.controller.SupplierController - supplier - getAvailability(), token: 3
+2019-05-19 14:35:16,703  INFO [http-nio-8082-exec-10] it.univaq.disim.netflics.supplier.controller.SupplierController - supplier - getMovie(), token: 4
+2019-05-19 14:35:16,755  INFO [http-nio-8082-exec-10] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - movie tt5013056 has been found, token: 4
+2019-05-19 14:35:16,756  INFO [http-nio-8082-exec-10] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - streaming...free slots: 4, token: 4
+2019-05-19 14:35:16,786  INFO [http-nio-8082-exec-9] it.univaq.disim.netflics.supplier.controller.SupplierController - supplier - getMovie(), token: 3
+2019-05-19 14:35:16,820  INFO [http-nio-8082-exec-9] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - movie tt5013056 has been found, token: 3
+2019-05-19 14:35:16,821  INFO [http-nio-8082-exec-9] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - streaming...free slots: 3, token: 3
+2019-05-19 14:35:18,588  INFO [http-nio-8082-exec-2] it.univaq.disim.netflics.supplier.controller.SupplierController - supplier - getAvailability(), token: 5
+2019-05-19 14:35:18,672  INFO [http-nio-8082-exec-1] it.univaq.disim.netflics.supplier.controller.SupplierController - supplier - getMovie(), token: 5
+2019-05-19 14:35:18,697  INFO [http-nio-8082-exec-1] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - movie tt5013056 has been found, token: 5
+2019-05-19 14:35:18,698  INFO [http-nio-8082-exec-1] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - streaming...free slots: 2, token: 5
+2019-05-19 14:35:20,595  INFO [http-nio-8082-exec-5] it.univaq.disim.netflics.supplier.controller.SupplierController - supplier - getAvailability(), token: 6
+2019-05-19 14:35:22,609  INFO [http-nio-8082-exec-4] it.univaq.disim.netflics.supplier.controller.SupplierController - supplier - getAvailability(), token: 7
+2019-05-19 14:35:24,610  INFO [http-nio-8082-exec-3] it.univaq.disim.netflics.supplier.controller.SupplierController - supplier - getAvailability(), token: 8
+2019-05-19 14:35:26,595  INFO [http-nio-8082-exec-6] it.univaq.disim.netflics.supplier.controller.SupplierController - supplier - getAvailability(), token: 9
+2019-05-19 14:35:26,760  INFO [http-nio-8082-exec-10] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - stream ended, free slots: 3, token: 4
+2019-05-19 14:35:26,825  INFO [http-nio-8082-exec-9] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - stream ended, free slots: 4, token: 3
+2019-05-19 14:35:28,645  INFO [http-nio-8082-exec-7] it.univaq.disim.netflics.supplier.controller.SupplierController - supplier - getAvailability(), token: 10
+2019-05-19 14:35:28,700  INFO [http-nio-8082-exec-1] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - stream ended, free slots: 5, token: 5
+2019-05-19 14:35:28,740  INFO [http-nio-8082-exec-8] it.univaq.disim.netflics.supplier.controller.SupplierController - supplier - getAvailability(), token: 9
+2019-05-19 14:35:28,898  INFO [http-nio-8082-exec-2] it.univaq.disim.netflics.supplier.controller.SupplierController - supplier - getMovie(), token: 10
+2019-05-19 14:35:28,907  INFO [http-nio-8082-exec-5] it.univaq.disim.netflics.supplier.controller.SupplierController - supplier - getMovie(), token: 9
+2019-05-19 14:35:28,944  INFO [http-nio-8082-exec-5] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - movie tt5013056 has been found, token: 9
+2019-05-19 14:35:28,945  INFO [http-nio-8082-exec-5] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - streaming...free slots: 4, token: 9
+2019-05-19 14:35:28,948  INFO [http-nio-8082-exec-2] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - movie tt5013056 has been found, token: 10
+2019-05-19 14:35:28,949  INFO [http-nio-8082-exec-2] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - streaming...free slots: 3, token: 10
+2019-05-19 14:35:38,951  INFO [http-nio-8082-exec-5] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - stream ended, free slots: 4, token: 9
+2019-05-19 14:35:38,952  INFO [http-nio-8082-exec-2] it.univaq.disim.netflics.supplier.service.SupplierServiceImpl - stream ended, free slots: 5, token: 10

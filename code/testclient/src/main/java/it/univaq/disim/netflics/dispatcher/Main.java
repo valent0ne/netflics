@@ -1,7 +1,5 @@
 package it.univaq.disim.netflics.dispatcher;
 
-
-import com.fasterxml.jackson.databind.util.ArrayIterator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,7 +9,6 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.ExecutorService;
@@ -61,7 +58,7 @@ public class Main {
         try {
             ExecutorService testThreadPool = Executors.newFixedThreadPool(numrequest);
             for (Integer i : requests) {
-                LOGGER.info("sending request {}/{}...", i, numrequest);
+                // LOGGER.info("sending request {}/{}...", i, numrequest);
                 testThreadPool.submit(() -> sendRequest(targetaddress, imdbid, i));
                 TimeUnit.SECONDS.sleep(waitbetweenrequests);
             }
@@ -80,6 +77,7 @@ public class Main {
         WebTarget target = client.target("http://"+targetaddress+"/dispatcher/api/dispatcher/"+i+"/movie/stream/"+imdbid);
         InputStream is = target.request(MediaType.APPLICATION_OCTET_STREAM).get(InputStream.class);
         LOGGER.info("request {} ended", i);
+
     }
 
 

@@ -1,0 +1,296 @@
+/Users/valent0ne/Library/apache-tomcat-9.0.19/bin/catalina.sh run
+[2019-05-19 02:46:51,914] Artifact auth.war: Waiting for server connection to start artifact deployment...
+[2019-05-19 02:46:51,915] Artifact vault.war: Waiting for server connection to start artifact deployment...
+[2019-05-19 02:46:51,915] Artifact informer.war: Waiting for server connection to start artifact deployment...
+[2019-05-19 02:46:51,915] Artifact dispatcher.war: Waiting for server connection to start artifact deployment...
+19-May-2019 14:46:53.071 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/9.0.19
+19-May-2019 14:46:53.078 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Apr 12 2019 14:22:48 UTC
+19-May-2019 14:46:53.080 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 9.0.19.0
+19-May-2019 14:46:53.080 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Mac OS X
+19-May-2019 14:46:53.081 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.14.4
+19-May-2019 14:46:53.081 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          x86_64
+19-May-2019 14:46:53.081 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre
+19-May-2019 14:46:53.082 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           1.8.0_131-b11
+19-May-2019 14:46:53.082 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+19-May-2019 14:46:53.083 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         /Users/valent0ne/Library/Caches/IntelliJIdea2019.1/tomcat/Unnamed_dispatcher_3
+19-May-2019 14:46:53.083 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         /Users/valent0ne/Library/apache-tomcat-9.0.19
+19-May-2019 14:46:53.085 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=/Users/valent0ne/Library/Caches/IntelliJIdea2019.1/tomcat/Unnamed_dispatcher_3/conf/logging.properties
+19-May-2019 14:46:53.085 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+19-May-2019 14:46:53.085 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcom.sun.management.jmxremote=
+19-May-2019 14:46:53.085 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcom.sun.management.jmxremote.port=1099
+19-May-2019 14:46:53.086 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcom.sun.management.jmxremote.ssl=false
+19-May-2019 14:46:53.086 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcom.sun.management.jmxremote.password.file=/Users/valent0ne/Library/Caches/IntelliJIdea2019.1/tomcat/Unnamed_dispatcher_3/jmxremote.password
+19-May-2019 14:46:53.086 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcom.sun.management.jmxremote.access.file=/Users/valent0ne/Library/Caches/IntelliJIdea2019.1/tomcat/Unnamed_dispatcher_3/jmxremote.access
+19-May-2019 14:46:53.086 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.rmi.server.hostname=127.0.0.1
+19-May-2019 14:46:53.086 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+19-May-2019 14:46:53.086 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+19-May-2019 14:46:53.086 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dorg.apache.catalina.security.SecurityListener.UMASK=0027
+19-May-2019 14:46:53.087 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dignore.endorsed.dirs=
+19-May-2019 14:46:53.087 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=/Users/valent0ne/Library/Caches/IntelliJIdea2019.1/tomcat/Unnamed_dispatcher_3
+19-May-2019 14:46:53.087 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=/Users/valent0ne/Library/apache-tomcat-9.0.19
+19-May-2019 14:46:53.087 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=/Users/valent0ne/Library/apache-tomcat-9.0.19/temp
+19-May-2019 14:46:53.088 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/valent0ne/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+19-May-2019 14:46:53.240 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+19-May-2019 14:46:53.287 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["ajp-nio-8009"]
+19-May-2019 14:46:53.295 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [732] milliseconds
+19-May-2019 14:46:53.368 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+19-May-2019 14:46:53.371 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/9.0.19]
+19-May-2019 14:46:53.393 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+19-May-2019 14:46:53.407 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["ajp-nio-8009"]
+19-May-2019 14:46:53.410 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [114] milliseconds
+Connected to server
+[2019-05-19 02:46:53,516] Artifact auth.war: Artifact is being deployed, please wait...
+[2019-05-19 02:46:53,516] Artifact vault.war: Artifact is being deployed, please wait...
+[2019-05-19 02:46:53,516] Artifact informer.war: Artifact is being deployed, please wait...
+[2019-05-19 02:46:53,517] Artifact dispatcher.war: Artifact is being deployed, please wait...
+19-May-2019 14:46:53.612 WARNING [RMI TCP Connection(2)-127.0.0.1] org.apache.catalina.startup.SetContextPropertiesRule.begin [SetContextPropertiesRule]{Context} Setting property 'antiJARLocking' to 'true' did not find a matching property.
+19-May-2019 14:46:55.732 INFO [RMI TCP Connection(2)-127.0.0.1] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+ INFO [RMI TCP Connection(2)-127.0.0.1] org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization started
+ INFO [RMI TCP Connection(2)-127.0.0.1] org.springframework.web.context.support.XmlWebApplicationContext - Refreshing Root WebApplicationContext: startup date [Sun May 19 14:46:55 CEST 2019]; root of context hierarchy
+ INFO [RMI TCP Connection(2)-127.0.0.1] org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from ServletContext resource [/WEB-INF/spring/root-context.xml]
+ INFO [RMI TCP Connection(2)-127.0.0.1] org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 816 ms
+ INFO [RMI TCP Connection(2)-127.0.0.1] org.springframework.web.context.support.XmlWebApplicationContext - Refreshing Root WebApplicationContext: startup date [Sun May 19 14:46:56 CEST 2019]; parent: Root WebApplicationContext
+ INFO [RMI TCP Connection(2)-127.0.0.1] org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [META-INF/cxf/cxf.xml]
+ INFO [RMI TCP Connection(2)-127.0.0.1] org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from URL [file:/Users/valent0ne/Library/apache-tomcat-9.0.19/webapps/auth/WEB-INF/spring/cxf-config.xml]
+ INFO [RMI TCP Connection(2)-127.0.0.1] org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from URL [file:/Users/valent0ne/Library/apache-tomcat-9.0.19/webapps/auth/WEB-INF/spring/cxf.xml]
+ INFO [RMI TCP Connection(2)-127.0.0.1] org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean - Creating Service {http://it.univaq.disim.netflics/auth}AuthService from class it.univaq.disim.netflics.auth.AuthPT
+ INFO [RMI TCP Connection(2)-127.0.0.1] org.apache.cxf.endpoint.ServerImpl - Setting the server's publish address to be /auth
+[2019-05-19 02:46:57,985] Artifact auth.war: Artifact is deployed successfully
+[2019-05-19 02:46:57,986] Artifact auth.war: Deploy took 4,470 milliseconds
+19-May-2019 14:46:58.024 WARNING [RMI TCP Connection(3)-127.0.0.1] org.apache.catalina.startup.SetContextPropertiesRule.begin [SetContextPropertiesRule]{Context} Setting property 'antiJARLocking' to 'true' did not find a matching property.
+19-May-2019 14:46:59.832 INFO [RMI TCP Connection(3)-127.0.0.1] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+ INFO [RMI TCP Connection(3)-127.0.0.1] org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization started
+ INFO [RMI TCP Connection(3)-127.0.0.1] org.springframework.web.context.support.XmlWebApplicationContext - Refreshing Root WebApplicationContext: startup date [Sun May 19 14:46:59 CEST 2019]; root of context hierarchy
+ INFO [RMI TCP Connection(3)-127.0.0.1] org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from ServletContext resource [/WEB-INF/spring/root-context.xml]
+ INFO [RMI TCP Connection(3)-127.0.0.1] org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 561 ms
+ INFO [RMI TCP Connection(3)-127.0.0.1] org.springframework.web.context.support.XmlWebApplicationContext - Refreshing Root WebApplicationContext: startup date [Sun May 19 14:47:00 CEST 2019]; parent: Root WebApplicationContext
+ INFO [RMI TCP Connection(3)-127.0.0.1] org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [META-INF/cxf/cxf.xml]
+ INFO [RMI TCP Connection(3)-127.0.0.1] org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from URL [file:/Users/valent0ne/Library/apache-tomcat-9.0.19/webapps/vault/WEB-INF/spring/cxf-config.xml]
+ INFO [RMI TCP Connection(3)-127.0.0.1] org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from URL [file:/Users/valent0ne/Library/apache-tomcat-9.0.19/webapps/vault/WEB-INF/spring/cxf.xml]
+ INFO [RMI TCP Connection(3)-127.0.0.1] org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean - Creating Service {http://it.univaq.disim.netflics/vault}VaultService from class it.univaq.disim.netflics.vault.VaultPT
+ INFO [RMI TCP Connection(3)-127.0.0.1] org.apache.cxf.endpoint.ServerImpl - Setting the server's publish address to be /vault
+[2019-05-19 02:47:01,222] Artifact vault.war: Artifact is deployed successfully
+[2019-05-19 02:47:01,222] Artifact vault.war: Deploy took 7,706 milliseconds
+19-May-2019 14:47:01.254 WARNING [RMI TCP Connection(3)-127.0.0.1] org.apache.catalina.startup.SetContextPropertiesRule.begin [SetContextPropertiesRule]{Context} Setting property 'antiJARLocking' to 'true' did not find a matching property.
+19-May-2019 14:47:02.702 INFO [RMI TCP Connection(3)-127.0.0.1] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+ INFO [RMI TCP Connection(3)-127.0.0.1] org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization started
+ INFO [RMI TCP Connection(3)-127.0.0.1] org.springframework.web.context.support.XmlWebApplicationContext - Refreshing Root WebApplicationContext: startup date [Sun May 19 14:47:02 CEST 2019]; root of context hierarchy
+ INFO [RMI TCP Connection(3)-127.0.0.1] org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from ServletContext resource [/WEB-INF/spring/root-context.xml]
+ INFO [RMI TCP Connection(3)-127.0.0.1] org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 503 ms
+ INFO [RMI TCP Connection(3)-127.0.0.1] org.springframework.web.context.support.XmlWebApplicationContext - Refreshing Root WebApplicationContext: startup date [Sun May 19 14:47:03 CEST 2019]; parent: Root WebApplicationContext
+ INFO [RMI TCP Connection(3)-127.0.0.1] org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [META-INF/cxf/cxf.xml]
+ INFO [RMI TCP Connection(3)-127.0.0.1] org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from URL [file:/Users/valent0ne/Library/apache-tomcat-9.0.19/webapps/informer/WEB-INF/spring/cxf-config.xml]
+ INFO [RMI TCP Connection(3)-127.0.0.1] org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from URL [file:/Users/valent0ne/Library/apache-tomcat-9.0.19/webapps/informer/WEB-INF/spring/cxf.xml]
+19-May-2019 14:47:03.397 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/valent0ne/Library/apache-tomcat-9.0.19/webapps/manager]
+19-May-2019 14:47:03.430 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/valent0ne/Library/apache-tomcat-9.0.19/webapps/manager] has finished in [33] ms
+ INFO [RMI TCP Connection(3)-127.0.0.1] org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean - Creating Service {http://it.univaq.disim.netflics/informer}InformerService from class it.univaq.disim.netflics.wsdl.InformerPT
+ INFO [RMI TCP Connection(3)-127.0.0.1] org.apache.cxf.endpoint.ServerImpl - Setting the server's publish address to be /informer
+[2019-05-19 02:47:04,211] Artifact informer.war: Artifact is deployed successfully
+[2019-05-19 02:47:04,211] Artifact informer.war: Deploy took 10,695 milliseconds
+19-May-2019 14:47:04.246 WARNING [RMI TCP Connection(3)-127.0.0.1] org.apache.catalina.startup.SetContextPropertiesRule.begin [SetContextPropertiesRule]{Context} Setting property 'antiJARLocking' to 'true' did not find a matching property.
+19-May-2019 14:47:06.015 INFO [RMI TCP Connection(3)-127.0.0.1] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2019-05-19 14:47:06,087  INFO [RMI TCP Connection(3)-127.0.0.1] org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization started
+2019-05-19 14:47:06,208  INFO [RMI TCP Connection(3)-127.0.0.1] org.springframework.web.context.support.XmlWebApplicationContext - Refreshing Root WebApplicationContext: startup date [Sun May 19 14:47:06 CEST 2019]; root of context hierarchy
+2019-05-19 14:47:06,265  INFO [RMI TCP Connection(3)-127.0.0.1] org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from ServletContext resource [/WEB-INF/spring/root-context.xml]
+2019-05-19 14:47:06,668  INFO [RMI TCP Connection(3)-127.0.0.1] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2019-05-19 14:47:07,192  INFO [RMI TCP Connection(3)-127.0.0.1] org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1104 ms
+2019-05-19 14:47:07,222  INFO [RMI TCP Connection(3)-127.0.0.1] org.springframework.web.context.support.XmlWebApplicationContext - Refreshing Root WebApplicationContext: startup date [Sun May 19 14:47:07 CEST 2019]; parent: Root WebApplicationContext
+2019-05-19 14:47:07,222  INFO [RMI TCP Connection(3)-127.0.0.1] org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [META-INF/cxf/cxf.xml]
+2019-05-19 14:47:07,233  INFO [RMI TCP Connection(3)-127.0.0.1] org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from URL [file:/Users/valent0ne/Library/apache-tomcat-9.0.19/webapps/dispatcher/WEB-INF/spring/cxf-config.xml]
+2019-05-19 14:47:07,243  INFO [RMI TCP Connection(3)-127.0.0.1] org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from URL [file:/Users/valent0ne/Library/apache-tomcat-9.0.19/webapps/dispatcher/WEB-INF/spring/cxf.xml]
+2019-05-19 14:47:07,318  INFO [RMI TCP Connection(3)-127.0.0.1] org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2019-05-19 14:47:07,722  INFO [RMI TCP Connection(3)-127.0.0.1] org.apache.cxf.endpoint.ServerImpl - Setting the server's publish address to be /dispatcher
+[2019-05-19 02:47:07,825] Artifact dispatcher.war: Artifact is deployed successfully
+[2019-05-19 02:47:07,825] Artifact dispatcher.war: Deploy took 14,308 milliseconds
+2019-05-19 14:47:19,231  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 0
+2019-05-19 14:47:19,235  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 0 sleeping suppliers, token: 0
+2019-05-19 14:47:19,237  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 3 awake suppliers, token: 0
+2019-05-19 14:47:19,240  INFO [pool-5-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 0
+2019-05-19 14:47:19,261  INFO [pool-5-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 0
+2019-05-19 14:47:19,263  INFO [pool-5-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 0
+2019-05-19 14:47:19,623  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 1
+2019-05-19 14:47:19,624  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 0 sleeping suppliers, token: 1
+2019-05-19 14:47:19,626  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 3 awake suppliers, token: 1
+2019-05-19 14:47:19,626  INFO [pool-6-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 1
+2019-05-19 14:47:19,627  INFO [pool-6-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 1
+2019-05-19 14:47:19,627  INFO [pool-6-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 1
+2019-05-19 14:47:19,978 ERROR [pool-6-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - the supplier 3 seems unavailable: java.net.ConnectException: Connection refused (Connection refused)
+2019-05-19 14:47:19,978 ERROR [pool-6-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - the supplier 2 seems unavailable: java.net.ConnectException: Connection refused (Connection refused)
+2019-05-19 14:47:19,978 ERROR [pool-5-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - the supplier 3 seems unavailable: java.net.ConnectException: Connection refused (Connection refused)
+2019-05-19 14:47:19,981 ERROR [pool-5-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - the supplier 2 seems unavailable: java.net.ConnectException: Connection refused (Connection refused)
+2019-05-19 14:47:20,435  INFO [pool-5-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 14:47:20,435  INFO [pool-6-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 14:47:20,435  INFO [pool-5-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is free (5 slots are available), token: 0
+2019-05-19 14:47:20,435  INFO [pool-6-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is free (5 slots are available), token: 1
+2019-05-19 14:47:20,435  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 0
+2019-05-19 14:47:20,435  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 1
+2019-05-19 14:47:20,437  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 0
+2019-05-19 14:47:20,437  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 1
+2019-05-19 14:47:20,437  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 0
+2019-05-19 14:47:20,437  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 1
+2019-05-19 14:47:20,437  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 0
+2019-05-19 14:47:20,437  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 1
+2019-05-19 14:47:20,439  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 1, token: 0
+2019-05-19 14:47:20,439  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 1, token: 1
+2019-05-19 14:47:20,439  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 1
+2019-05-19 14:47:20,439  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 0
+2019-05-19 14:47:20,440  INFO [http-nio-8080-exec-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 1..., token: 0
+2019-05-19 14:47:20,440  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 1..., token: 1
+2019-05-19 14:47:21,605  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 2
+2019-05-19 14:47:21,607  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 0 sleeping suppliers, token: 2
+2019-05-19 14:47:21,608  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 3 awake suppliers, token: 2
+2019-05-19 14:47:21,608  INFO [pool-7-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 2
+2019-05-19 14:47:21,608  INFO [pool-7-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 2
+2019-05-19 14:47:21,613  INFO [pool-7-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 2
+2019-05-19 14:47:21,635 ERROR [pool-7-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - the supplier 2 seems unavailable: java.net.ConnectException: Connection refused (Connection refused)
+2019-05-19 14:47:21,647 ERROR [pool-7-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - the supplier 3 seems unavailable: java.net.ConnectException: Connection refused (Connection refused)
+2019-05-19 14:47:21,680  INFO [pool-7-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 14:47:21,680  INFO [pool-7-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is free (3 slots are available), token: 2
+2019-05-19 14:47:21,680  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 2
+2019-05-19 14:47:21,682  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 2
+2019-05-19 14:47:21,682  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 2
+2019-05-19 14:47:21,682  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 2
+2019-05-19 14:47:21,682  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 1, token: 2
+2019-05-19 14:47:21,682  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 2
+2019-05-19 14:47:21,682  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 1..., token: 2
+2019-05-19 14:47:23,610  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 3
+2019-05-19 14:47:23,611  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 0 sleeping suppliers, token: 3
+2019-05-19 14:47:23,613  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 3 awake suppliers, token: 3
+2019-05-19 14:47:23,614  INFO [pool-8-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 3
+2019-05-19 14:47:23,616  INFO [pool-8-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 3
+2019-05-19 14:47:23,619  INFO [pool-8-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 3
+2019-05-19 14:47:23,647 ERROR [pool-8-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - the supplier 2 seems unavailable: java.net.ConnectException: Connection refused (Connection refused)
+2019-05-19 14:47:23,656 ERROR [pool-8-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - the supplier 3 seems unavailable: java.net.ConnectException: Connection refused (Connection refused)
+2019-05-19 14:47:23,681  INFO [pool-8-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 14:47:23,681  INFO [pool-8-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (2 slots are available), token: 3
+2019-05-19 14:47:23,681  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 3
+2019-05-19 14:47:23,682  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 3
+2019-05-19 14:47:23,682  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are no free suppliers available
+2019-05-19 14:47:23,682  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - no free suppliers and no sleeping suppliers: streaming from vault, token: 3
+2019-05-19 14:47:23,682  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 3
+2019-05-19 14:47:23,682  INFO [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from Vault..., token: 3
+2019-05-19 14:47:25,614  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 4
+2019-05-19 14:47:25,616  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 0 sleeping suppliers, token: 4
+2019-05-19 14:47:25,618  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 3 awake suppliers, token: 4
+2019-05-19 14:47:25,618  INFO [pool-9-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 4
+2019-05-19 14:47:25,618  INFO [pool-9-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 4
+2019-05-19 14:47:25,619  INFO [pool-9-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 4
+2019-05-19 14:47:25,647 ERROR [pool-9-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - the supplier 2 seems unavailable: java.net.ConnectException: Connection refused (Connection refused)
+2019-05-19 14:47:25,647 ERROR [pool-9-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - the supplier 3 seems unavailable: java.net.ConnectException: Connection refused (Connection refused)
+2019-05-19 14:47:25,683  INFO [pool-9-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 14:47:25,683  INFO [pool-9-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (2 slots are available), token: 4
+2019-05-19 14:47:25,683  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 4
+2019-05-19 14:47:25,685  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 4
+2019-05-19 14:47:25,685  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are no free suppliers available
+2019-05-19 14:47:25,685  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - no free suppliers and no sleeping suppliers: streaming from vault, token: 4
+2019-05-19 14:47:25,685  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 4
+2019-05-19 14:47:25,685  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from Vault..., token: 4
+2019-05-19 14:47:27,612  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 5
+2019-05-19 14:47:27,613  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 0 sleeping suppliers, token: 5
+2019-05-19 14:47:27,614  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 3 awake suppliers, token: 5
+2019-05-19 14:47:27,614  INFO [pool-10-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 5
+2019-05-19 14:47:27,615  INFO [pool-10-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 5
+2019-05-19 14:47:27,615  INFO [pool-10-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 5
+2019-05-19 14:47:27,640 ERROR [pool-10-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - the supplier 3 seems unavailable: java.net.ConnectException: Connection refused (Connection refused)
+2019-05-19 14:47:27,647 ERROR [pool-10-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - the supplier 2 seems unavailable: java.net.ConnectException: Connection refused (Connection refused)
+2019-05-19 14:47:27,675  INFO [pool-10-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 14:47:27,675  INFO [pool-10-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (2 slots are available), token: 5
+2019-05-19 14:47:27,675  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 5
+2019-05-19 14:47:27,678  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 5
+2019-05-19 14:47:27,678  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are no free suppliers available
+2019-05-19 14:47:27,678  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - no free suppliers and no sleeping suppliers: streaming from vault, token: 5
+2019-05-19 14:47:27,678  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 5
+2019-05-19 14:47:27,678  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from Vault..., token: 5
+2019-05-19 14:47:29,633  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 6
+2019-05-19 14:47:29,637  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 0 sleeping suppliers, token: 6
+2019-05-19 14:47:29,648  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 3 awake suppliers, token: 6
+2019-05-19 14:47:29,652  INFO [pool-11-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 6
+2019-05-19 14:47:29,665  INFO [pool-11-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 6
+2019-05-19 14:47:29,671  INFO [pool-11-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 6
+2019-05-19 14:47:29,748 ERROR [pool-11-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - the supplier 2 seems unavailable: java.net.ConnectException: Connection refused (Connection refused)
+2019-05-19 14:47:29,753 ERROR [pool-11-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - the supplier 3 seems unavailable: java.net.ConnectException: Connection refused (Connection refused)
+2019-05-19 14:47:29,831  INFO [pool-11-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 14:47:29,831  INFO [pool-11-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (2 slots are available), token: 6
+2019-05-19 14:47:29,831  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 6
+2019-05-19 14:47:29,833  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 6
+2019-05-19 14:47:29,833  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are no free suppliers available
+2019-05-19 14:47:29,833  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - no free suppliers and no sleeping suppliers: streaming from vault, token: 6
+2019-05-19 14:47:29,833  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 6
+2019-05-19 14:47:29,833  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from Vault..., token: 6
+2019-05-19 14:47:31,620  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 7
+2019-05-19 14:47:31,621  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 0 sleeping suppliers, token: 7
+2019-05-19 14:47:31,623  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 3 awake suppliers, token: 7
+2019-05-19 14:47:31,623  INFO [pool-12-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 7
+2019-05-19 14:47:31,623  INFO [pool-12-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 7
+2019-05-19 14:47:31,625  INFO [pool-12-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 7
+2019-05-19 14:47:31,642 ERROR [pool-12-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - the supplier 3 seems unavailable: java.net.ConnectException: Connection refused (Connection refused)
+2019-05-19 14:47:31,642 ERROR [pool-12-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - the supplier 2 seems unavailable: java.net.ConnectException: Connection refused (Connection refused)
+2019-05-19 14:47:31,680  INFO [pool-12-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 14:47:31,680  INFO [pool-12-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is free (4 slots are available), token: 7
+2019-05-19 14:47:31,680  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 7
+2019-05-19 14:47:31,682  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 7
+2019-05-19 14:47:31,682  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 7
+2019-05-19 14:47:31,682  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 7
+2019-05-19 14:47:31,682  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 1, token: 7
+2019-05-19 14:47:31,682  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 7
+2019-05-19 14:47:31,682  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 1..., token: 7
+2019-05-19 14:47:33,616  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 8
+2019-05-19 14:47:33,617  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 0 sleeping suppliers, token: 8
+2019-05-19 14:47:33,618  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 3 awake suppliers, token: 8
+2019-05-19 14:47:33,619  INFO [pool-13-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 8
+2019-05-19 14:47:33,619  INFO [pool-13-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 8
+2019-05-19 14:47:33,619  INFO [pool-13-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 8
+2019-05-19 14:47:33,640 ERROR [pool-13-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - the supplier 3 seems unavailable: java.net.ConnectException: Connection refused (Connection refused)
+2019-05-19 14:47:33,644 ERROR [pool-13-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - the supplier 2 seems unavailable: java.net.ConnectException: Connection refused (Connection refused)
+2019-05-19 14:47:33,676  INFO [pool-13-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 14:47:33,676  INFO [pool-13-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is free (4 slots are available), token: 8
+2019-05-19 14:47:33,676  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 8
+2019-05-19 14:47:33,677  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 8
+2019-05-19 14:47:33,677  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 8
+2019-05-19 14:47:33,677  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 8
+2019-05-19 14:47:33,677  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 1, token: 8
+2019-05-19 14:47:33,677  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 8
+2019-05-19 14:47:33,677  INFO [http-nio-8080-exec-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 1..., token: 8
+2019-05-19 14:47:35,628  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 9
+2019-05-19 14:47:35,629  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 0 sleeping suppliers, token: 9
+2019-05-19 14:47:35,630  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 3 awake suppliers, token: 9
+2019-05-19 14:47:35,631  INFO [pool-14-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 9
+2019-05-19 14:47:35,631  INFO [pool-14-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 9
+2019-05-19 14:47:35,631  INFO [pool-14-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 9
+2019-05-19 14:47:35,654 ERROR [pool-14-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - the supplier 3 seems unavailable: java.net.ConnectException: Connection refused (Connection refused)
+2019-05-19 14:47:35,667 ERROR [pool-14-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - the supplier 2 seems unavailable: java.net.ConnectException: Connection refused (Connection refused)
+2019-05-19 14:47:35,698  INFO [pool-14-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 14:47:35,698  INFO [pool-14-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is free (3 slots are available), token: 9
+2019-05-19 14:47:35,698  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 9
+2019-05-19 14:47:35,700  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 9
+2019-05-19 14:47:35,700  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 9
+2019-05-19 14:47:35,700  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 9
+2019-05-19 14:47:35,700  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 1, token: 9
+2019-05-19 14:47:35,700  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 9
+2019-05-19 14:47:35,700  INFO [http-nio-8080-exec-9] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 1..., token: 9
+2019-05-19 14:47:37,627  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 10
+2019-05-19 14:47:37,628  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 0 sleeping suppliers, token: 10
+2019-05-19 14:47:37,629  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are 3 awake suppliers, token: 10
+2019-05-19 14:47:37,630  INFO [pool-15-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 10
+2019-05-19 14:47:37,630  INFO [pool-15-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 10
+2019-05-19 14:47:37,632  INFO [pool-15-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 10
+2019-05-19 14:47:37,646 ERROR [pool-15-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - the supplier 3 seems unavailable: java.net.ConnectException: Connection refused (Connection refused)
+2019-05-19 14:47:37,646 ERROR [pool-15-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - the supplier 2 seems unavailable: java.net.ConnectException: Connection refused (Connection refused)
+2019-05-19 14:47:37,687  INFO [pool-15-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 14:47:37,687  INFO [pool-15-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (2 slots are available), token: 10
+2019-05-19 14:47:37,687  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 10
+2019-05-19 14:47:37,688  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 10
+2019-05-19 14:47:37,688  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are no free suppliers available
+2019-05-19 14:47:37,688  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - no free suppliers and no sleeping suppliers: streaming from vault, token: 10
+2019-05-19 14:47:37,688  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 10
+2019-05-19 14:47:37,688  INFO [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from Vault..., token: 10
+ INFO [http-nio-8080-exec-7] org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean - Creating Service {http://it.univaq.disim.netflics/auth}AuthService from WSDL: file:/Users/valent0ne/Projects/netflics/code/vault/src/main/resources/clients/auth.wsdl
+ INFO [http-nio-8080-exec-1] org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean - Creating Service {http://it.univaq.disim.netflics/auth}AuthService from WSDL: file:/Users/valent0ne/Projects/netflics/code/vault/src/main/resources/clients/auth.wsdl
+ INFO [http-nio-8080-exec-7] org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean - Creating Service {http://it.univaq.disim.netflics/auth}AuthService from WSDL: file:/Users/valent0ne/Projects/netflics/code/vault/src/main/resources/clients/auth.wsdl
+ INFO [http-nio-8080-exec-2] org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean - Creating Service {http://it.univaq.disim.netflics/auth}AuthService from WSDL: file:/Users/valent0ne/Projects/netflics/code/vault/src/main/resources/clients/auth.wsdl
+ INFO [http-nio-8080-exec-1] org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean - Creating Service {http://it.univaq.disim.netflics/auth}AuthService from WSDL: file:/Users/valent0ne/Projects/netflics/code/vault/src/main/resources/clients/auth.wsdl
+2019-05-19 14:47:52,984  WARN [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - streaming error (stream closed by the user?)
+2019-05-19 14:47:52,984  WARN [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - streaming error (stream closed by the user?)
+2019-05-19 14:47:52,985  WARN [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - streaming error (stream closed by the user?)
+2019-05-19 14:47:52,985  WARN [http-nio-8080-exec-5] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - streaming error (stream closed by the user?)
+2019-05-19 14:47:52,986  WARN [http-nio-8080-exec-6] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - streaming error (stream closed by the user?)

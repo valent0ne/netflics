@@ -106,9 +106,12 @@ public class LoadBalancer {
         // fill the sleepingSuppliers list
         sleepingSuppliers = supplierRepository.findAllByStatus("SLEEP");
 
+        LOGGER.info("there are {} sleeping suppliers, token: {}", sleepingSuppliers.size(), token);
+
         // fill the freeSuppliers list
         List<Supplier> suppliersToPoll = supplierRepository.findAllByStatus("AWAKE");
 
+        LOGGER.info("there are {} awake suppliers, token: {}", suppliersToPoll.size(), token);
 
         // call getAvailability of all awake suppliers
         try {
@@ -259,6 +262,11 @@ public class LoadBalancer {
             // return the stream
             return outputStream -> {
 
+                try{
+                    // artificial vault delay
+                    TimeUnit.SECONDS.sleep(15);
+                }catch (Exception ignored){}
+
                 GetMovieRequest getMovieRequest = new GetMovieRequest();
                 getMovieRequest.setToken(token);
                 getMovieRequest.setImdbId(movie.getImdbId());
@@ -294,13 +302,14 @@ public class LoadBalancer {
             // return the stream
             return outputStream -> {
 
+
                 Client client = ClientBuilder.newClient();
-                WebTarget target = client
-                        .target("http://"+chosenOne.getIp()+":"+chosenOne.getPort()+"/supplier/api/supplier/"+token+"/movie/"+movie.getImdbId());
+                WebTarget target = client.target("http://"+chosenOne.getIp()+":"+chosenOne.getPort()+"/supplier/api/supplier/"+token+"/movie/"+movie.getImdbId());
                 InputStream is = target.request(MediaType.APPLICATION_OCTET_STREAM).get(InputStream.class);
 
                 try {
-                    IOUtils.copy(is, outputStream);
+                    outputStream.write(is.read());
+                    outputStream.flush();
 
                 } catch (Exception e) {
                     LOGGER.warn("streaming error (stream closed by the user?), token: {}", token);
