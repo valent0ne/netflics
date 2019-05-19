@@ -1,6 +1,7 @@
 package it.univaq.disim.netflics.supplier.repository;
 
 import it.univaq.disim.netflics.supplier.BusinessException;
+import it.univaq.disim.netflics.supplier.model.Supplier;
 import it.univaq.disim.netflics.supplier.model.SupplierMovie;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 @SuppressWarnings("Duplicates")
@@ -97,7 +100,6 @@ public class SupplierMovieRepositoryImpl implements SupplierMovieRepository {
     }
 
     public void deleteAllBySupplierId (Long supplierId)throws BusinessException{
-        int rs;
 
         String sql = "DELETE FROM supplier_movie WHERE supplier_id = ?";
         LOGGER.debug("query: {}", sql);
@@ -105,11 +107,31 @@ public class SupplierMovieRepositoryImpl implements SupplierMovieRepository {
         try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
             st.setLong(1, supplierId);
 
-            rs = st.executeUpdate();
+            st.executeUpdate();
 
-            if (rs != 1) {
-                LOGGER.error("query failed");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new BusinessException(e);
+        }
+    }
+
+    public List<SupplierMovie> findAllByStatusFetching(Long supplierId) throws BusinessException{
+
+        ResultSet rs;
+
+        String sql = "SELECT * FROM supplier_movie WHERE supplier_id = ? AND status = 'FETCHING'";
+        try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
+            st.setLong(1, supplierId);
+
+            List<SupplierMovie> sml = new ArrayList<>();
+
+            rs = st.executeQuery();
+            while (rs.next()){
+                SupplierMovie sm = new SupplierMovie();
+                sml.add(sm);
             }
+
+            return sml;
 
         } catch (SQLException e) {
             e.printStackTrace();

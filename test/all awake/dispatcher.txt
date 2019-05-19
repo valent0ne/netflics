@@ -1,0 +1,664 @@
+2019-05-19 11:57:42,210  INFO [http-nio-8080-exec-19] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 0
+2019-05-19 11:57:42,215  INFO [pool-67-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 0
+2019-05-19 11:57:42,216  INFO [pool-67-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 0
+2019-05-19 11:57:42,217  INFO [pool-67-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 0
+2019-05-19 11:57:42,383  INFO [pool-67-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is available
+2019-05-19 11:57:42,383  INFO [pool-67-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is free (5 slots are available), token: 0
+2019-05-19 11:57:42,428  INFO [pool-67-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 11:57:42,428  INFO [pool-67-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is free (5 slots are available), token: 0
+2019-05-19 11:57:42,461  INFO [pool-67-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is available
+2019-05-19 11:57:42,461  INFO [pool-67-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is free (5 slots are available), token: 0
+2019-05-19 11:57:42,462  INFO [http-nio-8080-exec-19] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 0
+2019-05-19 11:57:42,464  INFO [http-nio-8080-exec-19] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 0
+2019-05-19 11:57:42,464  INFO [http-nio-8080-exec-19] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 0
+2019-05-19 11:57:42,464  INFO [http-nio-8080-exec-19] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 0
+2019-05-19 11:57:42,465  INFO [http-nio-8080-exec-19] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 1, token: 0
+2019-05-19 11:57:42,465  INFO [http-nio-8080-exec-19] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 0
+2019-05-19 11:57:42,465  INFO [http-nio-8080-exec-19] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending sleep..., token: 0
+2019-05-19 11:57:42,465  INFO [pool-68-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending sleep to supplier: 2 - localhost8082, token: 0
+2019-05-19 11:57:42,465  INFO [pool-68-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending sleep to supplier: 3 - localhost8083, token: 0
+2019-05-19 11:57:42,466  INFO [http-nio-8080-exec-19] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 1..., token: 0
+2019-05-19 11:57:43,118  INFO [http-nio-8080-exec-15] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 1
+2019-05-19 11:57:43,120  INFO [pool-69-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 1
+2019-05-19 11:57:43,177  INFO [pool-69-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 11:57:43,177  INFO [pool-69-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is free (4 slots are available), token: 1
+2019-05-19 11:57:43,177  INFO [http-nio-8080-exec-15] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 1
+2019-05-19 11:57:43,178  INFO [http-nio-8080-exec-15] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 1
+2019-05-19 11:57:43,178  INFO [http-nio-8080-exec-15] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 1
+2019-05-19 11:57:43,178  INFO [http-nio-8080-exec-15] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 1
+2019-05-19 11:57:43,178  INFO [http-nio-8080-exec-15] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 1, token: 1
+2019-05-19 11:57:43,178  INFO [http-nio-8080-exec-15] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 1
+2019-05-19 11:57:43,178  INFO [http-nio-8080-exec-15] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 1..., token: 1
+2019-05-19 11:57:45,101  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 2
+2019-05-19 11:57:45,103  INFO [pool-70-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 2
+2019-05-19 11:57:45,142  INFO [pool-70-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 11:57:45,142  INFO [pool-70-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is free (3 slots are available), token: 2
+2019-05-19 11:57:45,142  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 2
+2019-05-19 11:57:45,144  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 2
+2019-05-19 11:57:45,144  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 2
+2019-05-19 11:57:45,144  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 2
+2019-05-19 11:57:45,144  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 1, token: 2
+2019-05-19 11:57:45,144  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 2
+2019-05-19 11:57:45,144  INFO [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 1..., token: 2
+2019-05-19 11:57:47,098  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 3
+2019-05-19 11:57:47,100  INFO [pool-71-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 3
+2019-05-19 11:57:47,141  INFO [pool-71-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 11:57:47,141  INFO [pool-71-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (2 slots are available), token: 3
+2019-05-19 11:57:47,141  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 3
+2019-05-19 11:57:47,142  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 3
+2019-05-19 11:57:47,142  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are no free suppliers available
+2019-05-19 11:57:47,142  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are sleeping suppliers, token: 3
+2019-05-19 11:57:47,142  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - waiting for suppliers to wake up and fecth: try again later, token: 3
+2019-05-19 11:57:47,142  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 3
+2019-05-19 11:57:47,142  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending wake up..., token: 3
+2019-05-19 11:57:47,142  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie..., token: 3
+2019-05-19 11:57:47,143  INFO [pool-72-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending wakeUp to supplier: 3 - localhost8083, token: 3
+2019-05-19 11:57:47,144  INFO [pool-73-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie to supplier: 3 - localhost8083, token: 3
+2019-05-19 11:57:47,145  WARN [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.DispatcherServiceImpl - serviceexception: 503/the requested movie is currently not available due to system overload, try again later
+ INFO [http-nio-8080-exec-8] org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean - Creating Service {http://it.univaq.disim.netflics/auth}AuthService from WSDL: file:/Users/valent0ne/Projects/netflics/code/vault/src/main/resources/clients/auth.wsdl
+2019-05-19 11:57:49,106  INFO [http-nio-8080-exec-17] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 4
+2019-05-19 11:57:49,108  INFO [pool-74-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 4
+2019-05-19 11:57:49,108  INFO [pool-74-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 4
+2019-05-19 11:57:49,146  WARN [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.controller.DispatcherController - 503/the requested movie is currently not available due to system overload, try again later, retrying 1/3..., token 3
+2019-05-19 11:57:49,187  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 3
+2019-05-19 11:57:49,194  INFO [pool-74-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is available
+2019-05-19 11:57:49,194  INFO [pool-74-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is free (5 slots are available), token: 4
+2019-05-19 11:57:49,194  INFO [pool-74-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 11:57:49,194  INFO [pool-74-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (2 slots are available), token: 4
+2019-05-19 11:57:49,195  INFO [http-nio-8080-exec-17] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 4
+2019-05-19 11:57:49,196  INFO [pool-75-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 3
+2019-05-19 11:57:49,196  INFO [pool-75-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 3
+2019-05-19 11:57:49,198  INFO [http-nio-8080-exec-17] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 4
+2019-05-19 11:57:49,198  INFO [http-nio-8080-exec-17] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 4
+2019-05-19 11:57:49,198  INFO [http-nio-8080-exec-17] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 4
+2019-05-19 11:57:49,198  INFO [http-nio-8080-exec-17] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 3, token: 4
+2019-05-19 11:57:49,198  INFO [http-nio-8080-exec-17] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 4
+2019-05-19 11:57:49,198  INFO [http-nio-8080-exec-17] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 3..., token: 4
+2019-05-19 11:57:49,278  INFO [pool-75-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 11:57:49,278  INFO [pool-75-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (2 slots are available), token: 3
+2019-05-19 11:57:49,298  INFO [pool-75-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is available
+2019-05-19 11:57:49,298  INFO [pool-75-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is free (5 slots are available), token: 3
+2019-05-19 11:57:49,298  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 3
+2019-05-19 11:57:49,300  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 3
+2019-05-19 11:57:49,300  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 3
+2019-05-19 11:57:49,300  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 3
+2019-05-19 11:57:49,300  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 3, token: 3
+2019-05-19 11:57:49,300  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 3
+2019-05-19 11:57:49,300  INFO [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 3..., token: 3
+2019-05-19 11:57:51,109  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 5
+2019-05-19 11:57:51,111  INFO [pool-76-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 5
+2019-05-19 11:57:51,112  INFO [pool-76-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 5
+2019-05-19 11:57:51,183  INFO [pool-76-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 11:57:51,183  INFO [pool-76-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (2 slots are available), token: 5
+2019-05-19 11:57:51,183  INFO [pool-76-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is available
+2019-05-19 11:57:51,183  INFO [pool-76-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is free (3 slots are available), token: 5
+2019-05-19 11:57:51,184  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 5
+2019-05-19 11:57:51,186  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 5
+2019-05-19 11:57:51,186  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 5
+2019-05-19 11:57:51,186  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 5
+2019-05-19 11:57:51,186  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 3, token: 5
+2019-05-19 11:57:51,186  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 5
+2019-05-19 11:57:51,186  INFO [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 3..., token: 5
+2019-05-19 11:57:53,112  INFO [http-nio-8080-exec-16] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 6
+2019-05-19 11:57:53,114  INFO [pool-77-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 6
+2019-05-19 11:57:53,114  INFO [pool-77-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 6
+2019-05-19 11:57:53,180  INFO [pool-77-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 11:57:53,181  INFO [pool-77-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (2 slots are available), token: 6
+2019-05-19 11:57:53,181  INFO [pool-77-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is available
+2019-05-19 11:57:53,181  INFO [pool-77-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is not free (2 slots are available), token: 6
+2019-05-19 11:57:53,181  INFO [http-nio-8080-exec-16] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 6
+2019-05-19 11:57:53,183  INFO [http-nio-8080-exec-16] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 6
+2019-05-19 11:57:53,183  INFO [http-nio-8080-exec-16] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are no free suppliers available
+2019-05-19 11:57:53,183  INFO [http-nio-8080-exec-16] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are sleeping suppliers, token: 6
+2019-05-19 11:57:53,183  INFO [http-nio-8080-exec-16] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - waiting for suppliers to wake up and fecth: try again later, token: 6
+2019-05-19 11:57:53,183  INFO [http-nio-8080-exec-16] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 6
+2019-05-19 11:57:53,183  INFO [http-nio-8080-exec-16] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending wake up..., token: 6
+2019-05-19 11:57:53,183  INFO [pool-78-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending wakeUp to supplier: 2 - localhost8082, token: 6
+2019-05-19 11:57:53,183  INFO [http-nio-8080-exec-16] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie..., token: 6
+2019-05-19 11:57:53,184  INFO [pool-79-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending fetchMovie to supplier: 2 - localhost8082, token: 6
+2019-05-19 11:57:53,186  WARN [http-nio-8080-exec-16] it.univaq.disim.netflics.dispatcher.service.DispatcherServiceImpl - serviceexception: 503/the requested movie is currently not available due to system overload, try again later
+ INFO [http-nio-8080-exec-8] org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean - Creating Service {http://it.univaq.disim.netflics/auth}AuthService from WSDL: file:/Users/valent0ne/Projects/netflics/code/vault/src/main/resources/clients/auth.wsdl
+2019-05-19 11:57:55,121  INFO [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 7
+2019-05-19 11:57:55,124  INFO [pool-80-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 7
+2019-05-19 11:57:55,124  INFO [pool-80-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 7
+2019-05-19 11:57:55,126  INFO [pool-80-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 7
+2019-05-19 11:57:55,192  WARN [http-nio-8080-exec-16] it.univaq.disim.netflics.dispatcher.controller.DispatcherController - 503/the requested movie is currently not available due to system overload, try again later, retrying 1/3..., token 6
+2019-05-19 11:57:55,215  INFO [pool-80-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is available
+2019-05-19 11:57:55,219  INFO [pool-80-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is free (5 slots are available), token: 7
+2019-05-19 11:57:55,231  INFO [pool-80-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is available
+2019-05-19 11:57:55,231  INFO [pool-80-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is not free (2 slots are available), token: 7
+2019-05-19 11:57:55,240  INFO [pool-80-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 11:57:55,240  INFO [pool-80-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (2 slots are available), token: 7
+2019-05-19 11:57:55,251  INFO [http-nio-8080-exec-16] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 6
+2019-05-19 11:57:55,254  INFO [pool-81-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 6
+2019-05-19 11:57:55,256  INFO [pool-81-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 6
+2019-05-19 11:57:55,263  INFO [pool-81-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 6
+2019-05-19 11:57:55,300  INFO [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 7
+2019-05-19 11:57:55,309  INFO [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 7
+2019-05-19 11:57:55,309  INFO [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 7
+2019-05-19 11:57:55,309  INFO [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 7
+2019-05-19 11:57:55,309  INFO [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 2, token: 7
+2019-05-19 11:57:55,309  INFO [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 7
+2019-05-19 11:57:55,309  INFO [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 2..., token: 7
+2019-05-19 11:57:55,363  INFO [pool-81-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 11:57:55,363  INFO [pool-81-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (2 slots are available), token: 6
+2019-05-19 11:57:55,402  INFO [pool-81-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is available
+2019-05-19 11:57:55,402  INFO [pool-81-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is free (5 slots are available), token: 6
+2019-05-19 11:57:55,406  INFO [pool-81-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is available
+2019-05-19 11:57:55,406  INFO [pool-81-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is not free (2 slots are available), token: 6
+2019-05-19 11:57:55,406  INFO [http-nio-8080-exec-16] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 6
+2019-05-19 11:57:55,408  INFO [http-nio-8080-exec-16] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 6
+2019-05-19 11:57:55,408  INFO [http-nio-8080-exec-16] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 6
+2019-05-19 11:57:55,408  INFO [http-nio-8080-exec-16] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 6
+2019-05-19 11:57:55,408  INFO [http-nio-8080-exec-16] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 2, token: 6
+2019-05-19 11:57:55,408  INFO [http-nio-8080-exec-16] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 6
+2019-05-19 11:57:55,408  INFO [http-nio-8080-exec-16] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 2..., token: 6
+2019-05-19 11:57:57,124  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 8
+2019-05-19 11:57:57,128  INFO [pool-82-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 8
+2019-05-19 11:57:57,128  INFO [pool-82-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 8
+2019-05-19 11:57:57,128  INFO [pool-82-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 8
+2019-05-19 11:57:57,192  INFO [pool-82-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 11:57:57,192  INFO [pool-82-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (2 slots are available), token: 8
+2019-05-19 11:57:57,198  INFO [pool-82-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is available
+2019-05-19 11:57:57,198  INFO [pool-82-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is not free (2 slots are available), token: 8
+2019-05-19 11:57:57,209  INFO [pool-82-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is available
+2019-05-19 11:57:57,209  INFO [pool-82-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is free (3 slots are available), token: 8
+2019-05-19 11:57:57,209  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 8
+2019-05-19 11:57:57,211  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 8
+2019-05-19 11:57:57,211  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers, token: 8
+2019-05-19 11:57:57,211  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are free suppliers having movie, token: 8
+2019-05-19 11:57:57,211  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there best supplier has been chosen: 2, token: 8
+2019-05-19 11:57:57,211  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 8
+2019-05-19 11:57:57,211  INFO [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from 2..., token: 8
+2019-05-19 11:57:59,116  INFO [http-nio-8080-exec-14] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 9
+2019-05-19 11:57:59,119  INFO [pool-83-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 9
+2019-05-19 11:57:59,119  INFO [pool-83-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 9
+2019-05-19 11:57:59,121  INFO [pool-83-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 9
+2019-05-19 11:57:59,188  INFO [pool-83-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 11:57:59,188  INFO [pool-83-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (2 slots are available), token: 9
+2019-05-19 11:57:59,188  INFO [pool-83-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is available
+2019-05-19 11:57:59,188  INFO [pool-83-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is not free (2 slots are available), token: 9
+2019-05-19 11:57:59,196  INFO [pool-83-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is available
+2019-05-19 11:57:59,196  INFO [pool-83-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is not free (2 slots are available), token: 9
+2019-05-19 11:57:59,196  INFO [http-nio-8080-exec-14] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 9
+2019-05-19 11:57:59,198  INFO [http-nio-8080-exec-14] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 9
+2019-05-19 11:57:59,198  INFO [http-nio-8080-exec-14] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are no free suppliers available
+2019-05-19 11:57:59,198  INFO [http-nio-8080-exec-14] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - no free suppliers and no sleeping suppliers: streaming from vault, token: 9
+2019-05-19 11:57:59,198  INFO [http-nio-8080-exec-14] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 9
+2019-05-19 11:57:59,198  INFO [http-nio-8080-exec-14] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from Vault..., token: 9
+ INFO [http-nio-8080-exec-21] org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean - Creating Service {http://it.univaq.disim.netflics/auth}AuthService from WSDL: file:/Users/valent0ne/Projects/netflics/code/vault/src/main/resources/clients/auth.wsdl
+2019-05-19 11:58:01,127  INFO [http-nio-8080-exec-20] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - MONITOR PHASE, token: 10
+2019-05-19 11:58:01,130  INFO [pool-84-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 1 - localhost:8081, token: 10
+2019-05-19 11:58:01,130  INFO [pool-84-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 2 - localhost:8082, token: 10
+2019-05-19 11:58:01,131  INFO [pool-84-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - sending getAvailability to supplier: 3 - localhost:8083, token: 10
+2019-05-19 11:58:01,212  INFO [pool-84-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is available
+2019-05-19 11:58:01,212  INFO [pool-84-thread-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 2 is not free (2 slots are available), token: 10
+2019-05-19 11:58:01,216  INFO [pool-84-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is available
+2019-05-19 11:58:01,216  INFO [pool-84-thread-1] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 1 is not free (2 slots are available), token: 10
+2019-05-19 11:58:01,222  INFO [pool-84-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is available
+2019-05-19 11:58:01,222  INFO [pool-84-thread-3] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - supplier 3 is not free (2 slots are available), token: 10
+2019-05-19 11:58:01,222  INFO [http-nio-8080-exec-20] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - ANALYZE PHASE, token: 10
+2019-05-19 11:58:01,223  INFO [http-nio-8080-exec-20] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - PLAN PHASE, token: 10
+2019-05-19 11:58:01,223  INFO [http-nio-8080-exec-20] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - there are no free suppliers available
+2019-05-19 11:58:01,223  INFO [http-nio-8080-exec-20] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - no free suppliers and no sleeping suppliers: streaming from vault, token: 10
+2019-05-19 11:58:01,223  INFO [http-nio-8080-exec-20] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - EXECUTE PHASE, token: 10
+2019-05-19 11:58:01,223  INFO [http-nio-8080-exec-20] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - starting stream from Vault..., token: 10
+ INFO [http-nio-8080-exec-21] org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean - Creating Service {http://it.univaq.disim.netflics/auth}AuthService from WSDL: file:/Users/valent0ne/Projects/netflics/code/vault/src/main/resources/clients/auth.wsdl
+2019-05-19 11:58:07,295  WARN [http-nio-8080-exec-8] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - streaming error (stream closed by the user?), token: 8
+2019-05-19 11:58:07,295  WARN [http-nio-8080-exec-16] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - streaming error (stream closed by the user?), token: 6
+2019-05-19 11:58:07,295  WARN [http-nio-8080-exec-10] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - streaming error (stream closed by the user?), token: 5
+2019-05-19 11:58:07,296  WARN [http-nio-8080-exec-20] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - streaming error (stream closed by the user?)
+2019-05-19 11:58:07,295  WARN [http-nio-8080-exec-13] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - streaming error (stream closed by the user?), token: 7
+2019-05-19 11:58:07,297  WARN [http-nio-8080-exec-19] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - streaming error (stream closed by the user?), token: 0
+2019-05-19 11:58:07,298  WARN [http-nio-8080-exec-2] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - streaming error (stream closed by the user?), token: 3
+2019-05-19 11:58:07,299  WARN [http-nio-8080-exec-17] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - streaming error (stream closed by the user?), token: 4
+2019-05-19 11:58:07,296  WARN [http-nio-8080-exec-14] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - streaming error (stream closed by the user?)
+2019-05-19 11:58:07,299  WARN [http-nio-8080-exec-4] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - streaming error (stream closed by the user?), token: 2
+2019-05-19 11:58:07,319 ERROR [http-nio-8080-exec-17] org.apache.cxf.jaxrs.utils.JAXRSUtils - Problem with writing the data, class it.univaq.disim.netflics.dispatcher.service.LoadBalancer$$Lambda$402/1017797003, ContentType: application/octet-stream
+2019-05-19 11:58:07,319  WARN [http-nio-8080-exec-17] org.apache.cxf.phase.PhaseInterceptorChain - Interceptor for {http://controller.dispatcher.netflics.disim.univaq.it/}DispatcherController has thrown exception, unwinding now
+org.apache.cxf.interceptor.Fault: java.io.IOException: Broken pipe
+	at org.apache.cxf.jaxrs.interceptor.JAXRSOutInterceptor.handleWriteException(JAXRSOutInterceptor.java:396)
+	at org.apache.cxf.jaxrs.interceptor.JAXRSOutInterceptor.serializeMessage(JAXRSOutInterceptor.java:272)
+	at org.apache.cxf.jaxrs.interceptor.JAXRSOutInterceptor.processResponse(JAXRSOutInterceptor.java:122)
+	at org.apache.cxf.jaxrs.interceptor.JAXRSOutInterceptor.handleMessage(JAXRSOutInterceptor.java:84)
+	at org.apache.cxf.phase.PhaseInterceptorChain.doIntercept(PhaseInterceptorChain.java:308)
+	at org.apache.cxf.interceptor.OutgoingChainInterceptor.handleMessage(OutgoingChainInterceptor.java:90)
+	at org.apache.cxf.phase.PhaseInterceptorChain.doIntercept(PhaseInterceptorChain.java:308)
+	at org.apache.cxf.transport.ChainInitiationObserver.onMessage(ChainInitiationObserver.java:121)
+	at org.apache.cxf.transport.http.AbstractHTTPDestination.invoke(AbstractHTTPDestination.java:267)
+	at org.apache.cxf.transport.servlet.ServletController.invokeDestination(ServletController.java:234)
+	at org.apache.cxf.transport.servlet.ServletController.invoke(ServletController.java:208)
+	at org.apache.cxf.transport.servlet.ServletController.invoke(ServletController.java:160)
+	at org.apache.cxf.transport.servlet.CXFNonSpringServlet.invoke(CXFNonSpringServlet.java:216)
+	at org.apache.cxf.transport.servlet.AbstractHTTPServlet.handleRequest(AbstractHTTPServlet.java:301)
+	at org.apache.cxf.transport.servlet.AbstractHTTPServlet.doGet(AbstractHTTPServlet.java:225)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.apache.cxf.transport.servlet.AbstractHTTPServlet.service(AbstractHTTPServlet.java:276)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:836)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1747)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.apache.catalina.connector.ClientAbortException: java.io.IOException: Broken pipe
+	at org.apache.catalina.connector.OutputBuffer.realWriteBytes(OutputBuffer.java:341)
+	at org.apache.catalina.connector.OutputBuffer.flushByteBuffer(OutputBuffer.java:766)
+	at org.apache.catalina.connector.OutputBuffer.doFlush(OutputBuffer.java:288)
+	at org.apache.catalina.connector.OutputBuffer.close(OutputBuffer.java:241)
+	at org.apache.catalina.connector.CoyoteOutputStream.close(CoyoteOutputStream.java:157)
+	at org.apache.cxf.transport.http.AbstractHTTPDestination$WrappedOutputStream.close(AbstractHTTPDestination.java:825)
+	at it.univaq.disim.netflics.dispatcher.service.LoadBalancer.lambda$execute$5(LoadBalancer.java:310)
+	at org.apache.cxf.jaxrs.provider.BinaryDataProvider.writeTo(BinaryDataProvider.java:177)
+	at org.apache.cxf.jaxrs.utils.JAXRSUtils.writeMessageBody(JAXRSUtils.java:1422)
+	at org.apache.cxf.jaxrs.interceptor.JAXRSOutInterceptor.serializeMessage(JAXRSOutInterceptor.java:246)
+	... 37 more
+Caused by: java.io.IOException: Broken pipe
+	at sun.nio.ch.FileDispatcherImpl.write0(Native Method)
+	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:65)
+	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:471)
+	at org.apache.tomcat.util.net.NioChannel.write(NioChannel.java:136)
+	at org.apache.tomcat.util.net.NioBlockingSelector.write(NioBlockingSelector.java:105)
+	at org.apache.tomcat.util.net.NioSelectorPool.write(NioSelectorPool.java:144)
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.doWrite(NioEndpoint.java:1265)
+	at org.apache.tomcat.util.net.SocketWrapperBase.doWrite(SocketWrapperBase.java:748)
+	at org.apache.tomcat.util.net.SocketWrapperBase.writeBlocking(SocketWrapperBase.java:518)
+	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:456)
+	at org.apache.coyote.http11.Http11OutputBuffer$SocketOutputBuffer.doWrite(Http11OutputBuffer.java:530)
+	at org.apache.coyote.http11.filters.ChunkedOutputFilter.doWrite(ChunkedOutputFilter.java:112)
+	at org.apache.coyote.http11.Http11OutputBuffer.doWrite(Http11OutputBuffer.java:189)
+	at org.apache.coyote.Response.doWrite(Response.java:599)
+	at org.apache.catalina.connector.OutputBuffer.realWriteBytes(OutputBuffer.java:329)
+	... 46 more
+2019-05-19 11:58:07,322  WARN [http-nio-8080-exec-17] org.apache.cxf.phase.PhaseInterceptorChain - Interceptor for {http://controller.dispatcher.netflics.disim.univaq.it/}DispatcherController has thrown exception, unwinding now
+org.apache.cxf.interceptor.Fault: XML_WRITE_EXC
+	at org.apache.cxf.jaxrs.interceptor.JAXRSDefaultFaultOutInterceptor.handleMessage(JAXRSDefaultFaultOutInterceptor.java:106)
+	at org.apache.cxf.phase.PhaseInterceptorChain.doIntercept(PhaseInterceptorChain.java:308)
+	at org.apache.cxf.interceptor.AbstractFaultChainInitiatorObserver.onMessage(AbstractFaultChainInitiatorObserver.java:112)
+	at org.apache.cxf.phase.PhaseInterceptorChain.wrapExceptionAsFault(PhaseInterceptorChain.java:374)
+	at org.apache.cxf.phase.PhaseInterceptorChain.doIntercept(PhaseInterceptorChain.java:332)
+	at org.apache.cxf.interceptor.OutgoingChainInterceptor.handleMessage(OutgoingChainInterceptor.java:90)
+	at org.apache.cxf.phase.PhaseInterceptorChain.doIntercept(PhaseInterceptorChain.java:308)
+	at org.apache.cxf.transport.ChainInitiationObserver.onMessage(ChainInitiationObserver.java:121)
+	at org.apache.cxf.transport.http.AbstractHTTPDestination.invoke(AbstractHTTPDestination.java:267)
+	at org.apache.cxf.transport.servlet.ServletController.invokeDestination(ServletController.java:234)
+	at org.apache.cxf.transport.servlet.ServletController.invoke(ServletController.java:208)
+	at org.apache.cxf.transport.servlet.ServletController.invoke(ServletController.java:160)
+	at org.apache.cxf.transport.servlet.CXFNonSpringServlet.invoke(CXFNonSpringServlet.java:216)
+	at org.apache.cxf.transport.servlet.AbstractHTTPServlet.handleRequest(AbstractHTTPServlet.java:301)
+	at org.apache.cxf.transport.servlet.AbstractHTTPServlet.doGet(AbstractHTTPServlet.java:225)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.apache.cxf.transport.servlet.AbstractHTTPServlet.service(AbstractHTTPServlet.java:276)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:836)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1747)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: com.ctc.wstx.exc.WstxIOException: java.io.IOException: Broken pipe
+	at com.ctc.wstx.sw.BaseStreamWriter.flush(BaseStreamWriter.java:262)
+	at org.apache.cxf.jaxrs.interceptor.JAXRSDefaultFaultOutInterceptor.handleMessage(JAXRSDefaultFaultOutInterceptor.java:104)
+	... 38 more
+Caused by: org.apache.catalina.connector.ClientAbortException: java.io.IOException: Broken pipe
+	at org.apache.catalina.connector.OutputBuffer.realWriteBytes(OutputBuffer.java:341)
+	at org.apache.catalina.connector.OutputBuffer.flushByteBuffer(OutputBuffer.java:766)
+	at org.apache.catalina.connector.OutputBuffer.append(OutputBuffer.java:671)
+	at org.apache.catalina.connector.OutputBuffer.writeBytes(OutputBuffer.java:376)
+	at org.apache.catalina.connector.OutputBuffer.write(OutputBuffer.java:354)
+	at org.apache.catalina.connector.CoyoteOutputStream.write(CoyoteOutputStream.java:96)
+	at org.apache.cxf.io.AbstractWrappedOutputStream.write(AbstractWrappedOutputStream.java:51)
+	at com.ctc.wstx.io.UTF8Writer.flush(UTF8Writer.java:100)
+	at com.ctc.wstx.sw.BufferingXmlWriter.flush(BufferingXmlWriter.java:242)
+	at com.ctc.wstx.sw.BaseStreamWriter.flush(BaseStreamWriter.java:260)
+	... 39 more
+Caused by: java.io.IOException: Broken pipe
+	at sun.nio.ch.FileDispatcherImpl.write0(Native Method)
+	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:65)
+	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:471)
+	at org.apache.tomcat.util.net.NioChannel.write(NioChannel.java:136)
+	at org.apache.tomcat.util.net.NioBlockingSelector.write(NioBlockingSelector.java:105)
+	at org.apache.tomcat.util.net.NioSelectorPool.write(NioSelectorPool.java:144)
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.doWrite(NioEndpoint.java:1265)
+	at org.apache.tomcat.util.net.SocketWrapperBase.doWrite(SocketWrapperBase.java:748)
+	at org.apache.tomcat.util.net.SocketWrapperBase.writeBlocking(SocketWrapperBase.java:518)
+	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:456)
+	at org.apache.coyote.http11.Http11OutputBuffer$SocketOutputBuffer.doWrite(Http11OutputBuffer.java:530)
+	at org.apache.coyote.http11.filters.ChunkedOutputFilter.doWrite(ChunkedOutputFilter.java:110)
+	at org.apache.coyote.http11.Http11OutputBuffer.doWrite(Http11OutputBuffer.java:189)
+	at org.apache.coyote.Response.doWrite(Response.java:599)
+	at org.apache.catalina.connector.OutputBuffer.realWriteBytes(OutputBuffer.java:329)
+	... 48 more
+2019-05-19 11:58:07,298  WARN [http-nio-8080-exec-15] it.univaq.disim.netflics.dispatcher.service.LoadBalancer - streaming error (stream closed by the user?), token: 1
+2019-05-19 11:58:07,379 ERROR [http-nio-8080-exec-19] org.apache.cxf.jaxrs.utils.JAXRSUtils - Problem with writing the data, class it.univaq.disim.netflics.dispatcher.service.LoadBalancer$$Lambda$402/1017797003, ContentType: application/octet-stream
+2019-05-19 11:58:07,381  WARN [http-nio-8080-exec-19] org.apache.cxf.phase.PhaseInterceptorChain - Interceptor for {http://controller.dispatcher.netflics.disim.univaq.it/}DispatcherController has thrown exception, unwinding now
+org.apache.cxf.interceptor.Fault: java.io.IOException: Broken pipe
+	at org.apache.cxf.jaxrs.interceptor.JAXRSOutInterceptor.handleWriteException(JAXRSOutInterceptor.java:396)
+	at org.apache.cxf.jaxrs.interceptor.JAXRSOutInterceptor.serializeMessage(JAXRSOutInterceptor.java:272)
+	at org.apache.cxf.jaxrs.interceptor.JAXRSOutInterceptor.processResponse(JAXRSOutInterceptor.java:122)
+	at org.apache.cxf.jaxrs.interceptor.JAXRSOutInterceptor.handleMessage(JAXRSOutInterceptor.java:84)
+	at org.apache.cxf.phase.PhaseInterceptorChain.doIntercept(PhaseInterceptorChain.java:308)
+	at org.apache.cxf.interceptor.OutgoingChainInterceptor.handleMessage(OutgoingChainInterceptor.java:90)
+	at org.apache.cxf.phase.PhaseInterceptorChain.doIntercept(PhaseInterceptorChain.java:308)
+	at org.apache.cxf.transport.ChainInitiationObserver.onMessage(ChainInitiationObserver.java:121)
+	at org.apache.cxf.transport.http.AbstractHTTPDestination.invoke(AbstractHTTPDestination.java:267)
+	at org.apache.cxf.transport.servlet.ServletController.invokeDestination(ServletController.java:234)
+	at org.apache.cxf.transport.servlet.ServletController.invoke(ServletController.java:208)
+	at org.apache.cxf.transport.servlet.ServletController.invoke(ServletController.java:160)
+	at org.apache.cxf.transport.servlet.CXFNonSpringServlet.invoke(CXFNonSpringServlet.java:216)
+	at org.apache.cxf.transport.servlet.AbstractHTTPServlet.handleRequest(AbstractHTTPServlet.java:301)
+	at org.apache.cxf.transport.servlet.AbstractHTTPServlet.doGet(AbstractHTTPServlet.java:225)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.apache.cxf.transport.servlet.AbstractHTTPServlet.service(AbstractHTTPServlet.java:276)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:836)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1747)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.apache.catalina.connector.ClientAbortException: java.io.IOException: Broken pipe
+	at org.apache.catalina.connector.OutputBuffer.realWriteBytes(OutputBuffer.java:341)
+	at org.apache.catalina.connector.OutputBuffer.flushByteBuffer(OutputBuffer.java:766)
+	at org.apache.catalina.connector.OutputBuffer.doFlush(OutputBuffer.java:288)
+	at org.apache.catalina.connector.OutputBuffer.close(OutputBuffer.java:241)
+	at org.apache.catalina.connector.CoyoteOutputStream.close(CoyoteOutputStream.java:157)
+	at org.apache.cxf.transport.http.AbstractHTTPDestination$WrappedOutputStream.close(AbstractHTTPDestination.java:825)
+	at it.univaq.disim.netflics.dispatcher.service.LoadBalancer.lambda$execute$5(LoadBalancer.java:310)
+	at org.apache.cxf.jaxrs.provider.BinaryDataProvider.writeTo(BinaryDataProvider.java:177)
+	at org.apache.cxf.jaxrs.utils.JAXRSUtils.writeMessageBody(JAXRSUtils.java:1422)
+	at org.apache.cxf.jaxrs.interceptor.JAXRSOutInterceptor.serializeMessage(JAXRSOutInterceptor.java:246)
+	... 37 more
+Caused by: java.io.IOException: Broken pipe
+	at sun.nio.ch.FileDispatcherImpl.write0(Native Method)
+	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:65)
+	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:471)
+	at org.apache.tomcat.util.net.NioChannel.write(NioChannel.java:136)
+	at org.apache.tomcat.util.net.NioBlockingSelector.write(NioBlockingSelector.java:105)
+	at org.apache.tomcat.util.net.NioSelectorPool.write(NioSelectorPool.java:144)
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.doWrite(NioEndpoint.java:1265)
+	at org.apache.tomcat.util.net.SocketWrapperBase.doWrite(SocketWrapperBase.java:748)
+	at org.apache.tomcat.util.net.SocketWrapperBase.writeBlocking(SocketWrapperBase.java:518)
+	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:456)
+	at org.apache.coyote.http11.Http11OutputBuffer$SocketOutputBuffer.doWrite(Http11OutputBuffer.java:530)
+	at org.apache.coyote.http11.filters.ChunkedOutputFilter.doWrite(ChunkedOutputFilter.java:112)
+	at org.apache.coyote.http11.Http11OutputBuffer.doWrite(Http11OutputBuffer.java:189)
+	at org.apache.coyote.Response.doWrite(Response.java:599)
+	at org.apache.catalina.connector.OutputBuffer.realWriteBytes(OutputBuffer.java:329)
+	... 46 more
+2019-05-19 11:58:07,385 ERROR [http-nio-8080-exec-15] org.apache.cxf.jaxrs.utils.JAXRSUtils - Problem with writing the data, class it.univaq.disim.netflics.dispatcher.service.LoadBalancer$$Lambda$402/1017797003, ContentType: application/octet-stream
+2019-05-19 11:58:07,385  WARN [http-nio-8080-exec-15] org.apache.cxf.phase.PhaseInterceptorChain - Interceptor for {http://controller.dispatcher.netflics.disim.univaq.it/}DispatcherController has thrown exception, unwinding now
+org.apache.cxf.interceptor.Fault: java.io.IOException: Broken pipe
+	at org.apache.cxf.jaxrs.interceptor.JAXRSOutInterceptor.handleWriteException(JAXRSOutInterceptor.java:396)
+	at org.apache.cxf.jaxrs.interceptor.JAXRSOutInterceptor.serializeMessage(JAXRSOutInterceptor.java:272)
+	at org.apache.cxf.jaxrs.interceptor.JAXRSOutInterceptor.processResponse(JAXRSOutInterceptor.java:122)
+	at org.apache.cxf.jaxrs.interceptor.JAXRSOutInterceptor.handleMessage(JAXRSOutInterceptor.java:84)
+	at org.apache.cxf.phase.PhaseInterceptorChain.doIntercept(PhaseInterceptorChain.java:308)
+	at org.apache.cxf.interceptor.OutgoingChainInterceptor.handleMessage(OutgoingChainInterceptor.java:90)
+	at org.apache.cxf.phase.PhaseInterceptorChain.doIntercept(PhaseInterceptorChain.java:308)
+	at org.apache.cxf.transport.ChainInitiationObserver.onMessage(ChainInitiationObserver.java:121)
+	at org.apache.cxf.transport.http.AbstractHTTPDestination.invoke(AbstractHTTPDestination.java:267)
+	at org.apache.cxf.transport.servlet.ServletController.invokeDestination(ServletController.java:234)
+	at org.apache.cxf.transport.servlet.ServletController.invoke(ServletController.java:208)
+	at org.apache.cxf.transport.servlet.ServletController.invoke(ServletController.java:160)
+	at org.apache.cxf.transport.servlet.CXFNonSpringServlet.invoke(CXFNonSpringServlet.java:216)
+	at org.apache.cxf.transport.servlet.AbstractHTTPServlet.handleRequest(AbstractHTTPServlet.java:301)
+	at org.apache.cxf.transport.servlet.AbstractHTTPServlet.doGet(AbstractHTTPServlet.java:225)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.apache.cxf.transport.servlet.AbstractHTTPServlet.service(AbstractHTTPServlet.java:276)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:836)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1747)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.apache.catalina.connector.ClientAbortException: java.io.IOException: Broken pipe
+	at org.apache.catalina.connector.OutputBuffer.realWriteBytes(OutputBuffer.java:341)
+	at org.apache.catalina.connector.OutputBuffer.flushByteBuffer(OutputBuffer.java:766)
+	at org.apache.catalina.connector.OutputBuffer.doFlush(OutputBuffer.java:288)
+	at org.apache.catalina.connector.OutputBuffer.close(OutputBuffer.java:241)
+	at org.apache.catalina.connector.CoyoteOutputStream.close(CoyoteOutputStream.java:157)
+	at org.apache.cxf.transport.http.AbstractHTTPDestination$WrappedOutputStream.close(AbstractHTTPDestination.java:825)
+	at it.univaq.disim.netflics.dispatcher.service.LoadBalancer.lambda$execute$5(LoadBalancer.java:310)
+	at org.apache.cxf.jaxrs.provider.BinaryDataProvider.writeTo(BinaryDataProvider.java:177)
+	at org.apache.cxf.jaxrs.utils.JAXRSUtils.writeMessageBody(JAXRSUtils.java:1422)
+	at org.apache.cxf.jaxrs.interceptor.JAXRSOutInterceptor.serializeMessage(JAXRSOutInterceptor.java:246)
+	... 37 more
+Caused by: java.io.IOException: Broken pipe
+	at sun.nio.ch.FileDispatcherImpl.write0(Native Method)
+	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:65)
+	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:471)
+	at org.apache.tomcat.util.net.NioChannel.write(NioChannel.java:136)
+	at org.apache.tomcat.util.net.NioBlockingSelector.write(NioBlockingSelector.java:105)
+	at org.apache.tomcat.util.net.NioSelectorPool.write(NioSelectorPool.java:144)
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.doWrite(NioEndpoint.java:1265)
+	at org.apache.tomcat.util.net.SocketWrapperBase.doWrite(SocketWrapperBase.java:748)
+	at org.apache.tomcat.util.net.SocketWrapperBase.writeBlocking(SocketWrapperBase.java:518)
+	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:456)
+	at org.apache.coyote.http11.Http11OutputBuffer$SocketOutputBuffer.doWrite(Http11OutputBuffer.java:530)
+	at org.apache.coyote.http11.filters.ChunkedOutputFilter.doWrite(ChunkedOutputFilter.java:112)
+	at org.apache.coyote.http11.Http11OutputBuffer.doWrite(Http11OutputBuffer.java:189)
+	at org.apache.coyote.Response.doWrite(Response.java:599)
+	at org.apache.catalina.connector.OutputBuffer.realWriteBytes(OutputBuffer.java:329)
+	... 46 more
+2019-05-19 11:58:07,385  WARN [http-nio-8080-exec-19] org.apache.cxf.phase.PhaseInterceptorChain - Interceptor for {http://controller.dispatcher.netflics.disim.univaq.it/}DispatcherController has thrown exception, unwinding now
+org.apache.cxf.interceptor.Fault: XML_WRITE_EXC
+	at org.apache.cxf.jaxrs.interceptor.JAXRSDefaultFaultOutInterceptor.handleMessage(JAXRSDefaultFaultOutInterceptor.java:106)
+	at org.apache.cxf.phase.PhaseInterceptorChain.doIntercept(PhaseInterceptorChain.java:308)
+	at org.apache.cxf.interceptor.AbstractFaultChainInitiatorObserver.onMessage(AbstractFaultChainInitiatorObserver.java:112)
+	at org.apache.cxf.phase.PhaseInterceptorChain.wrapExceptionAsFault(PhaseInterceptorChain.java:374)
+	at org.apache.cxf.phase.PhaseInterceptorChain.doIntercept(PhaseInterceptorChain.java:332)
+	at org.apache.cxf.interceptor.OutgoingChainInterceptor.handleMessage(OutgoingChainInterceptor.java:90)
+	at org.apache.cxf.phase.PhaseInterceptorChain.doIntercept(PhaseInterceptorChain.java:308)
+	at org.apache.cxf.transport.ChainInitiationObserver.onMessage(ChainInitiationObserver.java:121)
+	at org.apache.cxf.transport.http.AbstractHTTPDestination.invoke(AbstractHTTPDestination.java:267)
+	at org.apache.cxf.transport.servlet.ServletController.invokeDestination(ServletController.java:234)
+	at org.apache.cxf.transport.servlet.ServletController.invoke(ServletController.java:208)
+	at org.apache.cxf.transport.servlet.ServletController.invoke(ServletController.java:160)
+	at org.apache.cxf.transport.servlet.CXFNonSpringServlet.invoke(CXFNonSpringServlet.java:216)
+	at org.apache.cxf.transport.servlet.AbstractHTTPServlet.handleRequest(AbstractHTTPServlet.java:301)
+	at org.apache.cxf.transport.servlet.AbstractHTTPServlet.doGet(AbstractHTTPServlet.java:225)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.apache.cxf.transport.servlet.AbstractHTTPServlet.service(AbstractHTTPServlet.java:276)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:836)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1747)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: com.ctc.wstx.exc.WstxIOException: java.io.IOException: Broken pipe
+	at com.ctc.wstx.sw.BaseStreamWriter.flush(BaseStreamWriter.java:262)
+	at org.apache.cxf.jaxrs.interceptor.JAXRSDefaultFaultOutInterceptor.handleMessage(JAXRSDefaultFaultOutInterceptor.java:104)
+	... 38 more
+Caused by: org.apache.catalina.connector.ClientAbortException: java.io.IOException: Broken pipe
+	at org.apache.catalina.connector.OutputBuffer.realWriteBytes(OutputBuffer.java:341)
+	at org.apache.catalina.connector.OutputBuffer.flushByteBuffer(OutputBuffer.java:766)
+	at org.apache.catalina.connector.OutputBuffer.append(OutputBuffer.java:671)
+	at org.apache.catalina.connector.OutputBuffer.writeBytes(OutputBuffer.java:376)
+	at org.apache.catalina.connector.OutputBuffer.write(OutputBuffer.java:354)
+	at org.apache.catalina.connector.CoyoteOutputStream.write(CoyoteOutputStream.java:96)
+	at org.apache.cxf.io.AbstractWrappedOutputStream.write(AbstractWrappedOutputStream.java:51)
+	at com.ctc.wstx.io.UTF8Writer.flush(UTF8Writer.java:100)
+	at com.ctc.wstx.sw.BufferingXmlWriter.flush(BufferingXmlWriter.java:242)
+	at com.ctc.wstx.sw.BaseStreamWriter.flush(BaseStreamWriter.java:260)
+	... 39 more
+Caused by: java.io.IOException: Broken pipe
+	at sun.nio.ch.FileDispatcherImpl.write0(Native Method)
+	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:65)
+	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:471)
+	at org.apache.tomcat.util.net.NioChannel.write(NioChannel.java:136)
+	at org.apache.tomcat.util.net.NioBlockingSelector.write(NioBlockingSelector.java:105)
+	at org.apache.tomcat.util.net.NioSelectorPool.write(NioSelectorPool.java:144)
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.doWrite(NioEndpoint.java:1265)
+	at org.apache.tomcat.util.net.SocketWrapperBase.doWrite(SocketWrapperBase.java:748)
+	at org.apache.tomcat.util.net.SocketWrapperBase.writeBlocking(SocketWrapperBase.java:518)
+	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:456)
+	at org.apache.coyote.http11.Http11OutputBuffer$SocketOutputBuffer.doWrite(Http11OutputBuffer.java:530)
+	at org.apache.coyote.http11.filters.ChunkedOutputFilter.doWrite(ChunkedOutputFilter.java:110)
+	at org.apache.coyote.http11.Http11OutputBuffer.doWrite(Http11OutputBuffer.java:189)
+	at org.apache.coyote.Response.doWrite(Response.java:599)
+	at org.apache.catalina.connector.OutputBuffer.realWriteBytes(OutputBuffer.java:329)
+	... 48 more
+2019-05-19 11:58:07,387  WARN [http-nio-8080-exec-15] org.apache.cxf.phase.PhaseInterceptorChain - Interceptor for {http://controller.dispatcher.netflics.disim.univaq.it/}DispatcherController has thrown exception, unwinding now
+org.apache.cxf.interceptor.Fault: XML_WRITE_EXC
+	at org.apache.cxf.jaxrs.interceptor.JAXRSDefaultFaultOutInterceptor.handleMessage(JAXRSDefaultFaultOutInterceptor.java:106)
+	at org.apache.cxf.phase.PhaseInterceptorChain.doIntercept(PhaseInterceptorChain.java:308)
+	at org.apache.cxf.interceptor.AbstractFaultChainInitiatorObserver.onMessage(AbstractFaultChainInitiatorObserver.java:112)
+	at org.apache.cxf.phase.PhaseInterceptorChain.wrapExceptionAsFault(PhaseInterceptorChain.java:374)
+	at org.apache.cxf.phase.PhaseInterceptorChain.doIntercept(PhaseInterceptorChain.java:332)
+	at org.apache.cxf.interceptor.OutgoingChainInterceptor.handleMessage(OutgoingChainInterceptor.java:90)
+	at org.apache.cxf.phase.PhaseInterceptorChain.doIntercept(PhaseInterceptorChain.java:308)
+	at org.apache.cxf.transport.ChainInitiationObserver.onMessage(ChainInitiationObserver.java:121)
+	at org.apache.cxf.transport.http.AbstractHTTPDestination.invoke(AbstractHTTPDestination.java:267)
+	at org.apache.cxf.transport.servlet.ServletController.invokeDestination(ServletController.java:234)
+	at org.apache.cxf.transport.servlet.ServletController.invoke(ServletController.java:208)
+	at org.apache.cxf.transport.servlet.ServletController.invoke(ServletController.java:160)
+	at org.apache.cxf.transport.servlet.CXFNonSpringServlet.invoke(CXFNonSpringServlet.java:216)
+	at org.apache.cxf.transport.servlet.AbstractHTTPServlet.handleRequest(AbstractHTTPServlet.java:301)
+	at org.apache.cxf.transport.servlet.AbstractHTTPServlet.doGet(AbstractHTTPServlet.java:225)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.apache.cxf.transport.servlet.AbstractHTTPServlet.service(AbstractHTTPServlet.java:276)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:836)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1747)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: com.ctc.wstx.exc.WstxIOException: java.io.IOException: Broken pipe
+	at com.ctc.wstx.sw.BaseStreamWriter.flush(BaseStreamWriter.java:262)
+	at org.apache.cxf.jaxrs.interceptor.JAXRSDefaultFaultOutInterceptor.handleMessage(JAXRSDefaultFaultOutInterceptor.java:104)
+	... 38 more
+Caused by: org.apache.catalina.connector.ClientAbortException: java.io.IOException: Broken pipe
+	at org.apache.catalina.connector.OutputBuffer.realWriteBytes(OutputBuffer.java:341)
+	at org.apache.catalina.connector.OutputBuffer.flushByteBuffer(OutputBuffer.java:766)
+	at org.apache.catalina.connector.OutputBuffer.append(OutputBuffer.java:671)
+	at org.apache.catalina.connector.OutputBuffer.writeBytes(OutputBuffer.java:376)
+	at org.apache.catalina.connector.OutputBuffer.write(OutputBuffer.java:354)
+	at org.apache.catalina.connector.CoyoteOutputStream.write(CoyoteOutputStream.java:96)
+	at org.apache.cxf.io.AbstractWrappedOutputStream.write(AbstractWrappedOutputStream.java:51)
+	at com.ctc.wstx.io.UTF8Writer.flush(UTF8Writer.java:100)
+	at com.ctc.wstx.sw.BufferingXmlWriter.flush(BufferingXmlWriter.java:242)
+	at com.ctc.wstx.sw.BaseStreamWriter.flush(BaseStreamWriter.java:260)
+	... 39 more
+Caused by: java.io.IOException: Broken pipe
+	at sun.nio.ch.FileDispatcherImpl.write0(Native Method)
+	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:65)
+	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:471)
+	at org.apache.tomcat.util.net.NioChannel.write(NioChannel.java:136)
+	at org.apache.tomcat.util.net.NioBlockingSelector.write(NioBlockingSelector.java:105)
+	at org.apache.tomcat.util.net.NioSelectorPool.write(NioSelectorPool.java:144)
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.doWrite(NioEndpoint.java:1265)
+	at org.apache.tomcat.util.net.SocketWrapperBase.doWrite(SocketWrapperBase.java:748)
+	at org.apache.tomcat.util.net.SocketWrapperBase.writeBlocking(SocketWrapperBase.java:518)
+	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:456)
+	at org.apache.coyote.http11.Http11OutputBuffer$SocketOutputBuffer.doWrite(Http11OutputBuffer.java:530)
+	at org.apache.coyote.http11.filters.ChunkedOutputFilter.doWrite(ChunkedOutputFilter.java:110)
+	at org.apache.coyote.http11.Http11OutputBuffer.doWrite(Http11OutputBuffer.java:189)
+	at org.apache.coyote.Response.doWrite(Response.java:599)
+	at org.apache.catalina.connector.OutputBuffer.realWriteBytes(OutputBuffer.java:329)
+	... 48 more

@@ -1,0 +1,4 @@
+numrequest=10
+waitbetweenrequests=2
+imdbid=tt5013056
+targetaddress=localhost:8080

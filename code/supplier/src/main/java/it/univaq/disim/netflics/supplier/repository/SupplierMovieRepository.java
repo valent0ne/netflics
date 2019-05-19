@@ -4,6 +4,8 @@ import it.univaq.disim.netflics.supplier.BusinessException;
 import it.univaq.disim.netflics.supplier.model.SupplierMovie;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface SupplierMovieRepository {
 
@@ -15,4 +17,5 @@ public interface SupplierMovieRepository {
 
         void deleteAllBySupplierId(Long supplierId) throws BusinessException;
 
+        List<SupplierMovie> findAllByStatusFetching(Long supplierId) throws BusinessException;
 }

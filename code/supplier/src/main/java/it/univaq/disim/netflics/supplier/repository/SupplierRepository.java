@@ -15,9 +15,10 @@ public interface SupplierRepository {
 
     List<Supplier> findAllByMovieFetched(String imdbId) throws BusinessException;
 
-    void setAwake() throws BusinessException;
+    void setAwake(Long supplierId) throws BusinessException;
 
-    void setSleep() throws BusinessException;
+    void setSleep(Long supplierId) throws BusinessException;
+
 
 
 }

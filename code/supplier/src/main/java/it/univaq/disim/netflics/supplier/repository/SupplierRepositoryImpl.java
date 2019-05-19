@@ -26,9 +26,6 @@ public class SupplierRepositoryImpl implements SupplierRepository{
     @Autowired
     private DataSource dataSource;
 
-    @Value("#{cfg.supplier_id}")
-    private Long supplierId;
-
 
     public List<Supplier> findAll() throws BusinessException {
 
@@ -122,11 +119,11 @@ public class SupplierRepositoryImpl implements SupplierRepository{
     }
 
 
-    public void setAwake() throws BusinessException{
+    public void setAwake(Long supplierId) throws BusinessException{
 
         int rs;
 
-        String sql = "UPDATE supplier SET status=? WHERE supplier.id = ?";
+        String sql = "UPDATE supplier SET status = ? WHERE supplier.id = ?";
 
         LOGGER.debug("query: {}", sql);
 
@@ -136,8 +133,9 @@ public class SupplierRepositoryImpl implements SupplierRepository{
 
             rs = st.executeUpdate();
 
-            if(rs != 1)
+            if(rs != 1){
                 throw new SQLException("query failed");
+            }
         }catch (SQLException e){
                 e.printStackTrace();
                 throw new BusinessException(e);
@@ -145,22 +143,23 @@ public class SupplierRepositoryImpl implements SupplierRepository{
 
     }
 
-    public void setSleep() throws BusinessException{
+    public void setSleep(Long supplierId) throws BusinessException{
 
         int rs;
 
-        String sql = "UPDATE supplier SET status=? WHERE supplier.id = ?";
+        String sql = "UPDATE supplier SET status = ? WHERE supplier.id = ?";
 
         LOGGER.debug("query: {}", sql);
 
         try (Connection con = dataSource.getConnection(); PreparedStatement st = con.prepareStatement(sql)){
             st.setString(1, "SLEEP");
-            st.setLong(2,supplierId);
+            st.setLong(2, supplierId);
 
             rs = st.executeUpdate();
 
-            if(rs != 1)
+            if(rs != 1){
                 throw new SQLException("query failed");
+            }
         }catch (SQLException e){
             e.printStackTrace();
             throw new BusinessException(e);

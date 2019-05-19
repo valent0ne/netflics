@@ -173,10 +173,10 @@ public class DispatcherController {
                 if(e.getMessage().startsWith("503") && retrycount < retrythreshold){
                     retrycount++;
                     try {
-                        TimeUnit.MILLISECONDS.sleep(2000);
+                        TimeUnit.SECONDS.sleep(2);
                     }catch (Exception ignored){
                     }
-                    LOGGER.warn("{}, retrying {}/{}...", e.getMessage(), retrycount, retrythreshold);
+                    LOGGER.warn("{}, retrying {}/{}..., token {}", e.getMessage(), retrycount, retrythreshold, token);
                     continue;
                 }
                 return e.restResponseHandler();

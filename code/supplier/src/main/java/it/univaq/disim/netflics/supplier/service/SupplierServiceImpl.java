@@ -35,6 +35,7 @@ import java.math.RoundingMode;
 import java.nio.file.Files;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
+import java.util.concurrent.TimeUnit;
 
 
 @Service
@@ -86,7 +87,7 @@ public class SupplierServiceImpl implements SupplierService {
         File file = new File(pathToFile);
 
         if (!file.exists()) {
-            LOGGER.error("the movie is not available on this supplier");
+            LOGGER.error("the movie is not available on this supplier, token: {}", token);
 
             // remove entry from db to signal that this supplier doesn't have the requested movie
             SupplierMovie sm = new SupplierMovie();
@@ -102,7 +103,7 @@ public class SupplierServiceImpl implements SupplierService {
             }
             return null;
         }
-        LOGGER.info("movie "+imdbId+" has been found");
+        LOGGER.info("movie "+imdbId+" has been found, token: {}", token);
 
 
         LOGGER.info("sending stream...");
@@ -110,11 +111,18 @@ public class SupplierServiceImpl implements SupplierService {
         return outputStream -> {
             try {
                 activeClients += 1;
+                LOGGER.info("streaming...free slots: {}, token: {}", maxActiveClients - activeClients, token);
+                // artificial delay
+                TimeUnit.SECONDS.sleep(10);
                 Files.copy(file.toPath(), outputStream);
                 outputStream.flush();
+            }catch (Exception ignored){
+
             } finally {
                 outputStream.close();
                 activeClients -= 1;
+                LOGGER.info("stream ended, free slots: {}, token: {}", maxActiveClients-activeClients, token);
+
             }
         };
     }
@@ -128,8 +136,8 @@ public class SupplierServiceImpl implements SupplierService {
         if (!auth(token)) {
             throw new BusinessException("401/token not valid");
         }
-        supplierRepository.setAwake();
-        LOGGER.info("this supplier has been woken up");
+        supplierRepository.setAwake(supplierId);
+        LOGGER.info("this supplier has been woken up, token: {}", token);
     }
 
     /**
@@ -141,15 +149,20 @@ public class SupplierServiceImpl implements SupplierService {
         if (!auth(token)) {
             throw new BusinessException("401/token not valid");
         }
-        supplierRepository.setSleep();
+        if(supplierMovieRepository.findAllByStatusFetching(supplierId).size() > 0){
+            LOGGER.warn("cant go to sleep, I'm retrieving movies, token: {}", token);
+            return;
+        }
+
+        supplierRepository.setSleep(supplierId);
         supplierMovieRepository.deleteAllBySupplierId(supplierId);
         try {
             FileUtils.cleanDirectory(new File(videopath));
         } catch (IOException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             LOGGER.warn("could not delete video files");
         }
-        LOGGER.info("this supplier has been put to sleep");
+        LOGGER.info("this supplier has been put to sleep, token: {}", token);
     }
 
     /**
@@ -250,7 +263,7 @@ public class SupplierServiceImpl implements SupplierService {
                 dh.writeTo(fileOutputStream);
                 fileOutputStream.flush();
                 fileOutputStream.close();
-                LOGGER.info("movie retrieved");
+                LOGGER.info("movie retrieved, token: {}", token);
             } catch (IOException e) {
                 // cleanup db
                 supplierMovieRepository.delete(sm);
@@ -260,7 +273,7 @@ public class SupplierServiceImpl implements SupplierService {
             // add entry into db to signal that this supplier now has the requested movie
             sm.setStatus("FETCHED");
             supplierMovieRepository.update(sm);
-            LOGGER.info("supplier-movie db data updated");
+            LOGGER.info("supplier-movie db data updated, token: {}", token);
 
         } else {
             //clean up the db

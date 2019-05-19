@@ -239,7 +239,8 @@ public class DispatcherServiceImpl implements DispatcherService {
             return lb.execute();
 
         }catch (Exception e){
-            e.printStackTrace();
+            //e.printStackTrace();
+            LOGGER.warn("serviceexception: {}",e.getMessage());
             throw new BusinessException(e.getMessage());
         }
 

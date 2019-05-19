@@ -31,7 +31,7 @@ var modal = new tingle.modal({
     for (var i = 0; i < players.length; i++) {
       var player = videojs(players[i].id);
       player.pause();
-      console.log("player: "+players[i].id+" paused")
+      console.log("player: " + players[i].id + " paused")
     }
   }
 });
@@ -74,7 +74,7 @@ var netflics = new Vue({
      */
     getBestOnes: function () {
       var self = this;
-      axios.get(this.baseUrl+"movie/bestones")
+      axios.get(this.baseUrl + "movie/bestones")
         .then(response => {
           data = response.data;
           if (data !== null && data !== "") {
@@ -95,7 +95,7 @@ var netflics = new Vue({
     getMostViewed: function () {
       var self = this;
 
-      axios.get(this.baseUrl+"movie/mostviewed")
+      axios.get(this.baseUrl + "movie/mostviewed")
         .then(response => {
           data = response.data;
           if (data !== null && data !== "") {
@@ -119,7 +119,7 @@ var netflics = new Vue({
         toastr["warning"]("You must be logged in to perform this operation [token not valid]", "Something went wrong  ಠ_ಠ");
         return;
       }
-      axios.get(this.baseUrl+this.token+"/movie/lastviewed")
+      axios.get(this.baseUrl + this.token + "/movie/lastviewed")
         .then(response => {
           data = response.data;
           if (data !== null && data !== "") {
@@ -153,7 +153,7 @@ var netflics = new Vue({
         toastr["warning"]("Please insert a valid email and password", "Something went wrong  ಠ_ಠ");
         return;
       }
-      axios.post(this.baseUrl+"login", this.user, {})
+      axios.post(this.baseUrl + "login", this.user, {})
         .then(response => {
           data = response.data;
           if (data !== null && data !== "") {
@@ -180,7 +180,7 @@ var netflics = new Vue({
         toastr["warning"]("You must be logged in to perform this operation [token not valid]", "Something went wrong  ಠ_ಠ");
         return;
       }
-      axios.post(this.baseUrl+this.token+"/logout")
+      axios.post(this.baseUrl + this.token + "/logout")
         .then(response => {
           data = response.data;
           if (data) {
@@ -198,26 +198,27 @@ var netflics = new Vue({
 
     open: function (movie) {
       let playerid = this.randomString(10);
-      modal.setContent('<video id="'+playerid+'" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" width="100%" height="100%" poster="'+this.posterUrl+movie.poster+'" data-setup=\'{"fluid": true}\'> <source src="'+this.baseUrl+this.token+'/movie/stream/'+movie.imdbId+'" type="video/mp4" /> <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p></video>');
+      modal.setContent('<video id="' + playerid + '" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" width="100%" height="100%" poster="' + this.posterUrl + movie.poster + '" data-setup=\'{"fluid": true}\'> <source src="' + this.baseUrl + this.token + '/movie/stream/' + movie.imdbId + '" type="video/mp4" /> <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p></video>');
       modal.open();
       var player = videojs(playerid);
-      player.on('error', function() {
+      player.play();
+      player.on('error', function () {
         toastr["warning"]("Try again later", "Something went wrong  ಠ_ಠ");
       });
     },
 
-   randomString: function(length) {
-        var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghiklmnopqrstuvwxyz'.split('');
+    randomString: function (length) {
+      var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghiklmnopqrstuvwxyz'.split('');
 
-        if (! length) {
-            length = Math.floor(Math.random() * chars.length);
-        }
+      if (!length) {
+        length = Math.floor(Math.random() * chars.length);
+      }
 
-        var str = '';
-        for (var i = 0; i < length; i++) {
-            str += chars[Math.floor(Math.random() * chars.length)];
-        }
-        return str;
+      var str = '';
+      for (var i = 0; i < length; i++) {
+        str += chars[Math.floor(Math.random() * chars.length)];
+      }
+      return str;
     },
 
     /**
