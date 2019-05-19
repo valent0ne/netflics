@@ -39,10 +39,8 @@ import java.text.DecimalFormat;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-
 @Service
 public class SupplierServiceImpl implements SupplierService {
-
 
     private static Logger LOGGER = LoggerFactory.getLogger(SupplierServiceImpl.class);
 
@@ -91,7 +89,8 @@ public class SupplierServiceImpl implements SupplierService {
         if (!file.exists()) {
             LOGGER.error("the movie is not available on this supplier, token: {}", token);
 
-            // remove entry from db to signal that this supplier doesn't have the requested movie
+            // remove entry from db to signal that this supplier doesn't have the requested
+            // movie
             SupplierMovie sm = new SupplierMovie();
             sm.setSupplierId(supplierId);
             Movie m = movieRepository.findOneByImdbId(imdbId);
@@ -112,13 +111,14 @@ public class SupplierServiceImpl implements SupplierService {
                 int currentActiveClients = activeClients.incrementAndGet();
                 LOGGER.info("streaming...free slots: {}, token: {}", maxActiveClients - currentActiveClients, token);
                 // artificial delay
-                TimeUnit.SECONDS.sleep(10);
+                // TimeUnit.SECONDS.sleep(10);
 
                 InputStream is = FileUtils.openInputStream(file);
-                outputStream.write(is.read());
+                IOUtils.copy(is, outputStream);
+                // outputStream.write(is.read());
                 outputStream.flush();
 
-            } catch (Exception ignored){
+            } catch (Exception ignored) {
 
             } finally {
                 int currentActiveClients = activeClients.decrementAndGet();
@@ -186,17 +186,23 @@ public class SupplierServiceImpl implements SupplierService {
 
         Timestamp ts = new Timestamp(System.currentTimeMillis());
 
-        //Double occupiedCpuPercentage = osBean.getSystemCpuLoad();
-        //Double occupiedMemPercentage = (((double) osBean.getTotalPhysicalMemorySize() - (double)osBean.getFreePhysicalMemorySize()) / (double)osBean.getTotalPhysicalMemorySize());
+        // Double occupiedCpuPercentage = osBean.getSystemCpuLoad();
+        // Double occupiedMemPercentage = (((double) osBean.getTotalPhysicalMemorySize()
+        // - (double)osBean.getFreePhysicalMemorySize()) /
+        // (double)osBean.getTotalPhysicalMemorySize());
 
-        //DecimalFormat df = new DecimalFormat("#.##");
-        //df.setRoundingMode(RoundingMode.UP);
+        // DecimalFormat df = new DecimalFormat("#.##");
+        // df.setRoundingMode(RoundingMode.UP);
 
-        //occupiedCpuPercentage = new Double(df.format(occupiedCpuPercentage));
-        //occupiedMemPercentage = new Double(df.format(occupiedMemPercentage));
+        // occupiedCpuPercentage = new Double(df.format(occupiedCpuPercentage));
+        // occupiedMemPercentage = new Double(df.format(occupiedMemPercentage));
 
-        // occupiedCpuPercentage = new BigDecimal(occupiedCpuPercentage.toString()).setScale(2, RoundingMode.HALF_UP).doubleValue();
-        // occupiedMemPercentage = new BigDecimal(occupiedMemPercentage.toString()).setScale(2, RoundingMode.HALF_UP).doubleValue();
+        // occupiedCpuPercentage = new
+        // BigDecimal(occupiedCpuPercentage.toString()).setScale(2,
+        // RoundingMode.HALF_UP).doubleValue();
+        // occupiedMemPercentage = new
+        // BigDecimal(occupiedMemPercentage.toString()).setScale(2,
+        // RoundingMode.HALF_UP).doubleValue();
 
         Integer freeSlots = maxActiveClients - activeClients.get();
 
@@ -216,7 +222,6 @@ public class SupplierServiceImpl implements SupplierService {
 
         return availability;
     }
-
 
     /**
      * retrieves a missing movie from the Vault service
@@ -280,7 +285,7 @@ public class SupplierServiceImpl implements SupplierService {
             LOGGER.info("supplier-movie db data updated, token: {}", token);
 
         } else {
-            //clean up the db
+            // clean up the db
             supplierMovieRepository.delete(sm);
             throw new BusinessException(result);
         }
@@ -303,6 +308,5 @@ public class SupplierServiceImpl implements SupplierService {
 
         return (checkTokenResponse.isResult());
     }
-
 
 }

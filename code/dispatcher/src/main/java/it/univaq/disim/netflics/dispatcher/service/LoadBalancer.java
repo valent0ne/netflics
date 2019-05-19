@@ -262,10 +262,10 @@ public class LoadBalancer {
             // return the stream
             return outputStream -> {
 
-                try{
+                //try{
                     // artificial vault delay
-                    TimeUnit.SECONDS.sleep(15);
-                }catch (Exception ignored){}
+                //    TimeUnit.SECONDS.sleep(15);
+                //}catch (Exception ignored){}
 
                 GetMovieRequest getMovieRequest = new GetMovieRequest();
                 getMovieRequest.setToken(token);
@@ -308,7 +308,8 @@ public class LoadBalancer {
                 InputStream is = target.request(MediaType.APPLICATION_OCTET_STREAM).get(InputStream.class);
 
                 try {
-                    outputStream.write(is.read());
+                    IOUtils.copy(is, outputStream);
+                    //outputStream.write(is.read());
                     outputStream.flush();
 
                 } catch (Exception e) {
